@@ -1,31 +1,23 @@
-import React from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
-import Cat from './testComponents/Cat';
-import CurlyBraces from './testComponents/CurlyBraces';
-import CustomComponents from './testComponents/CustomComponent';
-import Cafe from './testComponents/MultipleComponents';
-import Props from './testComponents/Props';
-import PropsCustom from './testComponents/PropsCustom';
-import State from './testComponents/State';
-import PizzaTranslator from './testComponents/PizzaTranslator';
-import ScrollViewExample from './testComponents/ScrollViewExample';
-import FlatListBasics from './testComponents/FlatListBasics';
-import SectionListBasics from './testComponents/SectionListBasics';
+import { NavigationContainer } from '@react-navigation/native';
+import { StyleSheet, View } from 'react-native';
+import RootNavigator from './navigators/RootNavigator';
+import TabsNavigator from './navigators/TabsNavigator';
 
-function App(): JSX.Element {
-
+const App = () => {
   return (
-    <></>
-    );
+    <View style={styles.container}>
+      <NavigationContainer>
+        <RootNavigator />
+      </NavigationContainer>
+    </View>
+  );
+
 }
 
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  }
+})
 
 export default App;

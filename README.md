@@ -23,6 +23,13 @@ After the setup is done, you can start the app via executing the command in the 
 I decided to use React Native CLI for this project, because it has a bit more of a steeper learning curve.
 Expo on the other hand is easier to setup.
 
+#### Fixing "rnsscreen was not found in the uimanager"
+Executing the following commands worked for me -> [See Stackoverflow answer](https://stackoverflow.com/a/69740887)
+: \
+`npm i react-native-screens` \
+`npx pod-install`
+
+
 ## Commands
 #### Git
 Reset last commit: `git reset --soft HEAD~1` 
@@ -35,8 +42,10 @@ Reformat Code: SHIFT+OPTION+F
 Start iOS App: `npm run ios` \
 Start Android App: `npm run android`
 
-## Packages
-npm install @react-navigation/bottom-tabs 
+## Extentions VS Code
+[React Code Snippets](https://marketplace.visualstudio.com/items?itemName=dsznajder.es7-react-js-snippets)
 
 ## Sources/References
-[React Native Tutorial](https://www.youtube.com/watch?v=w5IYCoTk4Bs&t=2859s)
+[React Native Tutorial](https://www.youtube.com/watch?v=w5IYCoTk4Bs&t=2859s) \
+[React Native Tutorial 2](https://www.youtube.com/watch?v=qcN5B44cMHQ)
+
