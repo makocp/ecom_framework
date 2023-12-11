@@ -25,9 +25,11 @@ const TabsNavigator = () => {
     return (
         <TabsStack.Navigator screenOptions={screenOptionsAll}>
             <TabsStack.Screen name='MainView' component={MainView} options={{
-                tabBarIcon(props) {
-                    return <Icon name='home'/>
-                },
+                tabBarLabel: 'Home',
+                tabBarIcon: ({color, size}) => (
+                    <Icon name='home' color={color} size={size}/>
+                ),
+                tabBarBadge: 3,
             }}/>
             <TabsStack.Screen name='CartView' component={CartView} />
             <TabsStack.Screen name='ProfileView' component={ProfileView} />
