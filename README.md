@@ -35,6 +35,8 @@ Executing the following commands worked for me -> [See Stackoverflow answer](htt
 - [Do Steps 1-5](https://medium.com/@vimniky/how-to-use-vector-icons-in-your-react-native-project-8212ac6a8f06)
 - Create the `react-native.config.js` file -> see [official documentation](https://github.com/oblador/react-native-vector-icons?tab=readme-ov-file#ios-setup)
 
+### Fixing Minimum Deployment Target Error while installing Stripe SDK
+- Go to ios/Podfile and change min_ios_version_supported to 13.0 -> [see link](https://github.com/stripe/stripe-react-native/issues/1280#issuecomment-1496494805)
 
 ## Commands
 ### Git
@@ -59,3 +61,5 @@ Clean Build: SHIFT+COMMAND+K
 [React Native Tutorial 2](https://www.youtube.com/watch?v=qcN5B44cMHQ)
 
 [Icon Library](https://oblador.github.io/react-native-vector-icons/)
+
+[Setup Stripe](https://stripe.com/docs/payments/accept-a-payment)
