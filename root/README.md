@@ -37,6 +37,14 @@ Adding Icons to iOS:
 Fixing Minimum Deployment Target Error while installing Stripe SDK:
 - Go to ios/Podfile and change min_ios_version_supported to 13.0 -> [see link](https://github.com/stripe/stripe-react-native/issues/1280#issuecomment-1496494805)
 
+Client- and Serverside:\
+It's important to separate the project structure into frontend and backend. I realized this, when I wanted to implement the logic for the stripe API. One example why it is necessary is the security aspect of an ecommerce app, which can be stored on a backend server, which is hosted on the internet. The client (mobile app) can then access via internet the server, which communicates with Stripe.
+
+Here the payment process ([*click for source*](https://www.youtube.com/live/50bIefoMo3c?si=1kfK4tWuPRgNkbWF&t=356)): 
+![payment](media/paymentprocess.png)
+
+
+
 ## Commands
 Git: \
 Reset last commit: `git reset --soft HEAD~1` 
@@ -62,3 +70,5 @@ Extentions VS Code:\
 [Icon Library](https://oblador.github.io/react-native-vector-icons/)
 
 [Setup Stripe](https://stripe.com/docs/payments/accept-a-payment)
+
+[Project Structure Template](https://stackoverflow.com/a/51128385)
