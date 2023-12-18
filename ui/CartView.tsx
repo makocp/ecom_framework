@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { Alert, Button, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 
 const CartView = () => {
@@ -7,10 +7,21 @@ const CartView = () => {
       <Text
         style={{ fontSize: 26, fontWeight: 'bold' }}
       >CartView</Text>
+      <Button
+      onPress={handleOnPress}
+        title="Buy Now"
+        color="#841584"
+        accessibilityLabel="Learn more about this purple button"
+      />
     </View>
   )
 }
 
-export default CartView
+const handleOnPress = () => {
+  // Alert.prompt("hello")
+  Alert.alert("Here is the Stripe API, which should call the Payment Window!")
+}
 
 const styles = StyleSheet.create({})
+
+export default CartView

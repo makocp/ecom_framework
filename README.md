@@ -19,41 +19,40 @@ After the setup is done, you can start the app via executing the command in the 
 // TODO: Add Screenshots of finished App.
 
 ## Learnings
-### Expo vs. RN CLI
+Expo vs. RN CLI: \
 I decided to use React Native CLI for this project, because it has a bit more of a steeper learning curve.
 Expo on the other hand is easier to setup.
 
-### Fixing "rnsscreen was not found in the uimanager"
+Fixing "rnsscreen was not found in the uimanager": \
 Executing the following commands worked for me -> [See Stackoverflow answer](https://stackoverflow.com/a/69740887)
 : \
 `npm i react-native-screens` \
 `npx pod-install`
 
-### Adding Icons to iOS
-
+Adding Icons to iOS:
 - `npm install react-native-vector-icons --save`
 - [Do Steps 1-5](https://medium.com/@vimniky/how-to-use-vector-icons-in-your-react-native-project-8212ac6a8f06)
 - Create the `react-native.config.js` file -> see [official documentation](https://github.com/oblador/react-native-vector-icons?tab=readme-ov-file#ios-setup)
 
-### Fixing Minimum Deployment Target Error while installing Stripe SDK
+Fixing Minimum Deployment Target Error while installing Stripe SDK:
 - Go to ios/Podfile and change min_ios_version_supported to 13.0 -> [see link](https://github.com/stripe/stripe-react-native/issues/1280#issuecomment-1496494805)
 
 ## Commands
-### Git
+Git: \
 Reset last commit: `git reset --soft HEAD~1` 
 
-### VS Code (Mac)
+VS Code (Mac):\
 Duplicate line: SHIFT+OPTION+ARROWDOWN \
 Reformat Code: SHIFT+OPTION+F
 
-### npm
+npm: \
 Start iOS App: `npm run ios` \
 Start Android App: `npm run android`
 
-### Xcode
+Xcode: \
 Clean Build: SHIFT+COMMAND+K
 
-## Extentions VS Code
+Extentions VS Code:\
 [React Code Snippets](https://marketplace.visualstudio.com/items?itemName=dsznajder.es7-react-js-snippets)
 
 ## Sources/References
