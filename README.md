@@ -49,6 +49,7 @@ Setup Server:
 - `npm init -y`
 - `npm i express`
 - `npm i nodemon -D`
+- `npm install ts-node`
 
 ## Commands
 Git: \
