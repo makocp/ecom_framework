@@ -4,6 +4,7 @@ import RootNavigator from './navigators/RootNavigator';
 import { StripeProvider, usePaymentSheet } from '@stripe/stripe-react-native';
 import { API_URL, PUBLISHABLE_KEY } from './constants/Constants';
 import { useEffect, useState } from 'react';
+import CartView from './ui/CartView';
 
 const App = () => {
   const [ready, setReady] = useState(false);
@@ -69,12 +70,14 @@ const App = () => {
           <RootNavigator />
         </NavigationContainer> */}
 
-        <Button
+        {/* <Button
           onPress={buy}
           title="Buy Now"
           color="#841584"
           accessibilityLabel="Learn more about this purple button"
-        />
+        /> */}
+
+        <CartView></CartView>
 
       </View>
     </StripeProvider>

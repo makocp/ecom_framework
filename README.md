@@ -51,6 +51,9 @@ Setup Server:
 - `npm i nodemon -D`
 - `npm install ts-node`
 
+Change iOS Emulator Record Screen Shortcut (CMD+R is also the shortcut for reloading the React Native App):\
+[See answer](https://stackoverflow.com/a/68164574)
+
 ## Commands
 Git: \
 Reset last commit: `git reset --soft HEAD~1` 
