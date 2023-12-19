@@ -43,7 +43,12 @@ It's important to separate the project structure into frontend and backend. I re
 Here the payment process ([*click for source*](https://www.youtube.com/live/50bIefoMo3c?si=1kfK4tWuPRgNkbWF&t=356)): 
 ![payment](media/paymentprocess.png)
 
-
+Setup Server:
+- Create Backend Directory
+- Create server.ts
+- `npm init -y`
+- `npm i express`
+- `npm i nodemon -D`
 
 ## Commands
 Git: \
@@ -72,3 +77,5 @@ Extentions VS Code:\
 [Setup Stripe](https://stripe.com/docs/payments/accept-a-payment)
 
 [Project Structure Template](https://stackoverflow.com/a/51128385)
+
+[Setup Express Server/Backend](https://www.youtube.com/watch?v=w3vs4a03y3I)
