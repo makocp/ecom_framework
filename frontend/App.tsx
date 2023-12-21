@@ -9,19 +9,15 @@ import CartView from './ui/CartView';
 const App = () => {
   const [ready, setReady] = useState(false);
   const { initPaymentSheet, presentPaymentSheet, loading } = usePaymentSheet();
-  const [key, setKey] = useState('');
+  const [publishableKey, setPublishableKey] = useState('');
 
   // useEffect(() => {
   //   initialisePaymentSheet();
   // }, [])
 
   useEffect(() => {
-    fetchKey();
+    fetchPublishableKey();
   }, [])
-
-  useEffect(() => {
-    console.log(key)
-  }, [key])
 
   const initialisePaymentSheet = async () => {
     // All three get generated on server side, for security reasons.
@@ -81,12 +77,11 @@ const App = () => {
     }
   };
 
-  const fetchKey = async () => {
+  const fetchPublishableKey = async () => {
     try {
       const response = await fetch(`${API_URL}/stripe-key`);
       const data = await response.text();
-      console.log("Data:"+data)
-      setKey(data);
+      setPublishableKey(data);
     } catch (error) {
       console.error(error);
     }
@@ -94,7 +89,7 @@ const App = () => {
 
   return (
     <StripeProvider
-      publishableKey={PUBLISHABLE_KEY}
+      publishableKey={publishableKey}
     >
       <View style={styles.container}>
         {/* <NavigationContainer>
