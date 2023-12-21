@@ -8,9 +8,9 @@ const App = () => {
   const { initPaymentSheet, presentPaymentSheet, loading } = usePaymentSheet();
   const [publishableKey, setPublishableKey] = useState('');
 
-  // useEffect(() => {
-  //   initialisePaymentSheet();
-  // }, [])
+  useEffect(() => {
+    initialisePaymentSheet();
+  }, [])
 
   useEffect(() => {
     fetchPublishableKey();
