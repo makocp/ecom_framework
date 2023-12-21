@@ -1,11 +1,12 @@
 import express from 'express';
 const router = express.Router();
-// TODO: import secret key from .env
-const stripe = require('stripe')('sk_test_51OMlgSBrV6uzn4QWeAhgCyXGxiBM6u3CW63HMnpJmXghZeDX5ArIlmj2zuz6OiqEAQM2IGjl6LnOIbnrkHLaf70200uEXEV4tH');
+
+const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
+const stripe = require('stripe')(stripeSecretKey);
 
 router.post('/intents', async (req, res) => {
     // create payment intent
-
+    res.send(stripeSecretKey);
     // return the secret
 });
 

@@ -16,9 +16,6 @@ app.use('/products', productRoutes)
 const stripePublishableKey = process.env.STRIPE_PUBLISHABLE_KEY;
 const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
 
-const stripe = require('stripe')(stripeSecretKey);
-
-
 app.get('/stripe-key', (req, res) => {
     return res.send(stripePublishableKey);
 });
