@@ -10,7 +10,7 @@ router.get('/stripe-key', (req, res) => {
     return res.send(stripePublishableKey);
 });
 
-router.post('/intent', async (req, res) => {
+router.post('/paymentIntent', async (req, res) => {
     try {
         const paymentIntent = await stripe.paymentIntents.create({
             amount: req.body.amount,
@@ -20,8 +20,18 @@ router.post('/intent', async (req, res) => {
             }
         });
 
+        // // not necassery, only, for saving cards (returning customer).
+
+        // const customer = await stripe.customers.create();
+        // const ephemeralKey = await stripe.ephemeralKey.create(
+        //     {customer: customer.id},
+        //     {apiVersion: '2023-10-16'}
+        // );
+
         res.json({
-            paymentIntent: paymentIntent.client_secret
+            clientSecret: paymentIntent.client_secret,
+            // ephemeralKey: ephemeralKey.secret,
+            // customer: customer.id
         });
     } catch (e: any) {
         res.status(400).json({
