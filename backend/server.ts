@@ -13,13 +13,6 @@ app.use('/payments', paymentRoutes);
 app.use('/orders', orderRoutes);
 app.use('/products', productRoutes)
 
-const stripePublishableKey = process.env.STRIPE_PUBLISHABLE_KEY;
-const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
-
-app.get('/stripe-key', (req, res) => {
-    return res.send(stripePublishableKey);
-});
-
 app.get('/api', (req, res) => {
     res.json('Testdata!');
 });

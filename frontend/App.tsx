@@ -1,6 +1,6 @@
 import { Alert, Button, StyleSheet, View } from 'react-native';
 import { StripeProvider, usePaymentSheet } from '@stripe/stripe-react-native';
-import { API_URL } from './constants/Constants';
+import { API_URL, API_URL_STRIPE_KEY } from './constants/Constants';
 import { useEffect, useState } from 'react';
 
 const App = () => {
@@ -76,7 +76,7 @@ const App = () => {
 
   const fetchPublishableKey = async () => {
     try {
-      const response = await fetch(`${API_URL}/stripe-key`);
+      const response = await fetch(`${API_URL_STRIPE_KEY}`);
       const data = await response.text();
       setPublishableKey(data);
     } catch (error) {
@@ -88,20 +88,18 @@ const App = () => {
     <StripeProvider
       publishableKey={publishableKey}
     >
-      <View style={styles.container}>
-        {/* <NavigationContainer>
+      {/* <NavigationContainer>
           <RootNavigator />
         </NavigationContainer> */}
 
+      <View style={styles.container}>
         <Button
           onPress={buy}
           title="Buy Now"
           color="#841584"
           accessibilityLabel="Learn more about this purple button"
         />
-
         {/* <CartView></CartView> */}
-
       </View>
     </StripeProvider>
   );
