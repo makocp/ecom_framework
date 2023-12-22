@@ -1,79 +1,89 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+## Description
+The aim of this project, is to build an e-commerce application with a functional payment system. The focus is on the core functionalities (order process incl. payment). After this is done, additional functionalities like cart, better UI design, detailed product view, etc. can be implemented.
 
-# Getting Started
+My personal motivation here is to learn about React Native, TypeScript and also dive deeper into e-commerce.
 
->**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
+Also, this app can be used as "framework" for an e-commerce app. The base is already here, just a few configurations like product import, adaption of design, etc. have to be done.
 
-## Step 1: Start the Metro Server
+## Developers
+mako.codeproducer@gmail.com
 
-First, you will need to start **Metro**, the JavaScript _bundler_ that ships _with_ React Native.
+Please contact me, if you have any requests or questions.
 
-To start Metro, run the following command from the _root_ of your React Native project:
+## Setup
+[Setting up the Environment Setup](https://reactnative.dev/docs/environment-setup)
 
-```bash
-# using npm
-npm start
+After the setup is done, you can start the app via executing the command in the project folder "npm run ios" for iOS or "npm run android" for Android.
 
-# OR using Yarn
-yarn start
-```
+## Functionalities
+// TODO: Add Screenshots of finished App.
 
-## Step 2: Start your Application
+## Learnings
+Expo vs. RN CLI: \
+I decided to use React Native CLI for this project, because it has a bit more of a steeper learning curve.
+Expo on the other hand is easier to setup.
 
-Let Metro Bundler run in its _own_ terminal. Open a _new_ terminal from the _root_ of your React Native project. Run the following command to start your _Android_ or _iOS_ app:
+Fixing "rnsscreen was not found in the uimanager": \
+Executing the following commands worked for me -> [See Stackoverflow answer](https://stackoverflow.com/a/69740887)
+: \
+`npm i react-native-screens` \
+`npx pod-install`
 
-### For Android
+Adding Icons to iOS:
+- `npm install react-native-vector-icons --save`
+- [Do Steps 1-5](https://medium.com/@vimniky/how-to-use-vector-icons-in-your-react-native-project-8212ac6a8f06)
+- Create the `react-native.config.js` file -> see [official documentation](https://github.com/oblador/react-native-vector-icons?tab=readme-ov-file#ios-setup)
 
-```bash
-# using npm
-npm run android
+Fixing Minimum Deployment Target Error while installing Stripe SDK:
+- Go to ios/Podfile and change min_ios_version_supported to 13.0 -> [see link](https://github.com/stripe/stripe-react-native/issues/1280#issuecomment-1496494805)
 
-# OR using Yarn
-yarn android
-```
+Client- and Serverside:\
+It's important to separate the project structure into frontend and backend. I realized this, when I wanted to implement the logic for the stripe API. One example why it is necessary is the security aspect of an ecommerce app, which can be stored on a backend server, which is hosted on the internet. The client (mobile app) can then access via internet the server, which communicates with Stripe.
 
-### For iOS
+Here the payment process ([*click for source*](https://www.youtube.com/live/50bIefoMo3c?si=1kfK4tWuPRgNkbWF&t=356)): 
+![payment](media/paymentprocess.png)
 
-```bash
-# using npm
-npm run ios
+Setup Server:
+- Create Backend Directory
+- Create server.ts
+- `npm init -y`
+- `npm i express`
+- `npm i nodemon -D`
+- `npm install ts-node`
 
-# OR using Yarn
-yarn ios
-```
+Change iOS Emulator Record Screen Shortcut (CMD+R is also the shortcut for reloading the React Native App):\
+[See answer](https://stackoverflow.com/a/68164574)
 
-If everything is set up _correctly_, you should see your new app running in your _Android Emulator_ or _iOS Simulator_ shortly provided you have set up your emulator/simulator correctly.
+Test API with CURL:
+curl -X POST -H "Content-Type: application/json" -d "{\"amount\":17950}" http://localhost:4242/payments/intents
+OR: Use Postman.
 
-This is one way to run your app — you can also run it directly from within Android Studio and Xcode respectively.
+## Commands
+Git: \
+Reset last commit: `git reset --soft HEAD~1` 
 
-## Step 3: Modifying your App
+VS Code (Mac):\
+Duplicate line: SHIFT+OPTION+ARROWDOWN \
+Reformat Code: SHIFT+OPTION+F
 
-Now that you have successfully run the app, let's modify it.
+npm: \
+Start iOS App: `npm run ios` \
+Start Android App: `npm run android`
 
-1. Open `App.tsx` in your text editor of choice and edit some lines.
-2. For **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Developer Menu** (<kbd>Ctrl</kbd> + <kbd>M</kbd> (on Window and Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (on macOS)) to see your changes!
+Xcode: \
+Clean Build: SHIFT+COMMAND+K
 
-   For **iOS**: Hit <kbd>Cmd ⌘</kbd> + <kbd>R</kbd> in your iOS Simulator to reload the app and see your changes!
+Extentions VS Code:\
+[React Code Snippets](https://marketplace.visualstudio.com/items?itemName=dsznajder.es7-react-js-snippets)
 
-## Congratulations! :tada:
+## Sources/References
+[React Native Tutorial](https://www.youtube.com/watch?v=w5IYCoTk4Bs&t=2859s) \
+[React Native Tutorial 2](https://www.youtube.com/watch?v=qcN5B44cMHQ)
 
-You've successfully run and modified your React Native App. :partying_face:
+[Icon Library](https://oblador.github.io/react-native-vector-icons/)
 
-### Now what?
+[Setup Stripe](https://stripe.com/docs/payments/accept-a-payment)
 
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [Introduction to React Native](https://reactnative.dev/docs/getting-started).
+[Project Structure Template](https://stackoverflow.com/a/51128385)
 
-# Troubleshooting
-
-If you can't get this to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+[Setup Express Server/Backend](https://www.youtube.com/watch?v=w3vs4a03y3I)
