@@ -54,6 +54,10 @@ Setup Server:
 Change iOS Emulator Record Screen Shortcut (CMD+R is also the shortcut for reloading the React Native App):\
 [See answer](https://stackoverflow.com/a/68164574)
 
+Test API with CURL:
+curl -X POST -H "Content-Type: application/json" -d "{\"amount\":17950}" http://localhost:4242/payments/intents
+OR: Use Postman.
+
 ## Commands
 Git: \
 Reset last commit: `git reset --soft HEAD~1` 
