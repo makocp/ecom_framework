@@ -14,7 +14,7 @@ const MainView = () => {
                 'Content-Type': 'application/json',
             },
             // TODO: make amount
-            body: JSON.stringify({ 'amount': 19995 })
+            body: JSON.stringify({ 'amount': 7995 })
         });
         if (!response.ok) {
             console.error('Failed to fetch param sheet');
@@ -46,10 +46,23 @@ const MainView = () => {
             merchantDisplayName: "ECOM GmbH",
             // customerId: customer,
             // customerEphemeralKeySecret: ephemeralKey,
-            paymentIntentClientSecret: clientSecret
+            paymentIntentClientSecret: clientSecret,
+            // allowsDelayedPaymentMethods: true
+            // TODO: configure returnURL
+            returnURL: 'stripe-example://stripe-redirect',
+            // applePay: {
+            //     merchantCountryCode: 'AUT',
+            // },
+            // googlePay: {
+            //     merchantCountryCode: 'AT',
+            //     testEnv: true,
+            //     currencyCode: 'eur',
+            // }
         });
         if (!error) {
             setLoading(true);
+        } else {
+            console.log(error);
         }
 
         // 3. present payment sheet

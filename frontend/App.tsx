@@ -35,6 +35,8 @@ const App = () => {
   return (
     <StripeProvider
       publishableKey={pubStripeKey}
+      // TODO: make merchantIdentifier for Apple Pay
+      // merchantIdentifier=''
     >
       <NavigationContainer>
         <RootNavigator />

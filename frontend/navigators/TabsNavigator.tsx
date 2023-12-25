@@ -4,6 +4,7 @@ import MainView from '../ui/MainView';
 import CartView from '../ui/CartView';
 import ProfileView from '../ui/ProfileView';
 import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons'
+import Ionicons from 'react-native-vector-icons/Ionicons'
 
 
 export type TabsStackParamList = {
@@ -44,18 +45,18 @@ const TabsNavigator = () => {
         <TabsStack.Navigator screenOptions={screenOptionsAll}>
             <TabsStack.Screen name='MainView' component={MainView} options={{
                 tabBarIcon: ({ focused, color, size }) => {
-                    return <MaterialCommunityIcon name={focused ? 'shopping' : 'shopping-outline'} color={color} size={size} />
+                    return <Ionicons name={focused ? 'home' : 'home-outline'} color={color} size={size} />
                 }
             }} />
             <TabsStack.Screen name='CartView' component={CartView} options={{
                 tabBarIcon: ({ focused, color, size }) => {
-                    return <MaterialCommunityIcon name={focused ? 'cart' : 'cart-outline'} color={color} size={size} />
+                    return <Ionicons name={focused ? 'cart' : 'cart-outline'} color={color} size={size} />
                 },
                 // tabBarBadge: 3
             }} />
             <TabsStack.Screen name='ProfileView' component={ProfileView} options={{
                 tabBarIcon: ({ focused, color, size }) => {
-                    return <MaterialCommunityIcon name={focused ? 'account' : 'account-outline'} color={color} size={size} />
+                    return <Ionicons name={focused ? 'person' : 'person-outline'} color={color} size={size} />
                 }
             }} />
         </TabsStack.Navigator>

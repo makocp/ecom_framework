@@ -7,7 +7,7 @@ const stripe = require('stripe')(stripeSecretKey);
 
 
 router.get('/stripe-key', (req, res) => {
-    return res.send(stripePublishableKey);
+    return res.status(200).send(stripePublishableKey);
 });
 
 router.post('/paymentIntent', async (req, res) => {
