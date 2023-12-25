@@ -43,7 +43,20 @@ It's important to separate the project structure into frontend and backend. I re
 Here the payment process ([*click for source*](https://www.youtube.com/live/50bIefoMo3c?si=1kfK4tWuPRgNkbWF&t=356)): 
 ![payment](media/paymentprocess.png)
 
+Setup Server:
+- Create Backend Directory
+- Create server.ts
+- `npm init -y`
+- `npm i express`
+- `npm i nodemon -D`
+- `npm install ts-node`
 
+Change iOS Emulator Record Screen Shortcut (CMD+R is also the shortcut for reloading the React Native App):\
+[See answer](https://stackoverflow.com/a/68164574)
+
+Test API with CURL:
+curl -X POST -H "Content-Type: application/json" -d "{\"amount\":17950}" http://localhost:4242/payments/intents
+OR: Use Postman.
 
 ## Commands
 Git: \
@@ -72,3 +85,5 @@ Extentions VS Code:\
 [Setup Stripe](https://stripe.com/docs/payments/accept-a-payment)
 
 [Project Structure Template](https://stackoverflow.com/a/51128385)
+
+[Setup Express Server/Backend](https://www.youtube.com/watch?v=w3vs4a03y3I)
