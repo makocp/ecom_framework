@@ -1,9 +1,9 @@
 import { View, Button, Alert } from 'react-native'
 import React, { useState } from 'react'
-import { API_URL_PAYMENT_SHEET as API_URL_PAYMENT_INTENT } from '../constants/Routes'
+import { API_URL_PAYMENT_SHEET as API_URL_PAYMENT_INTENT } from '../routes/Routes'
 import { useStripe } from '@stripe/stripe-react-native'
 
-const MainView = () => {
+const HomeScreen = () => {
     const { initPaymentSheet, presentPaymentSheet } = useStripe();
     const [loading, setLoading] = useState(false);
 
@@ -19,7 +19,7 @@ const MainView = () => {
         if (!response.ok) {
             console.error('Failed to fetch param sheet');
         }
-        const { clientSecret } = await response.json();
+        const { clientSecret } = await response.json() as { clientSecret: string };
         if (!clientSecret) {
             console.error('Incomplete data received');
         }
@@ -28,8 +28,8 @@ const MainView = () => {
 
     const openPaymentSheet = async () => {
         const { error } = await presentPaymentSheet();
-        
-        if ( error ) {
+
+        if (error) {
             Alert.alert(`Error code: ${error.code}`, error.message);
         } else {
             Alert.alert('Success', 'Your order is confirmed!')
@@ -80,10 +80,10 @@ const MainView = () => {
                 disabled={loading}
                 title='Checkout'
                 onPress={onCheckout}
-                
+
             />
         </View>
     )
 }
 
-export default MainView
+export default HomeScreen

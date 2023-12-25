@@ -1,7 +1,7 @@
 import { View, Text, Alert } from 'react-native'
 import React from 'react'
 
-const DetailView = () => {
+const DetailScreen = () => {
     return (
         <View style={{ alignItems: 'center', justifyContent: 'center', flex: 1}}>
             <Text
@@ -11,4 +11,4 @@ const DetailView = () => {
     )
 }
 
-export default DetailView
+export default DetailScreen

@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 import { StripeProvider } from '@stripe/stripe-react-native';
-import { API_URL_STRIPE_KEY as API_URL_PUB_STRIPE_KEY } from './constants/Routes';
+import { API_URL_STRIPE_KEY as API_URL_PUB_STRIPE_KEY } from './routes/Routes';
 import { useEffect, useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import RootNavigator from './navigators/RootNavigator';

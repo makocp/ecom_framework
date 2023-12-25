@@ -1,7 +1,7 @@
 import { Alert, Button, StyleSheet, Text, View } from 'react-native'
 import React, { useState } from 'react'
 
-const CartView = () => {
+const CartScreen = () => {
 
   const [backendData, setBackendData] = useState('');
 
@@ -10,7 +10,7 @@ const CartView = () => {
       response => response.json()
     ).then(
       data => {
-        setBackendData(data)
+        setBackendData(data as string)
       }).catch(error => {
         console.error('Error fetching data:', error)
       });
@@ -46,4 +46,4 @@ const handleOnPress = () => {
 
 const styles = StyleSheet.create({})
 
-export default CartView
+export default CartScreen

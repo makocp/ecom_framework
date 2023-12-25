@@ -1,8 +1,8 @@
 import React from 'react'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import MainView from '../ui/MainView';
-import CartView from '../ui/CartView';
-import ProfileView from '../ui/ProfileView';
+import HomeScreen from '../screens/HomeScreen';
+import CartScreen from '../screens/CartScreen';
+import ProfileView from '../screens/ProfileScreen';
 import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 
@@ -43,12 +43,12 @@ const TabsStack = createBottomTabNavigator<TabsStackParamList>();
 const TabsNavigator = () => {
     return (
         <TabsStack.Navigator screenOptions={screenOptionsAll}>
-            <TabsStack.Screen name='MainView' component={MainView} options={{
+            <TabsStack.Screen name='MainView' component={HomeScreen} options={{
                 tabBarIcon: ({ focused, color, size }) => {
                     return <Ionicons name={focused ? 'home' : 'home-outline'} color={color} size={size} />
                 }
             }} />
-            <TabsStack.Screen name='CartView' component={CartView} options={{
+            <TabsStack.Screen name='CartView' component={CartScreen} options={{
                 tabBarIcon: ({ focused, color, size }) => {
                     return <Ionicons name={focused ? 'cart' : 'cart-outline'} color={color} size={size} />
                 },
