@@ -1,6 +1,6 @@
 import { View, Button, Alert } from 'react-native'
 import React, { useState } from 'react'
-import { API_URL_PAYMENT_SHEET as API_URL_PAYMENT_INTENT } from '../routes/Routes'
+import { API_URL_PAYMENT_SHEET as API_URL_PAYMENT_INTENT } from '../../routes/Routes'
 import { useStripe } from '@stripe/stripe-react-native'
 
 const HomeScreen = () => {

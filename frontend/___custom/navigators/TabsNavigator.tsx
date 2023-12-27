@@ -1,8 +1,8 @@
 import React from 'react'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import HomeScreen from '../screens/HomeScreen';
-import CartScreen from '../screens/CartScreen';
-import ProfileView from '../screens/ProfileScreen';
+import HomeScreen from '../screens/Home/HomeScreen';
+import CartScreen from '../screens/Cart/CartScreen';
+import ProfileView from '../screens/Profile/ProfileScreen';
 import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 
