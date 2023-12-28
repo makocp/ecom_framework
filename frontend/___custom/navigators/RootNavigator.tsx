@@ -1,9 +1,6 @@
 import React from 'react'
 import { createStackNavigator } from '@react-navigation/stack'
-import HomeScreen from '../screens/Home/HomeScreen';
-import CartScreen from '../screens/Cart/CartScreen';
-import ProfileView from '../screens/Profile/ProfileScreen';
-import DetailScreen from '../screens/Detail/DetailScreen';
+import DetailScreen from '../screens/detail/DetailScreen';
 import { NavigatorScreenParams } from '@react-navigation/native';
 import TabsNavigator, { TabsStackParamList } from './TabsNavigator';
 
