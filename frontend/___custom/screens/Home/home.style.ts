@@ -2,6 +2,9 @@ import { StyleSheet } from "react-native";
 import { COLORS, SIZES } from "../../themes/theme";
 
 const styles = StyleSheet.create({
+    scrollContainer: {
+        marginHorizontal: 10
+    },
     textStyle: {
         fontFamily: 'bold',
         fontSize: 20
@@ -16,7 +19,7 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     location: {
-        fontFamily: 'semibold',
+        fontWeight: 'bold',
         fontSize: SIZES.medium,
         color: COLORS.gray
     },
