@@ -6,7 +6,7 @@ const orderRoutes = require('./routes/orderRoutes');
 const productRoutes = require('./routes/productRoutes');
 
 const app = express();
-const PORT = 4242;
+const PORT = process.env.PORT || 4242;
 
 app.use(bodyParser.json());
 app.use('/payments', paymentRoutes);
