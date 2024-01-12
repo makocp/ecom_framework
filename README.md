@@ -58,6 +58,57 @@ Test API with CURL:
 curl -X POST -H "Content-Type: application/json" -d "{\"amount\":17950}" http://localhost:4242/payments/intents
 OR: Use Postman.
 
+## Setup CI/CD Workflow on GCloud for Backend
+- [Tutorial: CI/CD for Node.js Application using Google Cloud](https://psspavan96.medium.com/ci-cd-for-node-js-application-using-google-cloud-part-1-5f7466df913d)
+
+![CICD_Workflow_Image](media/CICD.png)
+
+For Step 2, I created the VM instance, NOT with the "gcloud" command, but directly in the Web GCloud Console.
+
+For Step 5a - 5e, use these commands to install Jenkins (see reference below):
+
+- `sudo apt update`
+
+- `sudo apt install openjdk-11-jre -y`
+
+- `curl -fsSL https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key | sudo tee \
+    /usr/share/keyrings/jenkins-keyring.asc > /dev/null`
+
+- `echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] \
+    https://pkg.jenkins.io/debian-stable binary/ | sudo tee \
+    /etc/apt/sources.list.d/jenkins.list > /dev/null`
+
+- `sudo apt-get update`
+- `sudo apt-get install jenkins -y`
+
+For Step 7c - 7e, use these commands (see reference below):
+
+Add Docker's official GPG key:
+
+- `sudo apt-get update`
+- `sudo apt-get install ca-certificates curl gnupg` 
+- `sudo install -m 0755 -d /etc/apt/keyrings`
+- `curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg`
+- `sudo chmod a+r /etc/apt/keyrings/docker.gpg`
+
+Add the repository to Apt sources:
+- `echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/debian \
+  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null`
+- `sudo apt-get update`
+
+For Step 9, I created the Cluster via GCloud Console, see reference below.
+
+#### Further Information, References
+- [Setup and Install Jenkins on GCP VM](https://blog.kubekode.org/setup-and-install-jenkins-on-gcp-vm)
+- [Install Docker Engine on Ubuntu](https://docs.docker.com/engine/install/ubuntu/)
+- [Difference Jenkins/Github Actions](https://www.youtube.com/watch?v=VUspj9XPRBA)
+- [Setup Kubernetes Cluster via GCloud Console](https://www.youtube.com/watch?v=p2LyoePiBo8)
+
+#### Notes
+- Retrieve GCloud Jenkins Initial Pw: `cat /var/lib/jenkins/secrets/initialAdminPassword`
+
+
 ## Commands
 Git: \
 Reset last commit: `git reset --soft HEAD~1` 
