@@ -19,25 +19,25 @@ After the setup is done, you can start the app via executing the command in the 
 // TODO: Add Screenshots of finished App.
 
 ## Learnings
-Expo vs. RN CLI: \
+### Expo vs. RN CLI
 I decided to use React Native CLI for this project, because it has a bit more of a steeper learning curve.
 Expo on the other hand is easier to setup.
 
-Fixing "rnsscreen was not found in the uimanager": \
+### Fixing "rnsscreen was not found in the uimanager"
 Executing the following commands worked for me -> [See Stackoverflow answer](https://stackoverflow.com/a/69740887)
 : \
 `npm i react-native-screens` \
 `npx pod-install`
 
-Adding Icons to iOS:
+### Adding Icons to iOS
 - `npm install react-native-vector-icons --save`
 - [Do Steps 1-5](https://medium.com/@vimniky/how-to-use-vector-icons-in-your-react-native-project-8212ac6a8f06)
 - Create the `react-native.config.js` file -> see [official documentation](https://github.com/oblador/react-native-vector-icons?tab=readme-ov-file#ios-setup)
 
-Fixing Minimum Deployment Target Error while installing Stripe SDK:
+### Fixing Minimum Deployment Target Error while installing Stripe SDK
 - Go to ios/Podfile and change min_ios_version_supported to 13.0 -> [see link](https://github.com/stripe/stripe-react-native/issues/1280#issuecomment-1496494805)
 
-Client- and Serverside:\
+### Client- and Serverside
 It's important to separate the project structure into frontend and backend. I realized this, when I wanted to implement the logic for the stripe API. One example why it is necessary is the security aspect of an ecommerce app, which can be stored on a backend server, which is hosted on the internet. The client (mobile app) can then access via internet the server, which communicates with Stripe.
 
 Here the payment process ([*click for source*](https://www.youtube.com/live/50bIefoMo3c?si=1kfK4tWuPRgNkbWF&t=356)): 
@@ -51,10 +51,10 @@ Setup Server:
 - `npm i nodemon -D`
 - `npm install ts-node`
 
-Change iOS Emulator Record Screen Shortcut (CMD+R is also the shortcut for reloading the React Native App):\
-[See answer](https://stackoverflow.com/a/68164574)
+### Change iOS Emulator Record Screen Shortcut
+- CMD+R is also the shortcut for reloading the React Native App -> [See answer](https://stackoverflow.com/a/68164574)
 
-Test API with CURL:
+### Test API with CURL
 curl -X POST -H "Content-Type: application/json" -d "{\"amount\":17950}" http://localhost:4242/payments/intents
 OR: Use Postman.
 
@@ -104,9 +104,14 @@ For Step 9, I created the Cluster via GCloud Console, see reference below.
 - [Install Docker Engine on Ubuntu](https://docs.docker.com/engine/install/ubuntu/)
 - [Difference Jenkins/Github Actions](https://www.youtube.com/watch?v=VUspj9XPRBA)
 - [Setup Kubernetes Cluster via GCloud Console](https://www.youtube.com/watch?v=p2LyoePiBo8)
+- [Fix External IP Adress of GCloud Instance](https://cloud.google.com/compute/docs/ip-addresses/reserve-static-external-ip-address#console)
+- [Add SSH Key to Jenkins for Github Private Repo](https://shreyakupadhyay.medium.com/integrate-jenkins-with-github-private-repo-8fb335494f7e)
+- [Build Docker Image for NodeJS App / Jenkins](https://www.youtube.com/watch?v=Yo2yYxdBbfg)
 
 #### Notes
 - Retrieve GCloud Jenkins Initial Pw: `cat /var/lib/jenkins/secrets/initialAdminPassword`
+- ERR_TIMED_OUT Fix: I got this error, when I wanted to connect to the Jenkins server via external IP:8080. Important: **connect via http://** and NOT https://
+
 
 
 ## Commands
