@@ -31,7 +31,7 @@ pipeline {
         stage("Install dependencies"){
             steps{
                 dir('backend') { // Change to backend directory
-                    sh 'sudo npm install'
+                    sh 'npm install'
                 }
             }
         }
