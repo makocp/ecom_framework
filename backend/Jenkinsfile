@@ -1,6 +1,3 @@
-pipeline {
-    agent any
-    stages {
         // stage("Checkout"){
         //     steps{
         //         checkout scm
@@ -26,15 +23,24 @@ pipeline {
         //     }
         // }
 
+
+pipeline {
+    agent any
+    stages {
+
         stage("Install dependencies"){
             steps{
-                sh 'sudo npm install'
+                dir('backend') { // Change to backend directory
+                    sh 'sudo npm install'
+                }
             }
         }
 
         stage("Start App"){
             steps {
-                sh 'npm start'
+                dir('backend') { // Change to backend directory
+                    sh 'npm start'
+                }
             }
         }
     }
