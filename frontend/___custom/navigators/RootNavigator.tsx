@@ -1,9 +1,6 @@
 import React from 'react'
 import { createStackNavigator } from '@react-navigation/stack'
-import MainView from '../ui/MainView';
-import CartView from '../ui/CartView';
-import ProfileView from '../ui/ProfileView';
-import DetailView from '../ui/DetailView';
+import DetailScreen from '../screens/detail/DetailScreen';
 import { NavigatorScreenParams } from '@react-navigation/native';
 import TabsNavigator, { TabsStackParamList } from './TabsNavigator';
 
@@ -22,7 +19,7 @@ const RootNavigator = () => {
   return (
     <RootStack.Navigator>
       <RootStack.Screen name='TabsStack' component={TabsNavigator} options={navigationOptions} />
-      <RootStack.Screen name='DetailView' component={DetailView} options={navigationOptions} />
+      <RootStack.Screen name='DetailView' component={DetailScreen} options={navigationOptions} />
     </RootStack.Navigator>
   )
 }
