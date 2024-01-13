@@ -1,0 +1,41 @@
+pipeline {
+    agent any
+    stages {
+        // stage("Checkout"){
+        //     steps{
+        //         checkout scm
+        //     }
+        // }
+
+        // stage("Cloning Git"){
+        //     steps {
+
+        //     }
+        // }
+
+
+        // stage("test"){
+        //     steps{
+        //         sh 'npm test'
+        //     }
+        // }
+
+        // stage("build"){
+        //     steps{
+        //         sh ''
+        //     }
+        // }
+
+        stage("Install dependencies"){
+            steps{
+                sh 'sudo npm install'
+            }
+        }
+
+        stage("Start App"){
+            steps {
+                sh 'npm start'
+            }
+        }
+    }
+}
