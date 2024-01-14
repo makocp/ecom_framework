@@ -36,7 +36,7 @@ pipeline {
             }
         }
 
-        stage("Start App"){
+        stage("Build"){
             steps {
                 dir('backend') { // Change to backend directory
                     // Only for demo purposes, to "build". With npm start -> build runs infinite.
