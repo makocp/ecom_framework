@@ -104,6 +104,7 @@ For Step 9, I created the Cluster via GCloud Console, see reference below.
 - ERR_TIMED_OUT Fix: I got this error, when I wanted to connect to the Jenkins server via external IP:8080. Important: **connect via http://** and NOT https://
 - Jenkinsfile: In this case, I decided to create a Jenkinsfile directly in the Repo. You could write the script also directly in Jenkins, but for me it's more convenient to have a separate File in the Repo for the script.
 - Fix "Failed to connect to repository" error in Jenkins: You need to connect your Github with Jenkins via a personal access token, see tutorial below. 
+- Fix "npm not found" on Jenkins/GCloud: Jenkins showed this error during the build phase. The problem was, I didn't install npm and nodejs on the GCloud VM. Here the commands for installing: `sudo apt-get install npm` and `sudo apt-get install nodejs`
 
 #### Further Information, References
 - [Setup and Install Jenkins on GCP VM](https://blog.kubekode.org/setup-and-install-jenkins-on-gcp-vm)
