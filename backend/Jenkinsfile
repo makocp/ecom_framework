@@ -36,11 +36,19 @@ pipeline {
             }
         }
 
-        stage("Build"){
+        stage("Build App"){
             steps {
                 dir('backend') { // Change to backend directory
                     // Only for demo purposes, to "build". With npm start -> build runs infinite.
                     sh 'npm run build'
+                }
+            }
+        }
+
+        stage("Build Image"){
+            steps{
+                dir('backend') { // Change to backend directory
+                    sh 'docker build e-com-backend .'                    
                 }
             }
         }
