@@ -22,7 +22,7 @@ pipeline {
         stage("Build Image"){
             steps{
                 dir('backend') { // Change to backend directory
-                    sh 'docker build -t e-com-backend .'                    
+                    sh 'docker build -t e-com-backend:$BUILD_NUMBER .'               
                 }
             }
         }
