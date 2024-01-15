@@ -116,7 +116,7 @@ For Step 10, I created a Jenkinsfile in the Gitrepo and access it directly there
   - `kubectl get svc` -> get external IP
   - visit: http://{EXTERNAL_IP}:{PORT(4242)}
   - view logs: `kubectl get pods` -> `kubectl logs <pod>`
-- Error Typescript running in Docker Container Fix ((node:1) Warning: To load an ES module, set "type": "module" in the package.json or use the .mjs extension.): add `{"type": "module"}` into package.json, see reference 9.
+- Error Typescript: Locally it works with ts-node, but in Docker it does not. Now I changed the "node" command to `ts-node`
 
 
 #### Further Information, References
