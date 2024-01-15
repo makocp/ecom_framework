@@ -19,6 +19,15 @@ pipeline {
             }
         }
 
+        stage("Run Tests"){
+            steps {
+                dir('backend') {
+                    // Replace 'npm test' with your specific test command
+                    sh 'npm test'
+                }
+            }
+        }
+
         stage("Build Image"){
             steps{
                 dir('backend') { // Change to backend directory
