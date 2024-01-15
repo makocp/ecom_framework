@@ -63,6 +63,10 @@ OR: Use Postman.
 
 ![CICD_Workflow_Image](media/CICD.png)
 
+![Jenkins Pipeline](media/Pipeline_final.png)
+
+![API Request to Backend](media/API_final.png)
+
 For Step 2, I created the VM instance, NOT with the "gcloud" command, but directly in the Web GCloud Console.
 
 For Step 5a - 5e, use these commands to install Jenkins (see reference below):
@@ -117,6 +121,7 @@ For Step 10, I created a Jenkinsfile in the Gitrepo and access it directly there
   - visit: http://{EXTERNAL_IP}:{PORT(4242)}
   - view logs: `kubectl get pods` -> `kubectl logs <pod>`
 - Error Typescript: Locally it works with ts-node, but in Docker it does not. Now I changed the "node" command to `npx ts-node server.ts` (see Dockerfile). Difference to execute with npx: In the Dockerfile, npx ts-node server.ts runs the application using the locally installed ts-node, ensuring compatibility with the project's specific version. This approach avoids conflicts with globally installed versions, unlike the ts-node server.ts command which requires a global install using npm install -g ts-node.
+- Fix Kubernetes Error "IP Adress Quota exceeded": `kubectl get services` to show all services and then `kubectl delete service <service-name>` to delete the previous services, which are not needed anymore.
 
 
 #### Further Information, References
