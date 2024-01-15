@@ -99,23 +99,36 @@ Add the repository to Apt sources:
 
 For Step 9, I created the Cluster via GCloud Console, see reference below.
 
+For Step 10, I created a Jenkinsfile in the Gitrepo and access it directly there, see reference 7) below.
+
 #### Notes
 - Retrieve GCloud Jenkins Initial Pw: `cat /var/lib/jenkins/secrets/initialAdminPassword`
 - ERR_TIMED_OUT Fix: I got this error, when I wanted to connect to the Jenkins server via external IP:8080. Important: **connect via http://** and NOT https://
 - Jenkinsfile: In this case, I decided to create a Jenkinsfile directly in the Repo. You could write the script also directly in Jenkins, but for me it's more convenient to have a separate File in the Repo for the script.
 - Fix "Failed to connect to repository" error in Jenkins: You need to connect your Github with Jenkins via a personal access token, see tutorial below. 
 - Fix "npm not found" on Jenkins/GCloud: Jenkins showed this error during the build phase. The problem was, I didn't install npm and nodejs on the GCloud VM. Here the commands for installing: `sudo apt-get install npm` and `sudo apt-get install nodejs`
+- Fix "ERROR: permission denied while trying to connect to the Docker daemon socket at unix:///var/run/docker.sock" -> run `chmod 777 /var/run/docker.sock` in GCloud console.
+- Poll SCM: * * * * * -> which means the Jenkins polls the SCM every minute of every hour of every day of every month and every day of the week. It builds only, if there are new changes/commits. This is a possible solution, a better one would be, to use Github Webhooks, but in my case, I need to configure https. Because the server runs currently on http, I choose this solution.
+- Fix GKE Authentication error: `gcloud compute instances set-service-account instance-1 --scopes=cloud-platform --zone=us-central1-a --service-account=ecom-980@e-com-project-408719.iam.gserviceaccount.com` The problem was the service account and the scopes were not set correctly, the previous command is the solution. Note: VM must be stopped, then the command executed, then the VM restarted.
+- Connect to Google Kubernetes Cluster:
+  - `gcloud container clusters get-credentials ecom-backend-cluster --zone us-central1-a --project e-com-project-408719`
+  - `kubectl get deployments`
+  - `kubectl get svc` -> get external IP
+  - visit: http://{EXTERNAL_IP}:{PORT(4242)}
+  - view logs: `kubectl get pods` -> `kubectl logs <pod>`
+- Error Typescript running in Docker Container Fix ((node:1) Warning: To load an ES module, set "type": "module" in the package.json or use the .mjs extension.): add `{"type": "module"}` into package.json, see reference 9.
+
 
 #### Further Information, References
-- [Setup and Install Jenkins on GCP VM](https://blog.kubekode.org/setup-and-install-jenkins-on-gcp-vm)
-- [Install Docker Engine on Ubuntu](https://docs.docker.com/engine/install/ubuntu/)
-- [Difference Jenkins/Github Actions](https://www.youtube.com/watch?v=VUspj9XPRBA)
-- [Setup Kubernetes Cluster via GCloud Console](https://www.youtube.com/watch?v=p2LyoePiBo8)
-- [Fix External IP Adress of GCloud Instance](https://cloud.google.com/compute/docs/ip-addresses/reserve-static-external-ip-address#console)
-- [Add SSH Key to Jenkins for Github Private Repo](https://shreyakupadhyay.medium.com/integrate-jenkins-with-github-private-repo-8fb335494f7e)
-- [Build Docker Image for NodeJS App / Jenkins](https://www.youtube.com/watch?v=Yo2yYxdBbfg)
-- [How To Add GitHub Credentials In Jenkins](https://www.youtube.com/watch?v=fdkFrE09610)
-
+- [1) Setup and Install Jenkins on GCP VM](https://blog.kubekode.org/setup-and-install-jenkins-on-gcp-vm)
+- [2) Install Docker Engine on Ubuntu](https://docs.docker.com/engine/install/ubuntu/)
+- [3) Difference Jenkins/Github Actions](https://www.youtube.com/watch?v=VUspj9XPRBA)
+- [4) Setup Kubernetes Cluster via GCloud Console](https://www.youtube.com/watch?v=p2LyoePiBo8)
+- [5) Fix External IP Adress of GCloud Instance](https://cloud.google.com/compute/docs/ip-addresses/reserve-static-external-ip-address#console)
+- [6) Add SSH Key to Jenkins for Github Private Repo](https://shreyakupadhyay.medium.com/integrate-jenkins-with-github-private-repo-8fb335494f7e)
+- [7) Build Docker Image for NodeJS App / Jenkins](https://www.youtube.com/watch?v=Yo2yYxdBbfg)
+- [8) How To Add GitHub Credentials In Jenkins](https://www.youtube.com/watch?v=fdkFrE09610)
+- [9) Fix Typescript Error in Docker Node App](https://stackoverflow.com/a/67880948)
 
 
 ## Commands
