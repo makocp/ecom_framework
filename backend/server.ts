@@ -14,7 +14,7 @@ app.use('/orders', orderRoutes);
 app.use('/products', productRoutes)
 
 app.get('/api', (req, res) => {
-    res.json('Testdata!');
+    res.json('The CI/CD WORKS! finally!');
 });
 
 app.post('/payment-sheet', async (req, res) => {
