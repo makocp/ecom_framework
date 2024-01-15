@@ -31,7 +31,7 @@ pipeline {
             steps {
                 sh 'docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASSWORD'
                 sh 'docker tag e-com-backend makocp/e-com-backend:${env.BUILD_NUMBER}'
-                sh 'docker push makocp/e-com-backend'
+                sh 'docker push makocp/e-com-backend:${env.BUILD_NUMBER}'
                 sh 'docker logout'
             }
         }
