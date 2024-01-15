@@ -116,7 +116,7 @@ For Step 10, I created a Jenkinsfile in the Gitrepo and access it directly there
   - `kubectl get svc` -> get external IP
   - visit: http://{EXTERNAL_IP}:{PORT(4242)}
   - view logs: `kubectl get pods` -> `kubectl logs <pod>`
-- Error Typescript: Locally it works with ts-node, but in Docker it does not. Now I changed the "node" command to `ts-node`
+- Error Typescript: Locally it works with ts-node, but in Docker it does not. Now I changed the "node" command to `npx ts-node server.ts` (see Dockerfile). Difference to execute with npx: In the Dockerfile, npx ts-node server.ts runs the application using the locally installed ts-node, ensuring compatibility with the project's specific version. This approach avoids conflicts with globally installed versions, unlike the ts-node server.ts command which requires a global install using npm install -g ts-node.
 
 
 #### Further Information, References
