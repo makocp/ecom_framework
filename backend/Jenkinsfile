@@ -39,8 +39,8 @@ pipeline {
         stage("Deploy to GKE"){
             steps {
                 sh 'gcloud container clusters get-credentials ecom-backend-cluster --zone us-central1-a --project e-com-project-408719'
-                sh "kubectl create deployment e-com-backend:$BUILD_NUMBER --image=makocp/e-com-backend:$BUILD_NUMBER --port=4242"
-                sh "kubectl expose deployment e-com-backend:$BUILD_NUMBER --name=ecom-backend-service --type=LoadBalancer --port=4242"
+                sh "kubectl create deployment e-com-backend$BUILD_NUMBER --image=makocp/e-com-backend:$BUILD_NUMBER --port=4242"
+                sh "kubectl expose deployment e-com-backend$BUILD_NUMBER --name=ecom-backend-service --type=LoadBalancer --port=4242"
             }
         }
     }
