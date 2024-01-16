@@ -1,7 +1,7 @@
 import { Alert, Button, StyleSheet, Text, View } from 'react-native'
 import React, { useState } from 'react'
 import { useStripe } from '@stripe/stripe-react-native';
-import { API_URL_PAYMENT_INTENT } from '../../routes/routes';
+import { API_URL_PAYMENT_INTENT } from '../../routes/Routes';
 import styles from './cart.style';
 
 const CartScreen = () => {
