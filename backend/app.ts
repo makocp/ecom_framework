@@ -14,7 +14,7 @@ app.use('/orders', orderRoutes);
 app.use('/products', productRoutes);
 
 app.get('/api', (req, res) => {
-    res.json('The CI/CD WORKS! finally!');
+    res.json('The CI/CD WORKS! just a test.!');
 });
 
 export default app;
