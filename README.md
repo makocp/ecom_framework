@@ -58,6 +58,9 @@ Setup Server:
 curl -X POST -H "Content-Type: application/json" -d "{\"amount\":17950}" http://localhost:4242/payments/intents
 OR: Use Postman.
 
+### Cleanly separate the server startup logic from the application configuration
+I split server.ts into server.ts and app.ts, because when testing, the Express server won’t be started, otherwise Express server gets started when testing and Jest is not exiting due to open handles. 
+
 ## Setup CI/CD Workflow on GCloud for Backend
 - [Tutorial: CI/CD for Node.js Application using Google Cloud](https://psspavan96.medium.com/ci-cd-for-node-js-application-using-google-cloud-part-1-5f7466df913d)
 
