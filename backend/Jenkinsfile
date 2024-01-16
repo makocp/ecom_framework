@@ -36,6 +36,8 @@ pipeline {
             }
         }
 
+        
+
         stage("Docker Push"){
             steps {
                 sh 'docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASSWORD'
