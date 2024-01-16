@@ -18,7 +18,7 @@ const HomeScreen = () => {
                             <Text style={styles.cartNumber}>3</Text>
                         </View>
                         <TouchableOpacity>
-                            <Ionicons name='cart-outline' size={24} />
+                            <Ionicons name='cart' size={24} />
                             {/* <Ionicons name='bag-check-outline' size={24} /> */}
                         </TouchableOpacity>
                     </View>
