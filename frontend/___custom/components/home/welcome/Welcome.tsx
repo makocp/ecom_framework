@@ -10,7 +10,7 @@ const Welcome = () => {
             {/* Welcome Text */}
             <View style={styles.container}>
                 <Text style={styles.welcomeText1}>Find The Most</Text>
-                <Text style={styles.welcomeText2}>Luxurious Furniture</Text>
+                <Text style={styles.welcomeText2}>Luxurious Products</Text>
             </View>
 
             {/* Search Bar */}

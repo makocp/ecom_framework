@@ -5,6 +5,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
 import Welcome from '../../components/home/welcome/Welcome';
+import Carousel from '../../components/home/welcome/Carousel';
 
 const HomeScreen = () => {
     return (
@@ -26,6 +27,7 @@ const HomeScreen = () => {
             </View>
             <ScrollView style={styles.scrollContainer}>
                 <Welcome/>
+                <Carousel/>
             </ScrollView>
         </SafeAreaView>
     );

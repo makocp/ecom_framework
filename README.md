@@ -64,6 +64,10 @@ I split server.ts into server.ts and app.ts, because when testing, the Express s
 ### Fix Requiring unknown module "undefined"
 When starting the Frontend App, this error occurred. The reason for this was, that I changed directory names, but some changes were not adopted in the respective files.
 
+### Fix TypeScript Error TS7016
+If importing a JS Library into TS and type declaration is missing in this package, this error occurs.
+Solution: [Click here](https://medium.com/@steveruiz/using-a-javascript-library-without-type-declarations-in-a-typescript-project-3643490015f3)
+
 ## Setup CI/CD Workflow on GCloud for Backend
 - [Tutorial: CI/CD for Node.js Application using Google Cloud](https://psspavan96.medium.com/ci-cd-for-node-js-application-using-google-cloud-part-1-5f7466df913d)
 
