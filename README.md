@@ -68,6 +68,9 @@ When starting the Frontend App, this error occurred. The reason for this was, th
 If importing a JS Library into TS and type declaration is missing in this package, this error occurs.
 Solution: [Click here](https://medium.com/@steveruiz/using-a-javascript-library-without-type-declarations-in-a-typescript-project-3643490015f3)
 
+### Fix "Cannot find Module" for importing local image
+You need to declare the type for .png/.jpeg in a separate .ts file, [see answer.](https://stackoverflow.com/a/63885623)
+
 ## Setup CI/CD Workflow on GCloud for Backend
 - [Tutorial: CI/CD for Node.js Application using Google Cloud](https://psspavan96.medium.com/ci-cd-for-node-js-application-using-google-cloud-part-1-5f7466df913d)
 
