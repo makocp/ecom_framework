@@ -8,6 +8,12 @@ import Welcome from '../../components/home/welcome/Welcome';
 import Carousel from '../../components/home/welcome/Carousel';
 
 const HomeScreen = () => {
+    const data = [
+        { image: require('../../assets/images/sample_image_1.png') },
+        { image: require('../../assets/images/sample_image_2.png') },
+        { image: require('../../assets/images/sample_image_3.png') },
+    ]
+
     return (
         <SafeAreaView>
             <View style={styles.appBarWrapper}>
@@ -26,8 +32,8 @@ const HomeScreen = () => {
                 </View>
             </View>
             <ScrollView style={styles.scrollContainer}>
-                <Welcome/>
-                <Carousel/>
+                <Welcome />
+                <Carousel data={data} marginHorizontal={styles.scrollContainer.marginHorizontal}/>
             </ScrollView>
         </SafeAreaView>
     );

@@ -3,7 +3,8 @@ import { COLORS, SIZES } from "../../themes/theme";
 
 const styles = StyleSheet.create({
     scrollContainer: {
-        marginHorizontal: SIZES.small
+        marginHorizontal: SIZES.small,
+        height: '100%'
     },
     textStyle: {
         fontFamily: 'bold',

@@ -178,3 +178,5 @@ Extentions VS Code:\
 [Project Structure Template](https://stackoverflow.com/a/51128385)
 
 [Setup Express Server/Backend](https://www.youtube.com/watch?v=w3vs4a03y3I)
+
+[Custom Image Carousel](https://www.youtube.com/watch?v=TANklYKCJe0)
