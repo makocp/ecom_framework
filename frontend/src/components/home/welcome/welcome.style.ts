@@ -3,6 +3,7 @@ import { COLORS, SIZES } from "../../../themes/theme";
 
 const styles = StyleSheet.create({
     container: {
+        marginHorizontal: SIZES.small,
         width: '100%'
     },
     welcomeText1: {
@@ -20,6 +21,7 @@ const styles = StyleSheet.create({
         marginHorizontal: 6
     },
     searchContainer: {
+        marginHorizontal: SIZES.small,
         flexDirection: 'row',
         justifyContent: 'center',
         alignContent: 'center',

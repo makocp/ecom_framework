@@ -9,8 +9,8 @@ const Welcome = () => {
         <View>
             {/* Welcome Text */}
             <View style={styles.container}>
-                <Text style={styles.welcomeText1}>Find The Most</Text>
-                <Text style={styles.welcomeText2}>Luxurious Products</Text>
+                <Text style={styles.welcomeText1}>Find New</Text>
+                <Text style={styles.welcomeText2}>Tech Products</Text>
             </View>
 
             {/* Search Bar */}
