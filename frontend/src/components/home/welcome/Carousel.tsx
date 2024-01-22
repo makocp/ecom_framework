@@ -1,6 +1,5 @@
-import { ScrollView, StyleSheet, View, Image, useWindowDimensions, Animated } from 'react-native'
-import React from 'react';
-import { SIZES } from '../../../themes/theme';
+import { StyleSheet, View, Image, useWindowDimensions, Animated, ScrollView } from 'react-native'
+import React, { useEffect, useRef, useState } from 'react';
 
 interface CarouselData {
     image: string;
@@ -13,6 +12,32 @@ interface CarouselProps {
 }
 
 const Carousel = ({ data, marginHorizontal }: CarouselProps) => {
+    // Reference for the ScrollView
+    const scrollViewRef = useRef<ScrollView>(null);
+
+    // Current index state
+    const [currentIndex, setCurrentIndex] = useState(0);
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            let nextIndex = currentIndex + 1;
+            if (nextIndex >= data.length) {
+                nextIndex = 0;
+            }
+
+            // Scroll to the next item
+            scrollViewRef.current?.scrollTo({
+                x: nextIndex * SIZE,
+                animated: true
+            });
+
+            setCurrentIndex(nextIndex);
+        }, 3000);
+
+        // Clear the interval on unmount
+        return () => clearInterval(interval);
+    }, [currentIndex]);
+
     const { width } = useWindowDimensions();
     const screenWidth = width - marginHorizontal * 2;
     const SIZE = screenWidth * 0.8;
@@ -21,6 +46,7 @@ const Carousel = ({ data, marginHorizontal }: CarouselProps) => {
     const scrollX = new Animated.Value(0);
     return (
         <Animated.ScrollView
+            ref={scrollViewRef}
             horizontal
             showsHorizontalScrollIndicator={false}
             bounces={false}
