@@ -1,4 +1,4 @@
-export const SIZES = {
+export const SIZES: { [key: string]: number } = {
     xSmall: 10,
     small: 12,
     medium: 16,
@@ -7,7 +7,7 @@ export const SIZES = {
     xxLarge: 44,
 };
 
-export const COLORS = {
+export const COLORS: { [key: string]: string } = {
     primary: "#2A4D50",
     secondary: "#DDf0FF",
     tertiary: "#FF7754",

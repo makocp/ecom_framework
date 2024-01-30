@@ -1,12 +1,19 @@
-import { View, Text } from 'react-native';
+import { View, Text, Pressable } from 'react-native';
 import React from 'react';
 import styles from './home.style';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
 import Welcome from '../../components/home/welcome/Welcome';
+import Carousel from '../../components/home/welcome/Carousel';
 
 const HomeScreen = () => {
+    const data = [
+        { image: require('../../assets/images/sample_image_1.png') },
+        { image: require('../../assets/images/sample_image_2.png') },
+        { image: require('../../assets/images/sample_image_3.png') },
+    ]
+
     return (
         <SafeAreaView>
             <View style={styles.appBarWrapper}>
@@ -17,15 +24,16 @@ const HomeScreen = () => {
                         <View style={styles.cartCount}>
                             <Text style={styles.cartNumber}>3</Text>
                         </View>
-                        <TouchableOpacity>
-                            <Ionicons name='cart-outline' size={24} />
+                        <Pressable>
+                            <Ionicons name='cart' size={24} />
                             {/* <Ionicons name='bag-check-outline' size={24} /> */}
-                        </TouchableOpacity>
+                        </Pressable>
                     </View>
                 </View>
             </View>
             <ScrollView style={styles.scrollContainer}>
-                <Welcome/>
+                <Welcome />
+                <Carousel data={data} marginHorizontal={styles.scrollContainer.marginHorizontal}/>
             </ScrollView>
         </SafeAreaView>
     );

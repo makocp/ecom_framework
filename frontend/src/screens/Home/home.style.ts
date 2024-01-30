@@ -3,14 +3,15 @@ import { COLORS, SIZES } from "../../themes/theme";
 
 const styles = StyleSheet.create({
     scrollContainer: {
-        marginHorizontal: 10
+        marginHorizontal: 0,
+        height: '100%'
     },
     textStyle: {
         fontFamily: 'bold',
-        fontSize: 20
+        fontSize: SIZES.large
     },
     appBarWrapper: {
-        marginHorizontal: 22,
+        marginHorizontal: SIZES.large,
         marginTop: SIZES.small,
     },
     appBar: {
