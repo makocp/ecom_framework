@@ -1,4 +1,4 @@
-import { View, Text } from 'react-native';
+import { View, Text, Pressable } from 'react-native';
 import React from 'react';
 import styles from './home.style';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -24,10 +24,10 @@ const HomeScreen = () => {
                         <View style={styles.cartCount}>
                             <Text style={styles.cartNumber}>3</Text>
                         </View>
-                        <TouchableOpacity>
+                        <Pressable>
                             <Ionicons name='cart' size={24} />
                             {/* <Ionicons name='bag-check-outline' size={24} /> */}
-                        </TouchableOpacity>
+                        </Pressable>
                     </View>
                 </View>
             </View>

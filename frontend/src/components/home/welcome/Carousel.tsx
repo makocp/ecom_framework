@@ -40,7 +40,7 @@ const Carousel = ({ data, marginHorizontal }: CarouselProps) => {
 
     const { width } = useWindowDimensions();
     const screenWidth = width - marginHorizontal * 2;
-    const SIZE = screenWidth * 0.8;
+    const SIZE = screenWidth * 0.95;
     const SPACER = (screenWidth - SIZE) / 2;
     // track scroll position
     const scrollX = new Animated.Value(0);
@@ -99,13 +99,13 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     imageContainer: {
-        borderRadius: 34,
+        borderRadius: 20,
         // for container, to "overwrite"
         overflow: 'hidden'
     },
     image: {
         width: '100%',
         height: undefined,
-        aspectRatio: 1
+        aspectRatio: 16/9
     }
 })
