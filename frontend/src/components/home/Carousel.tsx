@@ -92,8 +92,6 @@ const Carousel = ({ data, marginHorizontal }: CarouselProps) => {
     );
 }
 
-export default Carousel
-
 const styles = StyleSheet.create({
     carouselContainer: {
         alignItems: 'center'
@@ -109,3 +107,5 @@ const styles = StyleSheet.create({
         aspectRatio: 16/9
     }
 })
+
+export default Carousel

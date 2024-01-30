@@ -1,8 +1,7 @@
-import { Alert, Button, StyleSheet, Text, View } from 'react-native'
+import {Alert, Button, StyleSheet, View} from 'react-native'
 import React, { useState } from 'react'
 import { useStripe } from '@stripe/stripe-react-native';
-import { API_URL_PAYMENT_INTENT } from '../../routes/Routes';
-import styles from './cart.style';
+import { API_URL_PAYMENT_INTENT } from '../routes/Routes';
 
 const CartScreen = () => {
   const { initPaymentSheet, presentPaymentSheet } = useStripe();
@@ -82,5 +81,9 @@ const CartScreen = () => {
     </View>
   )
 }
+
+const styles = StyleSheet.create({
+
+});
 
 export default CartScreen
