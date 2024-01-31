@@ -6,6 +6,8 @@ import Welcome from '../components/home/Welcome';
 import Carousel from '../components/home/Carousel';
 import AppBar from "../components/home/AppBar";
 import SearchBar from "../components/home/SearchBar";
+import Headings from "../components/home/Headings";
+import ProductRow from "../components/home/ProductRow";
 
 const HomeScreen = () => {
     const data = [
@@ -20,7 +22,9 @@ const HomeScreen = () => {
             <ScrollView style={styles.scrollContainer}>
                 <Welcome/>
                 <SearchBar/>
-                <Carousel data={data} marginHorizontal={styles.scrollContainer.marginHorizontal}/>
+                <Carousel data={data}/>
+                <Headings/>
+                <ProductRow/>
             </ScrollView>
         </SafeAreaView>
     );
@@ -28,7 +32,6 @@ const HomeScreen = () => {
 
 const styles = StyleSheet.create({
     scrollContainer: {
-        marginHorizontal: 0,
         height: '100%'
     }
 });
