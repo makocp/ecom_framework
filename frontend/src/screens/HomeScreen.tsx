@@ -32,7 +32,7 @@ const HomeScreen = () => {
 
 const styles = StyleSheet.create({
     scrollContainer: {
-        height: '100%'
+        height: '100%',
     }
 });
 

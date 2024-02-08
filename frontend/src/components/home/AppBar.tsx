@@ -1,26 +1,35 @@
-import {Pressable, StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React from 'react';
 import Ionicons from "react-native-vector-icons/Ionicons";
 import {COLORS, SIZES} from "../../themes/theme";
+import {useNavigation} from "@react-navigation/native";
+import {StackNavigationProp} from "@react-navigation/stack";
+import {RootStackParamList} from "../../navigators/RootNavigator";
 
+type CartScreenNavigationProp = StackNavigationProp<RootStackParamList, 'CartScreen'>;
 const AppBar = () => {
-  return (
-      <View style={styles.appBarWrapper}>
-          <View style={styles.appBar}>
-              <Ionicons name='location-outline' size={24} />
-              <Text style={styles.location}>Graz, Austria</Text>
-              <View style={{ alignItems: 'flex-end' }}>
-                  <View style={styles.cartCount}>
-                      <Text style={styles.cartNumber}>3</Text>
-                  </View>
-                  <Pressable>
-                      <Ionicons name='cart' size={24} />
-                      {/* <Ionicons name='bag-check-outline' size={24} /> */}
-                  </Pressable>
-              </View>
-          </View>
-      </View>
-  );
+
+    const navigation = useNavigation<CartScreenNavigationProp>();
+    const navigateToCartScreen = () => {
+        navigation.navigate('CartScreen');
+    };
+    return (
+        <View style={styles.appBarWrapper}>
+            <View style={styles.appBar}>
+                <Ionicons name='location-outline' size={24}/>
+                <Text style={styles.location}>Graz, Austria</Text>
+                <View style={{alignItems: 'flex-end'}}>
+                    <View style={styles.cartCount}>
+                        <Text style={styles.cartNumber}>3</Text>
+                    </View>
+                    <TouchableOpacity onPress={navigateToCartScreen}>
+                        <Ionicons name='cart' size={24}/>
+                        {/* <Ionicons name='bag-check-outline' size={24} /> */}
+                    </TouchableOpacity>
+                </View>
+            </View>
+        </View>
+    );
 };
 
 export default AppBar;
