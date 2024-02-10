@@ -1,6 +1,6 @@
-import {StyleSheet} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import React from 'react';
-import {SafeAreaView} from 'react-native-safe-area-context';
+import {SafeAreaView, useSafeAreaInsets} from 'react-native-safe-area-context';
 import {ScrollView} from 'react-native-gesture-handler';
 import Welcome from '../components/home/Welcome';
 import Carousel from '../components/home/Carousel';
@@ -8,8 +8,10 @@ import AppBar from "../components/home/AppBar";
 import SearchBar from "../components/home/SearchBar";
 import Headings from "../components/home/Headings";
 import ProductRow from "../components/home/ProductRow";
+import {SIZES} from "../themes/theme";
 
 const HomeScreen = () => {
+    const insets = useSafeAreaInsets();
     const data = [
         {image: require('../assets/images/sample_image_1.png')},
         {image: require('../assets/images/sample_image_2.png')},
@@ -17,7 +19,7 @@ const HomeScreen = () => {
     ]
 
     return (
-        <SafeAreaView>
+        <View style={{paddingBottom: insets.bottom, paddingTop: insets.top}}>
             <AppBar></AppBar>
             <ScrollView style={styles.scrollContainer}>
                 <Welcome/>
@@ -26,7 +28,7 @@ const HomeScreen = () => {
                 <Headings/>
                 <ProductRow/>
             </ScrollView>
-        </SafeAreaView>
+        </View>
     );
 };
 
