@@ -1,6 +1,6 @@
 import {StyleSheet, View} from 'react-native';
 import React from 'react';
-import {SafeAreaView, useSafeAreaInsets} from 'react-native-safe-area-context';
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {ScrollView} from 'react-native-gesture-handler';
 import Welcome from '../components/home/Welcome';
 import Carousel from '../components/home/Carousel';
@@ -8,7 +8,6 @@ import AppBar from "../components/home/AppBar";
 import SearchBar from "../components/home/SearchBar";
 import Headings from "../components/home/Headings";
 import ProductRow from "../components/home/ProductRow";
-import {SIZES} from "../themes/theme";
 
 const HomeScreen = () => {
     const insets = useSafeAreaInsets();
@@ -23,7 +22,6 @@ const HomeScreen = () => {
             <AppBar></AppBar>
             <ScrollView style={styles.scrollContainer}>
                 <Welcome/>
-                <SearchBar/>
                 <Carousel data={data}/>
                 <Headings/>
                 <ProductRow/>

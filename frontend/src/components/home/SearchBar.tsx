@@ -16,9 +16,6 @@ const SearchBar = () => {
 
     return (
         <View style={styles.searchContainer}>
-            <TouchableOpacity style={styles.searchIconWrapper}>
-                <Ionicons name='search' size={24} style={styles.searchIcon}></Ionicons>
-            </TouchableOpacity>
             <View style={styles.searchWrapper}>
                 <TextInput
                     style={styles.searchInput}
@@ -29,7 +26,7 @@ const SearchBar = () => {
             </View>
             <View>
                 <TouchableOpacity style={styles.searchBtn}>
-                    <Ionicons name='camera-outline' size={SIZES.xLarge} style={styles.searchBtnIcon}/>
+                    <Ionicons name='search' size={SIZES.xLarge} style={styles.searchBtnIcon}/>
                 </TouchableOpacity>
             </View>
         </View>

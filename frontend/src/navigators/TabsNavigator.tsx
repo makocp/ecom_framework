@@ -4,6 +4,7 @@ import HomeScreen from '../screens/HomeScreen';
 import ProfileView from '../screens/ProfileScreen';
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import CartScreen from "../screens/CartScreen";
+import AllProductsScreen from "../screens/AllProductsScreen";
 
 
 export type TabsStackParamList = {
@@ -11,6 +12,7 @@ export type TabsStackParamList = {
     SearchScreen: undefined;
     ProfileScreen: undefined;
     CartScreen: undefined;
+    AllProductsScreen: undefined;
 }
 
 // if assigned to the Navigator, the options are applied to all sub screens.
@@ -36,6 +38,11 @@ const TabsNavigator = () => {
             {/*    },*/}
             {/*    // tabBarBadge: 3*/}
             {/*}} />*/}
+            <TabsStack.Screen name={'AllProductsScreen'} component={AllProductsScreen} options={{
+                tabBarIcon: ({size, focused, color}) => {
+                    return <Ionicons name={focused ? 'grid' : 'grid-outline'} size={size - 2} color={color}/>
+                }
+            }}/>
             <TabsStack.Screen name='CartScreen' component={CartScreen} options={{
                 tabBarIcon: ({focused, color, size}) => {
                   return <Ionicons name={focused ? 'cart' : 'cart-outline'} color={color} size={size} />

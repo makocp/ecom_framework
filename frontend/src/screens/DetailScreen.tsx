@@ -12,13 +12,24 @@ type DetailScreenRouteParams = {
 }
 const DetailScreen = () => {
     const insets = useSafeAreaInsets();
-    const [count, setCount] = useState(1);
+    const [quantity, setQuantity] = useState(1);
     const navigation = useNavigation<DetailScreenNavigationProp>();
     const route = useRoute();
     const productImage = route.params as DetailScreenRouteParams;
     const navigateBack = () => {
         navigation.goBack();
     };
+
+    const incrementQuantity = () => {
+        setQuantity(quantity + 1);
+    };
+
+    const decrementQuantity = () => {
+        if (quantity > 1) {
+            setQuantity(quantity - 1);
+        }
+    };
+
     return (
         <View style={styles.container}>
             <View style={styles.upperRow}>
@@ -41,44 +52,40 @@ const DetailScreen = () => {
                         <Text style={styles.price}>€ 2499.90</Text>
                     </View>
                 </View>
-                <ScrollView style={styles.descriptionContainer} alwaysBounceVertical={false} showsVerticalScrollIndicator={false}>
-                    <Text style={styles.description}>The MacBook Pro M3, powered by Apple's advanced M3 chip, offers
-                        unmatched speed and efficiency. Its Retina display brings visuals to life with stunning clarity,
-                        while True Tone technology ensures comfort in any light. With up to 20 hours of battery life, a
-                        responsive Magic Keyboard, and comprehensive connectivity options including Wi-Fi 6 and
-                        Thunderbolt/USB 4, it's the ideal tool for professionals on the go, designed with sustainability
-                        in mind. cBook Pro M3, powered by Apple's advanced M3 chip, offers
-                        unmatched speed and efficiency. Its Retina display brings visuals to life with stunning clarity,
-                        while True Tone technology ensures comfort in any light. With up to 20 hours of battery life, a
-                        responsive Magic Keyboard, and comprehensive connectivity options including Wi-Fi 6 and
-                        Thunderbolt/USB 4, it's the ideal tool for profecBook Pro M3, powered by Apple's advanced M3
-                        chip, offers
-                        unmatched speed and efficiency. Its Retina display brings visuals to life with stunning clarity,
-                        while True Tone technology ensures comfort in any light. With up to 20 hours of battery life, a
-                        responsive Magic Keyboard, and comprehensive connectivity options including Wi-Fi 6 and
-                        Thunderbolt/USB 4, it's the ideal tool for profecBook Pro M3, powered by Apple's advanced M3
-                        chip, offers
-                        unmatched speed and efficiency. Its Retina display brings visuals to life with stunning clarity,
-                        while True Tone technology ensures comfort in any light. With up to 20 hours of battery life, a
-                        responsive Magic Keyboard, and comprehensive connectivity options including Wi-Fi 6 and
-                        Thunderbolt/USB 4, it's the ideal tool for profecBook Pro M3, powered by Apple's advanced M3
-                        chip, offers
-                        unmatched speed and efficiency. Its Retina display brings visuals to life with stunning clarity,
+                <ScrollView style={styles.descriptionContainer} alwaysBounceVertical={false}
+                            showsVerticalScrollIndicator={false}>
+                    <Text style={styles.description}>The MacBook Prs to life with stunning clarity,
                         while True Tone technology ensures comfort in any light. With up to 20 hours of battery life, a
                         responsive Magic Keyboard, and comprehensive connectivity options including Wi-Fi 6 and
                         Thunderbolt/USB 4, it's the ideal tool for profe</Text>
                 </ScrollView>
             </View>
             <View style={[styles.buttonContainer, {paddingBottom: insets.bottom}]}>
-                <View style={styles.deliveryWrapper}>
-                    <Ionicons name={'gift-outline'} size={16}/>
-                    <Text style={styles.deliveryText}>Free Delivery</Text>
+                <View style={styles.buttonContainer2}>
+                    <View style={[styles.deliveryWrapper]}>
+                        <Ionicons name={'gift-outline'} size={16}/>
+                        <Text style={styles.deliveryText}>Free Delivery</Text>
+                    </View>
+                    <View style={styles.rowContainer}>
+                        <View style={styles.addRemoveButtonContainer}>
+                            <TouchableOpacity onPress={decrementQuantity}>
+                                <Ionicons name={'remove-circle-outline'} size={22}/>
+                            </TouchableOpacity>
+                            <Text style={styles.countText}>{quantity}</Text>
+                            <TouchableOpacity onPress={incrementQuantity}>
+                                <Ionicons name={'add-circle-outline'} size={22}/>
+                            </TouchableOpacity>
+                        </View>
+                        <TouchableOpacity style={[styles.buttonWrapperATC, {backgroundColor: COLORS.primary}]}>
+                            <Ionicons name={'cart'} size={18} color={COLORS.lightWhite}/>
+                            <View style={styles.cartAddIcon}>
+                                <Ionicons name={'add'} size={14} color={COLORS.lightWhite}/>
+                            </View>
+                        </TouchableOpacity>
+
+                    </View>
                 </View>
                 <View style={styles.buttonRow}>
-                    <TouchableOpacity style={[styles.buttonWrapperATC, {backgroundColor: COLORS.primary}]}>
-                        <Ionicons name={'cart'} size={24} color={COLORS.lightWhite}/>
-                        <Ionicons name={'add-outline'} size={12} color={COLORS.lightWhite}/>
-                    </TouchableOpacity>
                     <TouchableOpacity style={[styles.buttonWrapperBuy, {backgroundColor: COLORS.primary}]}>
                         <Text style={styles.textBuy}>BUY NOW</Text>
                     </TouchableOpacity>
@@ -183,10 +190,12 @@ const styles = StyleSheet.create({
         backgroundColor: COLORS.secondary,
         borderRadius: SIZES.large,
         padding: 6,
-        width: '100%',
         alignItems: 'center',
         justifyContent: 'center',
-        height: 32
+        height: 40,
+        paddingHorizontal: 12,
+        gap: 4,
+        flex: 1
     },
     deliveryContainer: {
         width: '100%',
@@ -211,9 +220,10 @@ const styles = StyleSheet.create({
         borderRadius: SIZES.large,
         alignItems: 'center',
         justifyContent: 'center',
-        height: 50,
-        flex: 1,
-        flexDirection: 'row'
+        flexDirection: 'row',
+        gap: -4,
+        height: 40,
+        padding: 6
     },
     buttonRow: {
         width: '100%',
@@ -233,6 +243,44 @@ const styles = StyleSheet.create({
         backgroundColor: COLORS.lightWhite,
         gap: 12,
         paddingTop: '2%',
+    },
+    buttonContainer2: {
+        flexDirection: 'row',
+        width: '100%',
+        gap: 12
+    },
+    cartAddIcon: {
+        marginTop: -16
+    },
+    buttonWrapperIncrement: {
+        flexDirection: 'row',
+        gap: 8,
+        height: '100%',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    icon: {
+        backgroundColor: COLORS.black,
+        height: 30,
+        width: 30,
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
+    addRemoveButtonContainer: {
+        flexDirection: 'row',
+        gap: 4,
+        alignItems: 'center',
+    },
+    rowContainer: {
+        flexDirection: 'row',
+        gap: 12,
+        alignItems: 'center',
+    },
+    countText: {
+        fontWeight: 'bold',
+        fontSize: 14,
+        width: 20,
+        textAlign: 'center'
     }
 });
 

@@ -16,7 +16,8 @@ const Welcome = () => {
 const styles = StyleSheet.create({
     container: {
         marginHorizontal: SIZES.small,
-        width: '100%'
+        width: '100%',
+        paddingBottom: '2%'
     },
     welcomeText1: {
         fontWeight: 'bold',
