@@ -18,15 +18,15 @@ const AppBar = () => {
             <View style={styles.appBar}>
                 <Ionicons name='location-outline' size={24}/>
                 <Text style={styles.location}>Graz, Austria</Text>
-                <View style={{alignItems: 'flex-end'}}>
+                <TouchableOpacity onPress={navigateToCartScreen} style={{alignItems: 'flex-end'}}>
                     <View style={styles.cartCount}>
                         <Text style={styles.cartNumber}>3</Text>
                     </View>
-                    <TouchableOpacity onPress={navigateToCartScreen}>
+                    <View>
                         <Ionicons name='cart' size={24}/>
                         {/* <Ionicons name='bag-check-outline' size={24} /> */}
-                    </TouchableOpacity>
-                </View>
+                    </View>
+                </TouchableOpacity>
             </View>
         </View>
     );
