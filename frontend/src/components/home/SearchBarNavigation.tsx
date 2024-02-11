@@ -1,4 +1,4 @@
-import {StyleSheet, TextInput, TouchableOpacity, View} from 'react-native';
+import {Pressable, StyleSheet, TextInput, TouchableOpacity, View} from 'react-native';
 import React from 'react';
 import Ionicons from "react-native-vector-icons/Ionicons";
 import {COLORS, SIZES} from "../../themes/theme";
@@ -27,9 +27,9 @@ const SearchBarNavigation = () => {
                 />
             </View>
             <View>
-                <TouchableOpacity style={styles.searchBtn} onPress={navigateToSearchScreen}>
+                <Pressable style={styles.searchBtn} onPress={navigateToSearchScreen}>
                     <Ionicons name='search' size={SIZES.xLarge} style={styles.searchBtnIcon}/>
-                </TouchableOpacity>
+                </Pressable>
             </View>
         </View>
     );

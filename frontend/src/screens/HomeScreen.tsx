@@ -24,7 +24,7 @@ const HomeScreen = () => {
                 <Welcome/>
                 <Carousel data={data}/>
                 <Headings/>
-                <SearchBarNavigation caretHidden={true}/>
+                <SearchBarNavigation/>
                 <ProductRow/>
             </ScrollView>
         </View>
