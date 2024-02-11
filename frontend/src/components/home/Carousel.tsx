@@ -1,5 +1,5 @@
-import { StyleSheet, View, Image, useWindowDimensions, Animated, ScrollView } from 'react-native'
-import React, { useEffect, useRef, useState } from 'react';
+import {StyleSheet, View, Image, useWindowDimensions, Animated, ScrollView} from 'react-native'
+import React, {useEffect, useRef, useState} from 'react';
 
 interface CarouselData {
     image: string;
@@ -7,11 +7,10 @@ interface CarouselData {
 
 // marginHorizontal gets passed from the Homescreen, for the right width for the carousel.
 interface CarouselProps {
-    data: CarouselData[],
-    marginHorizontal: number
+    data: CarouselData[]
 }
 
-const Carousel = ({ data, marginHorizontal }: CarouselProps) => {
+const Carousel = ({data}: CarouselProps) => {
     // Reference for the ScrollView
     const scrollViewRef = useRef<ScrollView>(null);
 
@@ -38,8 +37,8 @@ const Carousel = ({ data, marginHorizontal }: CarouselProps) => {
         return () => clearInterval(interval);
     }, [currentIndex]);
 
-    const { width } = useWindowDimensions();
-    const screenWidth = width - marginHorizontal * 2;
+    const {width} = useWindowDimensions();
+    const screenWidth = width;
     const SIZE = screenWidth * 0.95;
     const SPACER = (screenWidth - SIZE) / 2;
     // track scroll position
@@ -55,12 +54,12 @@ const Carousel = ({ data, marginHorizontal }: CarouselProps) => {
             decelerationRate='fast'
             contentContainerStyle={styles.carouselContainer}
             onScroll={Animated.event(
-                [{ nativeEvent: { contentOffset: { x: scrollX } } }],
-                { useNativeDriver: false }
+                [{nativeEvent: {contentOffset: {x: scrollX}}}],
+                {useNativeDriver: false}
             )}
         >
             {/* to insert a space on the left side */}
-            <View style={{ width: SPACER }}></View>
+            <View style={{width: SPACER}}></View>
 
             {/* to display the images from data array */}
             {data.map((item, index) => {
@@ -75,8 +74,8 @@ const Carousel = ({ data, marginHorizontal }: CarouselProps) => {
                     extrapolate: 'clamp'
                 })
                 return (
-                    <View key={index} style={{ width: SIZE }}>
-                        <Animated.View style={[styles.imageContainer, { transform: [{ scale }] }]} >
+                    <View key={index} style={{width: SIZE}}>
+                        <Animated.View style={[styles.imageContainer, {transform: [{scale}]}]}>
                             <Image
                                 source={item.image as any}
                                 style={styles.image}
@@ -87,12 +86,10 @@ const Carousel = ({ data, marginHorizontal }: CarouselProps) => {
             })}
 
             {/* to insert a space on the right side */}
-            <View style={{ width: SPACER }}></View>
+            <View style={{width: SPACER}}></View>
         </Animated.ScrollView>
     );
 }
-
-export default Carousel
 
 const styles = StyleSheet.create({
     carouselContainer: {
@@ -106,6 +103,8 @@ const styles = StyleSheet.create({
     image: {
         width: '100%',
         height: undefined,
-        aspectRatio: 16/9
+        aspectRatio: 16 / 9
     }
 })
+
+export default Carousel

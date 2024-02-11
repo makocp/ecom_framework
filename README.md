@@ -71,6 +71,24 @@ Solution: [Click here](https://medium.com/@steveruiz/using-a-javascript-library-
 ### Fix "Cannot find Module" for importing local image
 You need to declare the type for .png/.jpeg in a separate .ts file, [see answer.](https://stackoverflow.com/a/63885623)
 
+### Fix "onAnimatedValue no Listener registered" warning with navigation
+Set an initial Route, [see answer.](https://github.com/react-navigation/react-navigation/issues/7839#issuecomment-689514906)
+
+### Enable auto opening keyboard 
+You need to disable the hardware keyboard in the simulator by pressing `CMD + K`
+
+### Responsive App
+- Insets: Use insets to determine the safearea for each device. for android, you need to add a multiplier.
+- Margins/Paddings: Define it as much as possible with % instead of fixed values, to make it responsive for different screen sizes.
+
+### Run on physical iOS Device
+- !! Device and Mac need to be in the same network (Wifi or Hotspot)
+- Connect device to Mac
+- XCode -> Change to Physical Device
+- Build and resolve (if there are any) warnings
+- run command `npx react-native run-ios` (device in Xcode must be chosed, see step before)
+- if URL Bundle error occurs while starting app -> Click on "Reload JS"
+
 ## Setup CI/CD Workflow on GCloud for Backend
 - [Tutorial: CI/CD for Node.js Application using Google Cloud](https://psspavan96.medium.com/ci-cd-for-node-js-application-using-google-cloud-part-1-5f7466df913d)
 
@@ -180,3 +198,10 @@ Extentions VS Code:\
 [Setup Express Server/Backend](https://www.youtube.com/watch?v=w3vs4a03y3I)
 
 [Custom Image Carousel](https://www.youtube.com/watch?v=TANklYKCJe0)
+
+## Tools for Development
+
+- IDE: VS Code / Webstorm
+- iPhone 15 Pro Simulator
+
+## Projektdokumentation (Manual, Zusammenfassung, Repo, usw.)
