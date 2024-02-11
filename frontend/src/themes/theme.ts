@@ -13,9 +13,9 @@ export const SIZES = {
 };
 
 export const COLORS = {
-    primary: "#2A4D50",
-    secondary: "#DDF0FF",
-    tertiary: "#FF7754",
+    primary: "#003366", // Deep Ocean Blue
+    secondary: "#E1F0FF", // Soft Sky Blue
+    tertiary: "#FF6347", // Tomato
 
     gray: "#83829A",
     gray2: "#C1C0C8",
