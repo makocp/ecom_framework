@@ -77,6 +77,10 @@ Set an initial Route, [see answer.](https://github.com/react-navigation/react-na
 ### Enable auto opening keyboard 
 You need to disable the hardware keyboard in the simulator by pressing `CMD + K`
 
+### Responsive App
+- Insets: Use insets to determine the safearea for each device. for android, you need to add a multiplier.
+- Margins/Paddings: Define it as much as possible with % instead of fixed values, to make it responsive for different screen sizes.
+
 ## Setup CI/CD Workflow on GCloud for Backend
 - [Tutorial: CI/CD for Node.js Application using Google Cloud](https://psspavan96.medium.com/ci-cd-for-node-js-application-using-google-cloud-part-1-5f7466df913d)
 

@@ -6,6 +6,7 @@ import {useNavigation, useRoute} from "@react-navigation/native";
 import {DetailScreenNavigationProp} from "../components/home/ProductCardView";
 import {useSafeAreaInsets} from "react-native-safe-area-context";
 import {Product} from "../data/products";
+import FadeInScreen from "./FadeInScreen";
 
 type DetailScreenRouteParams = {
     product: Product;
@@ -34,70 +35,72 @@ const DetailScreen = () => {
     };
 
     return (
-        <View style={styles.container}>
-            <View style={styles.upperRow}>
-                <TouchableOpacity onPress={navigateBack}>
-                    <Ionicons name={'chevron-back-circle'} size={30}/>
-                </TouchableOpacity>
-                {/*<TouchableOpacity onPress={() => {*/}
-                {/*}}>*/}
-                {/*    <Ionicons name={'heart'} size={30} color={COLORS.primary}/>*/}
-                {/*</TouchableOpacity>*/}
-            </View>
-            <View style={styles.imageContainer}>
-                <Image source={product.image} style={styles.image}/>
-            </View>
-            <View style={styles.detailsContainer}>
-                <View style={styles.productRow}>
-                    <Text style={styles.title}>{product.title}</Text>
-                    <View style={styles.wrapper}>
-                        <Text style={styles.price}>€ {product.price / 100}</Text>
-                    </View>
-                </View>
-                <ScrollView style={styles.descriptionContainer} alwaysBounceVertical={false}
-                            showsVerticalScrollIndicator={false}>
-                    <Text style={styles.description}>{product.description}</Text>
-                </ScrollView>
-            </View>
-            <View style={[styles.buttonContainer, {paddingBottom: insets.bottom}]}>
-                <View style={styles.buttonContainer2}>
-                    {
-                        product.shippingCost ?
-                            <View style={[styles.deliveryWrapper]}>
-                                <Ionicons name={'cube-outline'} size={16}/>
-                                <Text style={styles.deliveryText}>€{product.shippingCost/100} Shipping</Text>
-                            </View> :
-                            <View style={[styles.deliveryWrapper]}>
-                                <Ionicons name={'gift-outline'} size={16}/>
-                                <Text style={styles.deliveryText}>Free Delivery</Text>
-                            </View>
-                    }
-                    <View style={styles.rowContainer}>
-                        <View style={styles.addRemoveButtonContainer}>
-                            <TouchableOpacity onPress={decrementQuantity}>
-                                <Ionicons name={'remove-circle-outline'} size={22}/>
-                            </TouchableOpacity>
-                            <Text style={styles.countText}>{quantity}</Text>
-                            <TouchableOpacity onPress={incrementQuantity}>
-                                <Ionicons name={'add-circle-outline'} size={22}/>
-                            </TouchableOpacity>
-                        </View>
-                        <TouchableOpacity style={[styles.buttonWrapperATC, {backgroundColor: COLORS.primary}]}>
-                            <Ionicons name={'cart'} size={18} color={COLORS.lightWhite}/>
-                            <View style={styles.cartAddIcon}>
-                                <Ionicons name={'add'} size={14} color={COLORS.lightWhite}/>
-                            </View>
-                        </TouchableOpacity>
-
-                    </View>
-                </View>
-                <View style={styles.buttonRow}>
-                    <TouchableOpacity style={[styles.buttonWrapperBuy, {backgroundColor: COLORS.primary}]}>
-                        <Text style={styles.textBuy}>BUY NOW</Text>
+        <FadeInScreen>
+            <View style={styles.container}>
+                <View style={styles.upperRow}>
+                    <TouchableOpacity onPress={navigateBack}>
+                        <Ionicons name={'chevron-back-circle'} size={30}/>
                     </TouchableOpacity>
+                    {/*<TouchableOpacity onPress={() => {*/}
+                    {/*}}>*/}
+                    {/*    <Ionicons name={'heart'} size={30} color={COLORS.primary}/>*/}
+                    {/*</TouchableOpacity>*/}
+                </View>
+                <View style={styles.imageContainer}>
+                    <Image source={product.image} style={styles.image}/>
+                </View>
+                <View style={styles.detailsContainer}>
+                    <View style={styles.productRow}>
+                        <Text style={styles.title}>{product.title}</Text>
+                        <View style={styles.wrapper}>
+                            <Text style={styles.price}>€ {product.price / 100}</Text>
+                        </View>
+                    </View>
+                    <ScrollView style={styles.descriptionContainer} alwaysBounceVertical={false}
+                                showsVerticalScrollIndicator={false}>
+                        <Text style={styles.description}>{product.description}</Text>
+                    </ScrollView>
+                </View>
+                <View style={[styles.buttonContainer, {paddingBottom: insets.bottom}]}>
+                    <View style={styles.buttonContainer2}>
+                        {
+                            product.shippingCost ?
+                                <View style={[styles.deliveryWrapper]}>
+                                    <Ionicons name={'cube-outline'} size={16}/>
+                                    <Text style={styles.deliveryText}>€{product.shippingCost/100} Shipping</Text>
+                                </View> :
+                                <View style={[styles.deliveryWrapper]}>
+                                    <Ionicons name={'gift-outline'} size={16}/>
+                                    <Text style={styles.deliveryText}>Free Delivery</Text>
+                                </View>
+                        }
+                        <View style={styles.rowContainer}>
+                            <View style={styles.addRemoveButtonContainer}>
+                                <TouchableOpacity onPress={decrementQuantity}>
+                                    <Ionicons name={'remove-circle-outline'} size={22}/>
+                                </TouchableOpacity>
+                                <Text style={styles.countText}>{quantity}</Text>
+                                <TouchableOpacity onPress={incrementQuantity}>
+                                    <Ionicons name={'add-circle-outline'} size={22}/>
+                                </TouchableOpacity>
+                            </View>
+                            <TouchableOpacity style={[styles.buttonWrapperATC, {backgroundColor: COLORS.primary}]}>
+                                <Ionicons name={'cart'} size={18} color={COLORS.lightWhite}/>
+                                <View style={styles.cartAddIcon}>
+                                    <Ionicons name={'add'} size={14} color={COLORS.lightWhite}/>
+                                </View>
+                            </TouchableOpacity>
+
+                        </View>
+                    </View>
+                    <View style={styles.buttonRow}>
+                        <TouchableOpacity style={[styles.buttonWrapperBuy, {backgroundColor: COLORS.primary}]}>
+                            <Text style={styles.textBuy}>BUY NOW</Text>
+                        </TouchableOpacity>
+                    </View>
                 </View>
             </View>
-        </View>
+        </FadeInScreen>
     );
 };
 

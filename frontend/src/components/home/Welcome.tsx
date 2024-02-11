@@ -22,14 +22,12 @@ const styles = StyleSheet.create({
     welcomeText1: {
         fontWeight: 'bold',
         fontSize: SIZES.xxLarge -6,
-        marginTop: SIZES.xSmall,
         color: COLORS.black,
         marginHorizontal: 6
     },
     welcomeText2: {
         fontWeight: 'bold',
         fontSize: SIZES.xxLarge -6,
-        marginTop: 0,
         color: COLORS.primary,
         marginHorizontal: 6
     },

@@ -12,7 +12,7 @@ export type TabsStackParamList = {
     SearchScreen: undefined;
     ProfileScreen: undefined;
     CartScreen: undefined;
-    AllProductsScreen: { isFromSearch: boolean };
+    AllProductsScreen: { isFromSearch: boolean, isAnimationEnabled: boolean };
 }
 
 // if assigned to the Navigator, the options are applied to all sub screens.
@@ -20,6 +20,7 @@ const screenOptionsAll = {
     tabBarShowLabel: false,
     tabBarHideOnKeyboard: true,
     headerShown: false,
+
 }
 
 const TabsStack = createBottomTabNavigator<TabsStackParamList>();

@@ -2,6 +2,7 @@ import {Alert, Button, StyleSheet, View} from 'react-native'
 import React, { useState } from 'react'
 import { useStripe } from '@stripe/stripe-react-native';
 import { API_URL_PAYMENT_INTENT } from '../routes/Routes';
+import FadeInScreen from "./FadeInScreen";
 
 const CartScreen = () => {
   const { initPaymentSheet, presentPaymentSheet } = useStripe();
@@ -72,13 +73,15 @@ const CartScreen = () => {
   };
 
   return (
-    <View style={{ alignItems: 'center', justifyContent: 'center', flex: 1 }}>
-      <Button
-        disabled={loading}
-        title='Checkout'
-        onPress={onCheckout}
-      />
-    </View>
+      <FadeInScreen>
+        <View style={{ alignItems: 'center', justifyContent: 'center', flex: 1 }}>
+          <Button
+              disabled={loading}
+              title='Checkout'
+              onPress={onCheckout}
+          />
+        </View>
+      </FadeInScreen>
   )
 }
 

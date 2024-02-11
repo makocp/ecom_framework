@@ -1,32 +1,31 @@
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React from 'react';
-import Ionicons from "react-native-vector-icons/Ionicons";
 import {COLORS, SIZES} from "../../themes/theme";
-import {useNavigation} from "@react-navigation/native";
-import {StackNavigationProp} from "@react-navigation/stack";
-import {RootStackParamList} from "../../navigators/RootNavigator";
 
-type CartScreenNavigationProp = StackNavigationProp<RootStackParamList, 'CartScreen'>;
-const AppBar = () => {
+// type CartScreenNavigationProp = StackNavigationProp<RootStackParamList, 'CartScreen'>;
+type AppBarProps = {
+    screenName: string
+}
+const AppBar = (props: AppBarProps) => {
 
-    const navigation = useNavigation<CartScreenNavigationProp>();
-    const navigateToCartScreen = () => {
-        navigation.navigate('CartScreen');
-    };
+    // const navigation = useNavigation<CartScreenNavigationProp>();
+    // const navigateToCartScreen = () => {
+    //     navigation.navigate('CartScreen');
+    // };
     return (
         <View style={styles.appBarWrapper}>
             <View style={styles.appBar}>
-                <Ionicons name='location-outline' size={24}/>
-                <Text style={styles.location}>Graz, Austria</Text>
-                <TouchableOpacity onPress={navigateToCartScreen} style={{alignItems: 'flex-end'}}>
-                    <View style={styles.cartCount}>
-                        <Text style={styles.cartNumber}>3</Text>
-                    </View>
-                    <View>
-                        <Ionicons name='cart' size={24}/>
-                        {/* <Ionicons name='bag-check-outline' size={24} /> */}
-                    </View>
-                </TouchableOpacity>
+                {/*<Ionicons name='location-outline' size={24}/>*/}
+                <Text style={styles.screenName}>{props.screenName}</Text>
+                {/*<TouchableOpacity onPress={navigateToCartScreen} style={styles.iconContainer}>*/}
+                {/*    <View style={styles.cartCount}>*/}
+                {/*        <Text style={styles.cartNumber}>3</Text>*/}
+                {/*    </View>*/}
+                {/*    <View>*/}
+                {/*        <Ionicons name='cart' size={24}/>*/}
+                {/*        /!* <Ionicons name='bag-check-outline' size={24} /> *!/*/}
+                {/*    </View>*/}
+                {/*</TouchableOpacity>*/}
             </View>
         </View>
     );
@@ -46,10 +45,9 @@ const styles = StyleSheet.create({
     },
     appBar: {
         flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center'
+        justifyContent: 'center'
     },
-    location: {
+    screenName: {
         fontWeight: 'bold',
         fontSize: SIZES.medium,
         color: COLORS.gray
@@ -70,5 +68,10 @@ const styles = StyleSheet.create({
         fontWeight: '600',
         fontSize: 10,
         color: COLORS.lightWhite
+    },
+    iconContainer: {
+        alignItems: 'flex-end',
+        position: 'absolute',
+        right: 0
     }
 });

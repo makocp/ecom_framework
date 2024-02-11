@@ -9,7 +9,6 @@ import {Product} from "../data/products";
 export type RootStackParamList = {
     TabsStack: NavigatorScreenParams<TabsStackParamList>;
     DetailScreen: { product: Product };
-    CartScreen: undefined;
 }
 
 const navigationOptions = {
@@ -24,7 +23,6 @@ const RootNavigator = () => {
             initialRouteName={'TabsStack'}>
             <RootStack.Screen name='TabsStack' component={TabsNavigator} options={navigationOptions}/>
             <RootStack.Screen name='DetailScreen' component={DetailScreen} options={navigationOptions}/>
-            <RootStack.Screen name={'CartScreen'} component={CartScreen} options={navigationOptions}/>
         </RootStack.Navigator>
     )
 }

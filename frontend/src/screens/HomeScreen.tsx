@@ -8,6 +8,7 @@ import AppBar from "../components/home/AppBar";
 import SearchBarNavigation from "../components/home/SearchBarNavigation";
 import Headings from "../components/home/Headings";
 import ProductRow from "../components/home/ProductRow";
+import FadeInScreen from "./FadeInScreen";
 
 const HomeScreen = () => {
     const insets = useSafeAreaInsets();
@@ -18,16 +19,22 @@ const HomeScreen = () => {
     ]
 
     return (
-        <View style={{paddingBottom: insets.bottom, paddingTop: insets.top}}>
-            <AppBar></AppBar>
-            <ScrollView style={styles.scrollContainer} contentContainerStyle={styles.scrollContainerContent}>
-                <Welcome/>
-                <Carousel data={data}/>
-                <Headings/>
-                <SearchBarNavigation/>
-                <ProductRow/>
-            </ScrollView>
-        </View>
+        <FadeInScreen>
+            <View style={{paddingBottom: insets.bottom, paddingTop: insets.top}}>
+                <AppBar screenName={'Home'}></AppBar>
+                <ScrollView
+                    style={styles.scrollContainer}
+                    contentContainerStyle={styles.scrollContainerContent}
+                    showsVerticalScrollIndicator={false}
+                >
+                    <Welcome/>
+                    <Carousel data={data}/>
+                    <Headings/>
+                    <SearchBarNavigation/>
+                    <ProductRow/>
+                </ScrollView>
+            </View>
+        </FadeInScreen>
     );
 };
 
@@ -36,7 +43,7 @@ const styles = StyleSheet.create({
         height: '100%',
     },
     scrollContainerContent: {
-        paddingBottom: '6%'
+        paddingBottom: '6%',
     }
 });
 
