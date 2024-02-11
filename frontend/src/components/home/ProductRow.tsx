@@ -2,23 +2,14 @@ import {FlatList, StyleSheet, View} from 'react-native';
 import React from 'react';
 import {SIZES} from "../../themes/theme";
 import ProductCardView from "./ProductCardView";
+import {mockProducts} from "../../data/products";
 
-export type ProductData = {
-    id: string,
-    image: any
-};
+
 const ProductRow = () => {
-    // change dynamically, according to product, todo.
-    const mockData: ProductData[] = [
-        {id: '1', image: require('../../assets/images/sample_image_1.png')},
-        {id: '2', image: require('../../assets/images/sample_image_2.png')},
-        {id: '3', image: require('../../assets/images/sample_image_3.png')}
-    ];
-
     return (
         <View style={styles.container}>
             <FlatList
-                data={mockData}
+                data={mockProducts.slice(0,3)}
                 renderItem={({item}) => <ProductCardView product={item}/>}
                 horizontal
                 contentContainerStyle={styles.flatListContainer}

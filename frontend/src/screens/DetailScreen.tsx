@@ -4,18 +4,21 @@ import {COLORS, SIZES} from "../themes/theme";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import {useNavigation, useRoute} from "@react-navigation/native";
 import {DetailScreenNavigationProp} from "../components/home/ProductCardView";
-import {ProductData} from "../components/home/ProductRow";
 import {useSafeAreaInsets} from "react-native-safe-area-context";
+import {Product} from "../data/products";
 
 type DetailScreenRouteParams = {
-    product: ProductData;
+    product: Product;
 }
 const DetailScreen = () => {
-    const insets = useSafeAreaInsets();
     const [quantity, setQuantity] = useState(1);
+
+    const insets = useSafeAreaInsets();
     const navigation = useNavigation<DetailScreenNavigationProp>();
     const route = useRoute();
-    const productImage = route.params as DetailScreenRouteParams;
+    const props = route.params as DetailScreenRouteParams;
+    const product: Product = props.product;
+
     const navigateBack = () => {
         navigation.goBack();
     };
@@ -33,39 +36,42 @@ const DetailScreen = () => {
     return (
         <View style={styles.container}>
             <View style={styles.upperRow}>
-                {/*SafeArea? todo*/}
                 <TouchableOpacity onPress={navigateBack}>
                     <Ionicons name={'chevron-back-circle'} size={30}/>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => {
-                }}>
-                    <Ionicons name={'heart'} size={30} color={COLORS.primary}/>
-                </TouchableOpacity>
+                {/*<TouchableOpacity onPress={() => {*/}
+                {/*}}>*/}
+                {/*    <Ionicons name={'heart'} size={30} color={COLORS.primary}/>*/}
+                {/*</TouchableOpacity>*/}
             </View>
             <View style={styles.imageContainer}>
-                <Image source={productImage.product.image} style={styles.image}/>
+                <Image source={product.image} style={styles.image}/>
             </View>
             <View style={styles.detailsContainer}>
                 <View style={styles.productRow}>
-                    <Text style={styles.title}>Macbook M3 PRO</Text>
+                    <Text style={styles.title}>{product.title}</Text>
                     <View style={styles.wrapper}>
-                        <Text style={styles.price}>€ 2499.90</Text>
+                        <Text style={styles.price}>€ {product.price / 100}</Text>
                     </View>
                 </View>
                 <ScrollView style={styles.descriptionContainer} alwaysBounceVertical={false}
                             showsVerticalScrollIndicator={false}>
-                    <Text style={styles.description}>The MacBook Prs to life with stunning clarity,
-                        while True Tone technology ensures comfort in any light. With up to 20 hours of battery life, a
-                        responsive Magic Keyboard, and comprehensive connectivity options including Wi-Fi 6 and
-                        Thunderbolt/USB 4, it's the ideal tool for profe</Text>
+                    <Text style={styles.description}>{product.description}</Text>
                 </ScrollView>
             </View>
             <View style={[styles.buttonContainer, {paddingBottom: insets.bottom}]}>
                 <View style={styles.buttonContainer2}>
-                    <View style={[styles.deliveryWrapper]}>
-                        <Ionicons name={'gift-outline'} size={16}/>
-                        <Text style={styles.deliveryText}>Free Delivery</Text>
-                    </View>
+                    {
+                        product.shippingCost ?
+                            <View style={[styles.deliveryWrapper]}>
+                                <Ionicons name={'cube-outline'} size={16}/>
+                                <Text style={styles.deliveryText}>€{product.shippingCost/100} Shipping</Text>
+                            </View> :
+                            <View style={[styles.deliveryWrapper]}>
+                                <Ionicons name={'gift-outline'} size={16}/>
+                                <Text style={styles.deliveryText}>Free Delivery</Text>
+                            </View>
+                    }
                     <View style={styles.rowContainer}>
                         <View style={styles.addRemoveButtonContainer}>
                             <TouchableOpacity onPress={decrementQuantity}>

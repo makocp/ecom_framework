@@ -4,11 +4,11 @@ import DetailScreen from '../screens/DetailScreen';
 import {NavigatorScreenParams} from '@react-navigation/native';
 import TabsNavigator, {TabsStackParamList} from './TabsNavigator';
 import CartScreen from "../screens/CartScreen";
-import {ProductData} from "../components/home/ProductRow";
+import {Product} from "../data/products";
 
 export type RootStackParamList = {
     TabsStack: NavigatorScreenParams<TabsStackParamList>;
-    DetailScreen: { product: ProductData };
+    DetailScreen: { product: Product };
     CartScreen: undefined;
 }
 

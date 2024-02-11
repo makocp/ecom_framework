@@ -5,10 +5,10 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 import {useNavigation} from "@react-navigation/native";
 import {StackNavigationProp} from "@react-navigation/stack";
 import {RootStackParamList} from "../../navigators/RootNavigator";
-import {ProductData} from "./ProductRow";
+import {Product} from "../../data/products";
 
 type ProductDataProps = {
-    product: ProductData
+    product: Product
 }
 export type DetailScreenNavigationProp = StackNavigationProp<RootStackParamList, 'DetailScreen'>
 const ProductCardView = ({product}: ProductDataProps) => {
@@ -30,12 +30,12 @@ const ProductCardView = ({product}: ProductDataProps) => {
                     </View>
                 </View>
                 <View style={styles.details}>
-                    <Text style={styles.title} numberOfLines={1}>Product Title</Text>
-                    <Text style={styles.supplier}>Name</Text>
-                    <Text style={styles.price}>$2379</Text>
+                    <Text style={styles.title} numberOfLines={1}>{product.title}</Text>
+                    <Text style={styles.category}>{product.category}</Text>
+                    <Text style={styles.price}>€{product.price/100}</Text>
                 </View>
                 <TouchableOpacity style={styles.addBtn}>
-                    <Ionicons name={'add-circle'} size={36} color={COLORS.primary}/>
+                    <Ionicons name={'add-circle'} size={36} color={COLORS.primary} onPress={() => {}}/>
                 </TouchableOpacity>
             </View>
         </TouchableOpacity>
@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
         fontSize: SIZES.large,
         marginBottom: 2
     },
-    supplier: {
+    category: {
         fontSize: SIZES.small,
         color: COLORS.gray
     },

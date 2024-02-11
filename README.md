@@ -183,3 +183,10 @@ Extentions VS Code:\
 [Setup Express Server/Backend](https://www.youtube.com/watch?v=w3vs4a03y3I)
 
 [Custom Image Carousel](https://www.youtube.com/watch?v=TANklYKCJe0)
+
+## Tools for Development
+
+- IDE: VS Code / Webstorm
+- iPhone 15 Pro Simulator
+
+## Projektdokumentation (Manual, Zusammenfassung, Repo, usw.)
