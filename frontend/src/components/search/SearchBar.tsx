@@ -1,9 +1,13 @@
-import {StyleSheet, TextInput, TouchableOpacity, View} from 'react-native';
+import {Keyboard, StyleSheet, TextInput, TouchableOpacity, View} from 'react-native';
 import React, {forwardRef} from 'react';
 import Ionicons from "react-native-vector-icons/Ionicons";
 import {COLORS, SIZES} from "../../themes/theme";
 
 const SearchBar = forwardRef<TextInput>((props, ref) => {
+    const dismissKeyboard = () => {
+        Keyboard.dismiss();
+    };
+
     return (
         <View style={styles.searchContainer}>
             <View style={styles.searchWrapper}>
@@ -11,10 +15,11 @@ const SearchBar = forwardRef<TextInput>((props, ref) => {
                     style={styles.searchInput}
                     placeholder='What are you looking for?'
                     ref={ref}
+                    onBlur={dismissKeyboard}
                 />
             </View>
             <View>
-                <TouchableOpacity style={styles.searchBtn}>
+                <TouchableOpacity style={styles.searchBtn} onPress={dismissKeyboard}>
                     <Ionicons name='search' size={SIZES.xLarge} style={styles.searchBtnIcon}/>
                 </TouchableOpacity>
             </View>

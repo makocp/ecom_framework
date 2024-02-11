@@ -14,11 +14,10 @@ const AllProductsScreen = () => {
         if (route.params?.isFromSearch) {
             searchBarRef.current?.focus();
         }
-    }, [route.params?.isFromSearch]);
+    }, );
 
     return (
         <View style={[styles.container, {paddingTop: insets.top}]}>
-            {/*// todo: if navigate here -> click directly into input.*/}
             <SearchBar ref={searchBarRef}/>
         </View>
     );

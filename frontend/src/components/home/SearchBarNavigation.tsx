@@ -7,10 +7,7 @@ import {TabsStackParamList} from "../../navigators/TabsNavigator";
 import {BottomTabNavigationProp} from "@react-navigation/bottom-tabs";
 
 type SearchScreenNavigationProp = BottomTabNavigationProp<TabsStackParamList, 'AllProductsScreen'>;
-type SearchBarProps = {
-    caretHidden: boolean
-}
-const SearchBarNavigation = (props: SearchBarProps) => {
+const SearchBarNavigation = () => {
     const navigation = useNavigation<SearchScreenNavigationProp>();
 
     const navigateToSearchScreen = () => {
@@ -21,7 +18,7 @@ const SearchBarNavigation = (props: SearchBarProps) => {
         <View style={styles.searchContainer}>
             <View style={styles.searchWrapper}>
                 <TextInput
-                    caretHidden={props.caretHidden}
+                    caretHidden={true}
                     style={styles.searchInput}
                     value=''
                     onPressIn={navigateToSearchScreen}

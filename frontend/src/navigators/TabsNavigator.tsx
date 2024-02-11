@@ -32,12 +32,6 @@ const TabsNavigator = () => {
                     return <Ionicons name={focused ? 'home' : 'home-outline'} color={color} size={size}/>
                 }
             }}/>
-            {/*<TabsStack.Screen name='SearchScreen' component={SearchScreen} options={{*/}
-            {/*    tabBarIcon: ({ focused, color, size }) => {*/}
-            {/*        return <Ionicons name={focused ? 'search' : 'search-outline'} color={color} size={size} />*/}
-            {/*    },*/}
-            {/*    // tabBarBadge: 3*/}
-            {/*}} />*/}
             <TabsStack.Screen name={'AllProductsScreen'} component={AllProductsScreen} options={{
                 tabBarIcon: ({size, focused, color}) => {
                     return <Ionicons name={focused ? 'grid' : 'grid-outline'} size={size - 2} color={color}/>
