@@ -9,7 +9,7 @@ const ProductRow = () => {
     return (
         <View style={styles.container}>
             <FlatList
-                data={mockProducts.slice(0,3)}
+                data={mockProducts.slice(4,7)}
                 renderItem={({item}) => <ProductCardView product={item}/>}
                 horizontal
                 contentContainerStyle={styles.flatListContainer}

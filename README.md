@@ -81,6 +81,14 @@ You need to disable the hardware keyboard in the simulator by pressing `CMD + K`
 - Insets: Use insets to determine the safearea for each device. for android, you need to add a multiplier.
 - Margins/Paddings: Define it as much as possible with % instead of fixed values, to make it responsive for different screen sizes.
 
+### Run on physical iOS Device
+- !! Device and Mac need to be in the same network (Wifi or Hotspot)
+- Connect device to Mac
+- XCode -> Change to Physical Device
+- Build and resolve (if there are any) warnings
+- run command `npx react-native run-ios` (device in Xcode must be chosed, see step before)
+- if URL Bundle error occurs while starting app -> Click on "Reload JS"
+
 ## Setup CI/CD Workflow on GCloud for Backend
 - [Tutorial: CI/CD for Node.js Application using Google Cloud](https://psspavan96.medium.com/ci-cd-for-node-js-application-using-google-cloud-part-1-5f7466df913d)
 
