@@ -5,7 +5,7 @@ import {ScrollView} from 'react-native-gesture-handler';
 import Welcome from '../components/home/Welcome';
 import Carousel from '../components/home/Carousel';
 import AppBar from "../components/home/AppBar";
-import SearchBar from "../components/home/SearchBar";
+import SearchBarNavigation from "../components/home/SearchBarNavigation";
 import Headings from "../components/home/Headings";
 import ProductRow from "../components/home/ProductRow";
 
@@ -20,10 +20,11 @@ const HomeScreen = () => {
     return (
         <View style={{paddingBottom: insets.bottom, paddingTop: insets.top}}>
             <AppBar></AppBar>
-            <ScrollView style={styles.scrollContainer}>
+            <ScrollView style={styles.scrollContainer} contentContainerStyle={styles.scrollContainerContent}>
                 <Welcome/>
                 <Carousel data={data}/>
                 <Headings/>
+                <SearchBarNavigation caretHidden={true}/>
                 <ProductRow/>
             </ScrollView>
         </View>
@@ -33,6 +34,9 @@ const HomeScreen = () => {
 const styles = StyleSheet.create({
     scrollContainer: {
         height: '100%',
+    },
+    scrollContainerContent: {
+        paddingBottom: '6%'
     }
 });
 

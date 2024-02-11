@@ -2,32 +2,43 @@ import {StyleSheet, TextInput, TouchableOpacity, View} from 'react-native';
 import React from 'react';
 import Ionicons from "react-native-vector-icons/Ionicons";
 import {COLORS, SIZES} from "../../themes/theme";
+import {useNavigation} from "@react-navigation/native";
+import {TabsStackParamList} from "../../navigators/TabsNavigator";
+import {BottomTabNavigationProp} from "@react-navigation/bottom-tabs";
 
-const SearchBar2 = () => {
+type SearchScreenNavigationProp = BottomTabNavigationProp<TabsStackParamList, 'AllProductsScreen'>;
+type SearchBarProps = {
+    caretHidden: boolean
+}
+const SearchBarNavigation = (props: SearchBarProps) => {
+    const navigation = useNavigation<SearchScreenNavigationProp>();
+
+    const navigateToSearchScreen = () => {
+        navigation.navigate('AllProductsScreen', {isFromSearch: true});
+    };
+
     return (
         <View style={styles.searchContainer}>
-            <TouchableOpacity style={styles.searchIconWrapper}>
-                <Ionicons name='search' size={24} style={styles.searchIcon}></Ionicons>
-            </TouchableOpacity>
             <View style={styles.searchWrapper}>
                 <TextInput
+                    caretHidden={props.caretHidden}
                     style={styles.searchInput}
                     value=''
-                    onPressIn={() => {
-                    }}
+                    onPressIn={navigateToSearchScreen}
                     placeholder='What are you looking for?'
+                    editable={false}
                 />
             </View>
             <View>
-                <TouchableOpacity style={styles.searchBtn}>
-                    <Ionicons name='search-outline' size={SIZES.xLarge} style={styles.searchBtnIcon}/>
+                <TouchableOpacity style={styles.searchBtn} onPress={navigateToSearchScreen}>
+                    <Ionicons name='search' size={SIZES.xLarge} style={styles.searchBtnIcon}/>
                 </TouchableOpacity>
             </View>
         </View>
     );
 };
 
-export default SearchBar2;
+export default SearchBarNavigation;
 
 const styles = StyleSheet.create({
     searchContainer: {
@@ -37,7 +48,6 @@ const styles = StyleSheet.create({
         alignContent: 'center',
         backgroundColor: COLORS.secondary,
         borderRadius: SIZES.medium,
-        marginVertical: SIZES.medium,
         height: 50,
     },
     searchIconWrapper: {

@@ -11,7 +11,7 @@ const Headings = () => {
     const navigation = useNavigation<AllProductsScreenNavigationProp>();
 
     const navigateToAllProductsScreen = () => {
-        navigation.navigate('AllProductsScreen');
+        navigation.navigate('AllProductsScreen', {isFromSearch: false});
     };
 
     return (
@@ -32,9 +32,9 @@ export default Headings;
 
 const styles = StyleSheet.create({
     container: {
-        marginTop: SIZES.medium,
-        // marginBottom: -SIZES.xSmall
-        marginHorizontal: 12
+        marginTop: '4%',
+        marginHorizontal: 12,
+        marginBottom: '4%'
     },
     header: {
         flexDirection: 'row',

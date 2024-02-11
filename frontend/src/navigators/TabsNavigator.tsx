@@ -1,5 +1,5 @@
 import React from 'react'
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import HomeScreen from '../screens/HomeScreen';
 import ProfileView from '../screens/ProfileScreen';
 import Ionicons from 'react-native-vector-icons/Ionicons'
@@ -12,7 +12,7 @@ export type TabsStackParamList = {
     SearchScreen: undefined;
     ProfileScreen: undefined;
     CartScreen: undefined;
-    AllProductsScreen: undefined;
+    AllProductsScreen: { isFromSearch: boolean };
 }
 
 // if assigned to the Navigator, the options are applied to all sub screens.
@@ -28,10 +28,10 @@ const TabsNavigator = () => {
     return (
         <TabsStack.Navigator screenOptions={screenOptionsAll}>
             <TabsStack.Screen name='MainScreen' component={HomeScreen} options={{
-                tabBarIcon: ({ focused, color, size }) => {
-                    return <Ionicons name={focused ? 'home' : 'home-outline'} color={color} size={size} />
+                tabBarIcon: ({focused, color, size}) => {
+                    return <Ionicons name={focused ? 'home' : 'home-outline'} color={color} size={size}/>
                 }
-            }} />
+            }}/>
             {/*<TabsStack.Screen name='SearchScreen' component={SearchScreen} options={{*/}
             {/*    tabBarIcon: ({ focused, color, size }) => {*/}
             {/*        return <Ionicons name={focused ? 'search' : 'search-outline'} color={color} size={size} />*/}
@@ -45,14 +45,14 @@ const TabsNavigator = () => {
             }}/>
             <TabsStack.Screen name='CartScreen' component={CartScreen} options={{
                 tabBarIcon: ({focused, color, size}) => {
-                  return <Ionicons name={focused ? 'cart' : 'cart-outline'} color={color} size={size} />
+                    return <Ionicons name={focused ? 'cart' : 'cart-outline'} color={color} size={size}/>
                 }
             }}/>
             <TabsStack.Screen name='ProfileScreen' component={ProfileView} options={{
-                tabBarIcon: ({ focused, color, size }) => {
-                    return <Ionicons name={focused ? 'person' : 'person-outline'} color={color} size={size} />
+                tabBarIcon: ({focused, color, size}) => {
+                    return <Ionicons name={focused ? 'person' : 'person-outline'} color={color} size={size}/>
                 }
-            }} />
+            }}/>
         </TabsStack.Navigator>
     )
 }
