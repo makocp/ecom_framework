@@ -23,13 +23,14 @@ const SearchBarNavigation = () => {
                     value=''
                     onPressIn={navigateToSearchScreen}
                     placeholder='What are you looking for?'
+                    placeholderTextColor={COLORS.gray}
                     editable={false}
                 />
             </View>
             <View>
-                <Pressable style={styles.searchBtn} onPress={navigateToSearchScreen}>
+                <View style={styles.searchBtn}>
                     <Ionicons name='search' size={SIZES.xLarge} style={styles.searchBtnIcon}/>
-                </Pressable>
+                </View>
             </View>
         </View>
     );
@@ -65,7 +66,7 @@ const styles = StyleSheet.create({
         fontFamily: 'regular',
         width: '100%',
         height: '100%',
-        paddingHorizontal: SIZES.small
+        paddingHorizontal: SIZES.small,
     },
     searchBtn: {
         width: 50,

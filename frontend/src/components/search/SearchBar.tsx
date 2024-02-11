@@ -16,6 +16,7 @@ const SearchBar = forwardRef<TextInput>((props, ref) => {
                     placeholder='What are you looking for?'
                     ref={ref}
                     onBlur={dismissKeyboard}
+                    placeholderTextColor={COLORS.gray}
                 />
             </View>
             <View>

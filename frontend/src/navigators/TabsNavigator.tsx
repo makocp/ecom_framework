@@ -8,7 +8,7 @@ import AllProductsScreen from "../screens/AllProductsScreen";
 
 
 export type TabsStackParamList = {
-    MainScreen: undefined;
+    HomeScreen: undefined;
     SearchScreen: undefined;
     ProfileScreen: undefined;
     CartScreen: undefined;
@@ -27,8 +27,11 @@ const TabsStack = createBottomTabNavigator<TabsStackParamList>();
 
 const TabsNavigator = () => {
     return (
-        <TabsStack.Navigator screenOptions={screenOptionsAll}>
-            <TabsStack.Screen name='MainScreen' component={HomeScreen} options={{
+        <TabsStack.Navigator
+            screenOptions={screenOptionsAll}
+            initialRouteName={'HomeScreen'}
+        >
+            <TabsStack.Screen name='HomeScreen' component={HomeScreen} options={{
                 tabBarIcon: ({focused, color, size}) => {
                     return <Ionicons name={focused ? 'home' : 'home-outline'} color={color} size={size}/>
                 }
