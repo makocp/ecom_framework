@@ -8,7 +8,7 @@ import {RootStackParamList} from "../../navigators/RootNavigator";
 import {Product} from "../../data/products";
 
 type ProductDataProps = {
-    product: Product
+    product: Product,
 }
 export type DetailScreenNavigationProp = StackNavigationProp<RootStackParamList, 'DetailScreen'>
 const ProductCardView = ({product}: ProductDataProps) => {
@@ -48,6 +48,7 @@ const styles = StyleSheet.create({
         width: 182,
         height: 240,
         borderRadius: SIZES.medium,
+        margin: 4
     },
     imageWrapper: {
         flex: 1,

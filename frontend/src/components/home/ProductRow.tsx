@@ -21,7 +21,6 @@ const ProductRow = () => {
 
 const styles = StyleSheet.create({
     flatListContainer: {
-        columnGap: SIZES.medium,
         paddingHorizontal: SIZES.small
     },
     container: {
