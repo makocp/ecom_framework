@@ -1,6 +1,6 @@
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React from 'react';
-import {COLORS, SIZES} from "../../themes/theme";
+import {COLORS, SHADOWS, SIZES} from "../../themes/theme";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import {useNavigation} from "@react-navigation/native";
 import {StackNavigationProp} from "@react-navigation/stack";
@@ -11,7 +11,7 @@ type ProductDataProps = {
     product: Product,
 }
 export type DetailScreenNavigationProp = StackNavigationProp<RootStackParamList, 'DetailScreen'>
-const ProductCardView = ({product}: ProductDataProps) => {
+const ProductCard = ({product}: ProductDataProps) => {
 
     const navigation = useNavigation<DetailScreenNavigationProp>();
     const navigateToDetailScreen = () => {
@@ -20,7 +20,7 @@ const ProductCardView = ({product}: ProductDataProps) => {
 
     return (
         <TouchableOpacity onPress={navigateToDetailScreen}>
-            <View style={styles.container}>
+            <View style={[styles.container, SHADOWS.small]}>
                 <View style={styles.imageWrapper}>
                     <View style={styles.imageContainer}>
                         <Image
@@ -92,4 +92,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default ProductCardView;
+export default ProductCard;

@@ -12,7 +12,7 @@ export type TabsStackParamList = {
     SearchScreen: undefined;
     ProfileScreen: undefined;
     CartScreen: undefined;
-    AllProductsScreen: { isFromSearch: boolean, isAnimationEnabled: boolean };
+    AllProductsScreen: { isFromSearch: boolean };
 }
 
 // if assigned to the Navigator, the options are applied to all sub screens.
@@ -46,11 +46,11 @@ const TabsNavigator = () => {
                     return <Ionicons name={focused ? 'cart' : 'cart-outline'} color={color} size={size}/>
                 }
             }}/>
-            <TabsStack.Screen name='ProfileScreen' component={ProfileView} options={{
-                tabBarIcon: ({focused, color, size}) => {
-                    return <Ionicons name={focused ? 'person' : 'person-outline'} color={color} size={size}/>
-                }
-            }}/>
+            {/*<TabsStack.Screen name='ProfileScreen' component={ProfileView} options={{*/}
+            {/*    tabBarIcon: ({focused, color, size}) => {*/}
+            {/*        return <Ionicons name={focused ? 'person' : 'person-outline'} color={color} size={size}/>*/}
+            {/*    }*/}
+            {/*}}/>*/}
         </TabsStack.Navigator>
     )
 }

@@ -5,7 +5,7 @@ import SearchBar from "../components/search/SearchBar";
 import {RouteProp, useRoute} from "@react-navigation/native";
 import {TabsStackParamList} from "../navigators/TabsNavigator";
 import {mockProducts, Product} from "../data/products";
-import ProductCardView from "../components/home/ProductCardView";
+import ProductCard from "../components/home/ProductCard";
 import AppBar from "../components/home/AppBar";
 import FadeInScreen from "./FadeInScreen";
 
@@ -59,7 +59,7 @@ const AllProductsScreen = () => {
                 <View style={styles.scrollContainer}>
                     <FlatList
                         data={filteredProducts}
-                        renderItem={({item}) => <ProductCardView product={item}/>}
+                        renderItem={({item}) => <ProductCard product={item}/>}
                         numColumns={2}
                         showsVerticalScrollIndicator={false}
                         alwaysBounceVertical={false}
@@ -84,7 +84,7 @@ const styles = StyleSheet.create({
         paddingTop: '4%',
     },
     scrollContainerContent: {
-        paddingBottom: '28%',
+        paddingBottom: '34%',
     }
 });
 

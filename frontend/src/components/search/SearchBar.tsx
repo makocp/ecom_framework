@@ -12,7 +12,7 @@ const SearchBar = forwardRef<TextInput, SearchBarProps>(({onChangeText}, ref) =>
     };
 
     return (
-        <View style={styles.searchContainer}>
+        <View style={[styles.searchContainer]}>
             <View style={styles.searchWrapper}>
                 <TextInput
                     style={styles.searchInput}
