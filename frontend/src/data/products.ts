@@ -128,5 +128,5 @@ export const mockUsers: User[] = [
 export const mockCartProducts: CartProduct[] = [
     {id: 1, product: mockProducts[4], quantity: 2},
     {id: 2, product: mockProducts[2], quantity: 1},
-    {id: 2, product: mockProducts[6], quantity: 2}
+    {id: 3, product: mockProducts[6], quantity: 2}
 ]

@@ -9,65 +9,17 @@ import CartProductCard from "../components/cart/CartProductCard";
 import {COLORS, SIZES} from "../themes/theme";
 import {mockCartProducts} from "../data/products";
 import useCartCalculations from "../hooks/useCartCalculations";
+import useStripePayment from "../hooks/useStripePayment";
+import useCurrencyCalculations from "../hooks/useCurrencyCalculations";
 
 const CartScreen = () => {
-    const {initPaymentSheet, presentPaymentSheet} = useStripe();
-    const [loading, setLoading] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
     const insets = useSafeAreaInsets();
     // todo: dynamically, from backend.
     const cartProductData = mockCartProducts;
-    const {subtotal, shipping, total, transformCentsToEuroString} = useCartCalculations({cartProductData});
-
-    const createPaymentIntent = async () => {
-
-        const response = await fetch(`${API_URL_PAYMENT_INTENT}`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            // TODO: make amount
-            body: JSON.stringify({'amount': 7995})
-        });
-        if (!response.ok) {
-            console.error('Failed to fetch param sheet');
-        }
-        const {clientSecret} = await response.json() as { clientSecret: string };
-        if (!clientSecret) {
-            console.error('Incomplete data received');
-        }
-        return clientSecret;
-    };
-
-    const openPaymentSheet = async () => {
-        const {error} = await presentPaymentSheet();
-
-        if (error) {
-            Alert.alert(`Error code: ${error.code}`, error.message);
-        } else {
-            Alert.alert('Success', 'Your order is confirmed!')
-        }
-    }
-
-    const onCheckout = async () => {
-        const clientSecret = await createPaymentIntent();
-
-        const {error} = await initPaymentSheet({
-            merchantDisplayName: "ECOM GmbH",
-            paymentIntentClientSecret: clientSecret,
-            returnURL: 'stripe-example://stripe-redirect',
-        });
-        if (!error) {
-            setLoading(true);
-        } else {
-            console.log(error);
-        }
-
-        await openPaymentSheet();
-        setLoading(false);
-
-        // todo: 4. create order, if payment ok
-    };
-
+    const {subtotal, shipping, total} = useCartCalculations({cartProductData});
+    const {transformCentsToEuroString} = useCurrencyCalculations();
+    const {onCheckout} = useStripePayment({isLoading, setIsLoading});
 
     return (
         <FadeInScreen>
@@ -76,7 +28,7 @@ const CartScreen = () => {
                 <View style={styles.scrollContainer}>
                     <FlatList
                         data={cartProductData}
-                        renderItem={({item}) => <CartProductCard cartProduct={item}/>}
+                        renderItem={({item}) => <CartProductCard cartProduct={item} isLoading={isLoading} setIsLoading={setIsLoading}/>}
                         alwaysBounceVertical={false}
                         showsVerticalScrollIndicator={false}
                         contentContainerStyle={styles.scrollContainerContent}
@@ -101,8 +53,10 @@ const CartScreen = () => {
                             </View>
                         </View>
                         <View style={styles.buttonContainer}>
-                            <TouchableOpacity style={styles.buttonCheckout} disabled={loading} onPress={onCheckout}>
-                                <Text style={styles.buttonCheckoutText}>Checkout € 5190.95</Text>
+                            <TouchableOpacity style={styles.buttonCheckout} disabled={isLoading}
+                                              onPress={() => onCheckout(total)}>
+                                <Text style={styles.buttonCheckoutText}>Checkout
+                                    € {transformCentsToEuroString(total)}</Text>
                             </TouchableOpacity>
                         </View>
                     </View>

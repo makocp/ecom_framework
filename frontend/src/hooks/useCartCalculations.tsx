@@ -21,11 +21,7 @@ const useCartCalculations = ({cartProductData}: useCartCalculationsProps) => {
 
     }, [cartProductData]);
 
-    const transformCentsToEuroString = (cents: number) => {
-        return (cents / 100).toFixed(2)
-    };
-
-    return {subtotal, shipping, total, transformCentsToEuroString};
+    return {subtotal, shipping, total};
 };
 
 export default useCartCalculations;

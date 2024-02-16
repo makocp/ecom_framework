@@ -5,11 +5,19 @@ import {CartProduct, mockProducts} from "../../data/products";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import {useNavigation} from "@react-navigation/native";
 import {DetailScreenNavigationProp} from "../home/ProductCard";
+import useCartCalculations from "../../hooks/useCartCalculations";
+import useCurrencyCalculations from "../../hooks/useCurrencyCalculations";
+import useStripePayment from "../../hooks/useStripePayment";
 
 type CartProductDataProps = {
-    cartProduct: CartProduct
+    cartProduct: CartProduct,
+    isLoading: boolean,
+    setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
 }
-const CartProductCard = ({cartProduct}: CartProductDataProps) => {
+const CartProductCard = ({cartProduct, isLoading, setIsLoading}: CartProductDataProps) => {
+    const {transformCentsToEuroString} = useCurrencyCalculations();
+    const {onCheckout} = useStripePayment({isLoading, setIsLoading});
+
     const navigation = useNavigation<DetailScreenNavigationProp>();
     const navigateToDetailScreen = () => {
         navigation.navigate('DetailScreen', {product: cartProduct.product})
@@ -29,13 +37,19 @@ const CartProductCard = ({cartProduct}: CartProductDataProps) => {
                         <Text style={styles.title} numberOfLines={1}>{cartProduct.product.title}</Text>
                         <Text style={styles.category} numberOfLines={1}>{cartProduct.product.category}</Text>
                     </View>
-                    <Text style={styles.price} numberOfLines={1}>€ {cartProduct.product.price/100} x {cartProduct.quantity}</Text>
+                    <View>
+                        <Text style={styles.price}
+                              numberOfLines={1}>€ {transformCentsToEuroString(cartProduct.product.price)} x {cartProduct.quantity}</Text>
+                    </View>
                 </View>
                 <View style={styles.buttonColumn}>
                     <TouchableOpacity style={styles.buttonDelete}>
                         <Ionicons name={'trash-outline'} size={20} color={COLORS.tertiary}/>
                     </TouchableOpacity>
-                    <TouchableOpacity style={styles.buttonCheckout}>
+                    <TouchableOpacity style={styles.buttonCheckout}
+                                      onPress={() => {
+                                          onCheckout(cartProduct.product.price * cartProduct.quantity)
+                                      }}>
                         <Text style={styles.buttonText}>CHECKOUT</Text>
                     </TouchableOpacity>
                 </View>
@@ -82,7 +96,7 @@ const styles = StyleSheet.create({
     },
     price: {
         fontSize: 14,
-        color: COLORS.gray
+        color: COLORS.gray,
     },
     buttonColumn: {
         height: '100%',
