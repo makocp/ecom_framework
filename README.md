@@ -92,6 +92,9 @@ You need to disable the hardware keyboard in the simulator by pressing `CMD + K`
 ### Add custom bounce
 - Debounce is useful for the search function, to improve performance. [See answer](https://stackoverflow.com/a/75556586).
 
+### Interface vs. Types
+- Interfaces are extensible and better reusable. Rule of thumb: Interface for OOP similarity (objects, products, users, etc.) and type for single uses, e.g. to define props of a function.
+
 ### Index.ts and Index.js -> fix XCode Release build
 The index.js file needs to stay .js, otherwise XCode can't build the production release!
 

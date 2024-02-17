@@ -11,13 +11,15 @@ import {mockCartProducts} from "../data/products";
 import useCartCalculations from "../hooks/useCartCalculations";
 import useStripePayment from "../hooks/useStripePayment";
 import useCurrencyCalculations from "../hooks/useCurrencyCalculations";
+import {useCart} from "../providers/CartProvider";
 
 const CartScreen = () => {
     const [isLoading, setIsLoading] = useState(false);
     const insets = useSafeAreaInsets();
     // todo: dynamically, from backend.
     const cartProductData = mockCartProducts;
-    const {subtotal, shipping, total} = useCartCalculations({cartProductData});
+    const {cartProducts} = useCart();
+    const {subtotal, shipping, total} = useCartCalculations({cartProductData: cartProducts});
     const {transformCentsToEuroString} = useCurrencyCalculations();
     const {onCheckout} = useStripePayment({isLoading, setIsLoading});
 
@@ -27,7 +29,7 @@ const CartScreen = () => {
                 <AppBar screenName={'Cart'}/>
                 <View style={styles.scrollContainer}>
                     <FlatList
-                        data={cartProductData}
+                        data={cartProducts}
                         renderItem={({item}) => <CartProductCard cartProduct={item} isLoading={isLoading} setIsLoading={setIsLoading}/>}
                         alwaysBounceVertical={false}
                         showsVerticalScrollIndicator={false}

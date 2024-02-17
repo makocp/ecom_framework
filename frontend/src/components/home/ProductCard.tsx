@@ -6,12 +6,14 @@ import {useNavigation} from "@react-navigation/native";
 import {StackNavigationProp} from "@react-navigation/stack";
 import {RootStackParamList} from "../../navigators/RootNavigator";
 import {Product} from "../../data/products";
+import {useCart} from "../../providers/CartProvider";
 
 type ProductDataProps = {
     product: Product,
 }
 export type DetailScreenNavigationProp = StackNavigationProp<RootStackParamList, 'DetailScreen'>
 const ProductCard = ({product}: ProductDataProps) => {
+    const {addToCart} = useCart();
 
     const navigation = useNavigation<DetailScreenNavigationProp>();
     const navigateToDetailScreen = () => {
@@ -32,10 +34,12 @@ const ProductCard = ({product}: ProductDataProps) => {
                 <View style={styles.details}>
                     <Text style={styles.title} numberOfLines={1}>{product.title}</Text>
                     <Text style={styles.category}>{product.category}</Text>
-                    <Text style={styles.price}>€{product.price/100}</Text>
+                    <Text style={styles.price}>€{product.price / 100}</Text>
                 </View>
                 <TouchableOpacity style={styles.addBtn}>
-                    <Ionicons name={'add-circle'} size={36} color={COLORS.primary} onPress={() => {}}/>
+                    <Ionicons name={'add-circle'} size={36} color={COLORS.primary} onPress={() => {
+                        addToCart({product: product, quantity: 1})
+                    }}/>
                 </TouchableOpacity>
             </View>
         </TouchableOpacity>
