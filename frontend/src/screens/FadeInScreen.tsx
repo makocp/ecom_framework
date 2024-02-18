@@ -14,11 +14,19 @@ const FadeInScreen = ({children, duration}: FadeInScreenProps) => {
         React.useCallback(() => {
             Animated.timing(fadeAnim, {
                 toValue: 1,
-                duration: duration ? duration : 100,
+                duration: duration || 100,
                 useNativeDriver: true,
             }).start();
 
-            return () => fadeAnim.setValue(0.7);
+            // sets the opacity again at 0.7 by blur (onfocus) the screen
+            // added here a delay, because, if navigating to DetailScreen, to don't interfere with the already existing stacknavigation animation (swipe left/right).
+            return () => {
+                const timeoutId = setTimeout(() => {
+                   fadeAnim.setValue(0.7);
+                }, 100);
+
+                return () => clearTimeout(timeoutId);
+            };
         }, [fadeAnim])
     )
     return (

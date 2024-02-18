@@ -30,23 +30,23 @@ export const COLORS = {
 
 export const SHADOWS = {
     small: {
-        shadowColor: "#000",
+        shadowColor: COLORS.primary,
         shadowOffset: {
             width: 0,
-            height: 2,
+            height: 0.5,
         },
         shadowOpacity: 0.25,
-        shadowRadius: 3.84,
+        shadowRadius: 0.5,
         elevation: 2,
     },
     medium: {
-        shadowColor: "#000",
+        shadowColor: COLORS.primary,
         shadowOffset: {
             width: 0,
-            height: 2,
+            height: 1,
         },
-        shadowOpacity: 0.25,
-        shadowRadius: 5.84,
+        shadowOpacity: 0.5,
+        shadowRadius: 3,
         elevation: 5,
     },
 };

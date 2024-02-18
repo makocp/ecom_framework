@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
         height: '100%',
     },
     scrollContainerContent: {
-        paddingBottom: '6%',
+        paddingBottom: '12%',
     }
 });
 

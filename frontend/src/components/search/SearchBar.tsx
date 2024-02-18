@@ -3,13 +3,16 @@ import React, {forwardRef} from 'react';
 import Ionicons from "react-native-vector-icons/Ionicons";
 import {COLORS, SIZES} from "../../themes/theme";
 
-const SearchBar = forwardRef<TextInput>((props, ref) => {
+type SearchBarProps = {
+    onChangeText: (text: string) => void
+}
+const SearchBar = forwardRef<TextInput, SearchBarProps>(({onChangeText}, ref) => {
     const dismissKeyboard = () => {
         Keyboard.dismiss();
     };
 
     return (
-        <View style={styles.searchContainer}>
+        <View style={[styles.searchContainer]}>
             <View style={styles.searchWrapper}>
                 <TextInput
                     style={styles.searchInput}
@@ -17,6 +20,7 @@ const SearchBar = forwardRef<TextInput>((props, ref) => {
                     ref={ref}
                     onBlur={dismissKeyboard}
                     placeholderTextColor={COLORS.gray}
+                    onChangeText={onChangeText}
                 />
             </View>
             <View>

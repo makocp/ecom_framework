@@ -1,17 +1,19 @@
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React from 'react';
-import {COLORS, SIZES} from "../../themes/theme";
+import {COLORS, SHADOWS, SIZES} from "../../themes/theme";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import {useNavigation} from "@react-navigation/native";
 import {StackNavigationProp} from "@react-navigation/stack";
 import {RootStackParamList} from "../../navigators/RootNavigator";
 import {Product} from "../../data/products";
+import {useCart} from "../../providers/CartProvider";
 
 type ProductDataProps = {
     product: Product,
 }
 export type DetailScreenNavigationProp = StackNavigationProp<RootStackParamList, 'DetailScreen'>
-const ProductCardView = ({product}: ProductDataProps) => {
+const ProductCard = ({product}: ProductDataProps) => {
+    const {addToCart} = useCart();
 
     const navigation = useNavigation<DetailScreenNavigationProp>();
     const navigateToDetailScreen = () => {
@@ -20,7 +22,7 @@ const ProductCardView = ({product}: ProductDataProps) => {
 
     return (
         <TouchableOpacity onPress={navigateToDetailScreen}>
-            <View style={styles.container}>
+            <View style={[styles.container, SHADOWS.small]}>
                 <View style={styles.imageWrapper}>
                     <View style={styles.imageContainer}>
                         <Image
@@ -32,10 +34,12 @@ const ProductCardView = ({product}: ProductDataProps) => {
                 <View style={styles.details}>
                     <Text style={styles.title} numberOfLines={1}>{product.title}</Text>
                     <Text style={styles.category}>{product.category}</Text>
-                    <Text style={styles.price}>€{product.price/100}</Text>
+                    <Text style={styles.price}>€{product.price / 100}</Text>
                 </View>
                 <TouchableOpacity style={styles.addBtn}>
-                    <Ionicons name={'add-circle'} size={36} color={COLORS.primary} onPress={() => {}}/>
+                    <Ionicons name={'add-circle'} size={36} color={COLORS.primary} onPress={() => {
+                        addToCart({product: product, quantity: 1})
+                    }}/>
                 </TouchableOpacity>
             </View>
         </TouchableOpacity>
@@ -92,4 +96,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default ProductCardView;
+export default ProductCard;

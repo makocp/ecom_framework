@@ -1,7 +1,7 @@
 import {FlatList, StyleSheet, View} from 'react-native';
 import React from 'react';
 import {SIZES} from "../../themes/theme";
-import ProductCardView from "./ProductCardView";
+import ProductCard from "./ProductCard";
 import {mockProducts} from "../../data/products";
 
 
@@ -10,7 +10,7 @@ const ProductRow = () => {
         <View style={styles.container}>
             <FlatList
                 data={mockProducts.slice(4,7)}
-                renderItem={({item}) => <ProductCardView product={item}/>}
+                renderItem={({item}) => <ProductCard product={item}/>}
                 horizontal
                 contentContainerStyle={styles.flatListContainer}
                 showsHorizontalScrollIndicator={false}

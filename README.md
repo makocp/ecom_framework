@@ -89,6 +89,15 @@ You need to disable the hardware keyboard in the simulator by pressing `CMD + K`
 - run command `npx react-native run-ios` (device in Xcode must be chosed, see step before)
 - if URL Bundle error occurs while starting app -> Click on "Reload JS"
 
+### Add custom bounce
+- Debounce is useful for the search function, to improve performance. [See answer](https://stackoverflow.com/a/75556586).
+
+### Interface vs. Types
+- Interfaces are extensible and better reusable. Rule of thumb: Interface for OOP similarity (objects, products, users, etc.) and type for single uses, e.g. to define props of a function.
+
+### Index.ts and Index.js -> fix XCode Release build
+The index.js file needs to stay .js, otherwise XCode can't build the production release!
+
 ## Setup CI/CD Workflow on GCloud for Backend
 - [Tutorial: CI/CD for Node.js Application using Google Cloud](https://psspavan96.medium.com/ci-cd-for-node-js-application-using-google-cloud-part-1-5f7466df913d)
 
@@ -184,6 +193,9 @@ Clean Build: SHIFT+COMMAND+K
 
 Extentions VS Code:\
 [React Code Snippets](https://marketplace.visualstudio.com/items?itemName=dsznajder.es7-react-js-snippets)
+
+Webstorm:
+Replace chars: `CMD + R`
 
 ## Sources/References
 [React Native Tutorial](https://www.youtube.com/watch?v=w5IYCoTk4Bs&t=2859s) \

@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
     appBarWrapper: {
         marginHorizontal: SIZES.large,
         marginTop: SIZES.small,
-        marginBottom: '2%'
+        marginBottom: '8%',
     },
     appBar: {
         flexDirection: 'row',

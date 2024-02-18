@@ -3,7 +3,7 @@ import React, {useState} from 'react';
 import {COLORS, SIZES} from "../themes/theme";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import {useNavigation, useRoute} from "@react-navigation/native";
-import {DetailScreenNavigationProp} from "../components/home/ProductCardView";
+import {DetailScreenNavigationProp} from "../components/home/ProductCard";
 import {useSafeAreaInsets} from "react-native-safe-area-context";
 import {Product} from "../data/products";
 import FadeInScreen from "./FadeInScreen";

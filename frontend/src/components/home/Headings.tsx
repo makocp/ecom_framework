@@ -18,7 +18,7 @@ const Headings = () => {
         <View style={styles.container}>
             <View style={styles.header}>
                 <Text style={styles.headerTitle}>Top Seller</Text>
-                <TouchableOpacity style={styles.allProducts} onPress={navigateToAllProductsScreen}>
+                <TouchableOpacity style={styles.allProducts} onPress={navigateToAllProductsScreen} hitSlop={12}>
                     <Ionicons name={'grid'} size={24} color={COLORS.primary}/>
                     <Text style={styles.allProcuctsText}>View All</Text>
                     <Ionicons name={'arrow-forward'} size={16}/>
