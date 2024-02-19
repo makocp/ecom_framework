@@ -7,11 +7,14 @@ import {DetailScreenNavigationProp} from "../components/home/ProductCard";
 import {useSafeAreaInsets} from "react-native-safe-area-context";
 import {Product} from "../data/products";
 import FadeInScreen from "./FadeInScreen";
+import useCleanToastsOnUnfocus from "../hooks/useCleanToastsOnUnfocus";
 
 type DetailScreenRouteParams = {
     product: Product;
 }
 const DetailScreen = () => {
+    useCleanToastsOnUnfocus();
+
     const [quantity, setQuantity] = useState(1);
 
     const insets = useSafeAreaInsets();
@@ -76,11 +79,11 @@ const DetailScreen = () => {
                     <View style={styles.rowContainer}>
                         <View style={styles.addRemoveButtonContainer}>
                             <TouchableOpacity onPress={decrementQuantity}>
-                                <Ionicons name={'remove-circle-outline'} size={32}/>
+                                <Ionicons name={'remove-circle-outline'} size={32} color={COLORS.primary}/>
                             </TouchableOpacity>
                             <Text style={styles.countText}>{quantity}</Text>
                             <TouchableOpacity onPress={incrementQuantity}>
-                                <Ionicons name={'add-circle-outline'} size={32}/>
+                                <Ionicons name={'add-circle-outline'} size={32} color={COLORS.primary}/>
                             </TouchableOpacity>
                         </View>
                         <TouchableOpacity style={[styles.buttonWrapperATC, {backgroundColor: COLORS.primary}]}>
@@ -285,8 +288,8 @@ const styles = StyleSheet.create({
     },
     countText: {
         fontWeight: 'bold',
-        fontSize: 14,
-        width: 20,
+        fontSize: 16,
+        width: 24,
         textAlign: 'center'
     }
 });

@@ -5,6 +5,8 @@ import {useEffect, useState} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import RootNavigator from './navigators/RootNavigator';
 import {CartProvider} from "./providers/CartProvider";
+import Toast from "react-native-toast-message";
+import {toastConfig} from "./components/toasts/CustomToast";
 
 const App = () => {
     const [pubStripeKey, setPubStripeKey] = useState('');
@@ -35,6 +37,7 @@ const App = () => {
             <CartProvider>
                 <NavigationContainer>
                     <RootNavigator/>
+                    <Toast config={toastConfig}/>
                 </NavigationContainer>
             </CartProvider>
         </StripeProvider>

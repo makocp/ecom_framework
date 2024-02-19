@@ -8,6 +8,9 @@ type useStripePaymentProps = {
 }
 const useStripePayment = ({isLoading, setIsLoading} : useStripePaymentProps) => {
     const onCheckout = async (amount: number) => {
+        if (amount === 0) {
+            return Alert.alert("Please choose Products to Checkout!")
+        }
         const clientSecret = await createPaymentIntent(amount);
 
         const {error} = await initPaymentSheet({

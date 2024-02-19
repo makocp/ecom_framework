@@ -9,14 +9,19 @@ import SearchBarNavigation from "../components/home/SearchBarNavigation";
 import Headings from "../components/home/Headings";
 import ProductRow from "../components/home/ProductRow";
 import FadeInScreen from "./FadeInScreen";
+import useCleanToastsOnUnfocus from "../hooks/useCleanToastsOnUnfocus";
+import {MockImage} from "../data/products";
 
 const HomeScreen = () => {
+    useCleanToastsOnUnfocus();
+
     const insets = useSafeAreaInsets();
-    const data = [
+    const data: MockImage[] = [
         {image: require('../assets/images/sample_image_1.png')},
         {image: require('../assets/images/sample_image_2.png')},
         {image: require('../assets/images/sample_image_3.png')},
-    ]
+    ];
+
 
     return (
         <FadeInScreen>

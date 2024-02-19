@@ -1,40 +1,61 @@
-import {Alert, Button, FlatList, ScrollView, StyleSheet, Text, TouchableOpacity, View} from 'react-native'
+import {FlatList, StyleSheet, Text, TouchableOpacity, View} from 'react-native'
 import React, {useState} from 'react'
-import {useStripe} from '@stripe/stripe-react-native';
-import {API_URL_PAYMENT_INTENT} from '../routes/Routes';
 import FadeInScreen from "./FadeInScreen";
 import AppBar from "../components/home/AppBar";
 import {useSafeAreaInsets} from "react-native-safe-area-context";
 import CartProductCard from "../components/cart/CartProductCard";
 import {COLORS, SIZES} from "../themes/theme";
-import {mockCartProducts} from "../data/products";
 import useCartCalculations from "../hooks/useCartCalculations";
 import useStripePayment from "../hooks/useStripePayment";
 import useCurrencyCalculations from "../hooks/useCurrencyCalculations";
 import {useCart} from "../providers/CartProvider";
+import {useNavigation} from "@react-navigation/native";
+import {BottomTabNavigationProp} from "@react-navigation/bottom-tabs";
+import {TabsStackParamList} from "../navigators/TabsNavigator";
+import useCleanToastsOnUnfocus from "../hooks/useCleanToastsOnUnfocus";
 
+type CartScreenNavigationProp = BottomTabNavigationProp<TabsStackParamList, 'AllProductsScreen'>;
 const CartScreen = () => {
     const [isLoading, setIsLoading] = useState(false);
     const insets = useSafeAreaInsets();
     // todo: dynamically, from backend.
-    const cartProductData = mockCartProducts;
+    // const cartProductData = mockCartProducts;
     const {cartProducts} = useCart();
     const {subtotal, shipping, total} = useCartCalculations({cartProductData: cartProducts});
     const {transformCentsToEuroString} = useCurrencyCalculations();
     const {onCheckout} = useStripePayment({isLoading, setIsLoading});
+    const navigation = useNavigation<CartScreenNavigationProp>();
+    useCleanToastsOnUnfocus();
+
+
+    const navigateToAllProductsScreen = () => {
+        navigation.navigate('AllProductsScreen', {isFromSearch: false});
+    };
 
     return (
         <FadeInScreen>
             <View style={[styles.container, {paddingTop: insets.top}]}>
                 <AppBar screenName={'Cart'}/>
                 <View style={styles.scrollContainer}>
-                    <FlatList
-                        data={cartProducts}
-                        renderItem={({item}) => <CartProductCard cartProduct={item} isLoading={isLoading} setIsLoading={setIsLoading}/>}
-                        alwaysBounceVertical={false}
-                        showsVerticalScrollIndicator={false}
-                        contentContainerStyle={styles.scrollContainerContent}
-                    />
+                    {cartProducts.length === 0 ? (
+                        <View style={styles.infoContainer}>
+                            <Text style={styles.summaryText}>No products to your cart added.</Text>
+                            <TouchableOpacity hitSlop={12} style={{paddingTop: 4}} onPress={navigateToAllProductsScreen}>
+                                <Text style={styles.summaryTitle}>Add New Products</Text>
+                            </TouchableOpacity>
+                        </View>
+                    ) : (
+                        <>
+                            <FlatList
+                                data={cartProducts}
+                                renderItem={({item}) => <CartProductCard cartProduct={item} isLoading={isLoading}
+                                                                         setIsLoading={setIsLoading}/>}
+                                alwaysBounceVertical={false}
+                                showsVerticalScrollIndicator={false}
+                                contentContainerStyle={styles.scrollContainerContent}
+                            />
+                        </>
+                    )}
                     <View style={styles.summaryContainer}>
                         <Text style={styles.summaryTitle}>Order Info</Text>
                         <View style={styles.summaryAmountContainer}>
@@ -145,6 +166,11 @@ const styles = StyleSheet.create({
         color: COLORS.lightWhite,
         fontWeight: 'bold',
         fontSize: 16
+    },
+    infoContainer: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center'
     }
 });
 

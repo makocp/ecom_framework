@@ -98,6 +98,13 @@ You need to disable the hardware keyboard in the simulator by pressing `CMD + K`
 ### Index.ts and Index.js -> fix XCode Release build
 The index.js file needs to stay .js, otherwise XCode can't build the production release!
 
+### Generating unique ids (UUID)
+Date.now().toString() generates an unique identification, also known as UNIX Timestamp.
+
+### Local images with require as number type
+When you require a local image using the require syntax, the result is a reference to that image that React Native understands how to load. This reference is actually a numeric ID (of type number) that points to the image asset bundled within the app. This is why the type of a locally required image is number.
+
+
 ## Setup CI/CD Workflow on GCloud for Backend
 - [Tutorial: CI/CD for Node.js Application using Google Cloud](https://psspavan96.medium.com/ci-cd-for-node-js-application-using-google-cloud-part-1-5f7466df913d)
 

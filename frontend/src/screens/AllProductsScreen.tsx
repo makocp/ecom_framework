@@ -8,6 +8,8 @@ import {mockProducts, Product} from "../data/products";
 import ProductCard from "../components/home/ProductCard";
 import AppBar from "../components/home/AppBar";
 import FadeInScreen from "./FadeInScreen";
+import useCleanToastsOnUnfocus from "../hooks/useCleanToastsOnUnfocus";
+import useShowToast from "../hooks/useShowToast";
 
 const AllProductsScreen = () => {
     const [searchQuery, setSearchQuery] = useState<string>('');
@@ -15,6 +17,7 @@ const AllProductsScreen = () => {
     const insets = useSafeAreaInsets();
     const route = useRoute<RouteProp<TabsStackParamList, 'AllProductsScreen'>>();
     const searchBarRef = useRef<TextInput>(null);
+    useCleanToastsOnUnfocus();
 
     function debounce(func: any, wait: number) {
         let timeout: any;
@@ -47,6 +50,7 @@ const AllProductsScreen = () => {
         );
         setFilteredProducts(filteredProducts);
     }, [searchQuery]);
+
 
     return (
         <FadeInScreen>

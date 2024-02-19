@@ -5,9 +5,10 @@ import {CartProduct, mockProducts} from "../../data/products";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import {useNavigation} from "@react-navigation/native";
 import {DetailScreenNavigationProp} from "../home/ProductCard";
-import useCartCalculations from "../../hooks/useCartCalculations";
 import useCurrencyCalculations from "../../hooks/useCurrencyCalculations";
 import useStripePayment from "../../hooks/useStripePayment";
+import {useCart} from "../../providers/CartProvider";
+import useShowToast from "../../hooks/useShowToast";
 
 type CartProductDataProps = {
     cartProduct: CartProduct,
@@ -17,10 +18,17 @@ type CartProductDataProps = {
 const CartProductCard = ({cartProduct, isLoading, setIsLoading}: CartProductDataProps) => {
     const {transformCentsToEuroString} = useCurrencyCalculations();
     const {onCheckout} = useStripePayment({isLoading, setIsLoading});
+    const {removeFromCart} = useCart();
+    const {showRemoveProductToast} = useShowToast();
 
     const navigation = useNavigation<DetailScreenNavigationProp>();
     const navigateToDetailScreen = () => {
         navigation.navigate('DetailScreen', {product: cartProduct.product})
+    }
+
+    const removeCartProduct = (cartProduct: CartProduct) => {
+        removeFromCart(cartProduct.id);
+        showRemoveProductToast(cartProduct);
     }
 
     return (
@@ -40,15 +48,18 @@ const CartProductCard = ({cartProduct, isLoading, setIsLoading}: CartProductData
                     <View>
                         <Text style={styles.price}
                               numberOfLines={1}>€ {transformCentsToEuroString(cartProduct.product.price)} x {cartProduct.quantity}</Text>
+                        <Text style={styles.price2}
+                              numberOfLines={1}>+ {cartProduct.product.shippingCost === 0 ? 'Free' : transformCentsToEuroString(cartProduct.product.shippingCost)} Shipping</Text>
                     </View>
                 </View>
                 <View style={styles.buttonColumn}>
-                    <TouchableOpacity style={styles.buttonDelete}>
+                    {/*<TouchableOpacity style={styles.buttonDelete} onPress={() => removeFromCart(cartProduct.id)}>*/}
+                    <TouchableOpacity style={styles.buttonDelete} onPress={() => removeCartProduct(cartProduct)}>
                         <Ionicons name={'trash-outline'} size={20} color={COLORS.tertiary}/>
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.buttonCheckout}
                                       onPress={() => {
-                                          onCheckout(cartProduct.product.price * cartProduct.quantity)
+                                          onCheckout((cartProduct.product.price * cartProduct.quantity) + cartProduct.product.shippingCost)
                                       }}>
                         <Text style={styles.buttonText}>CHECKOUT</Text>
                     </TouchableOpacity>
@@ -96,6 +107,10 @@ const styles = StyleSheet.create({
     },
     price: {
         fontSize: 14,
+        color: COLORS.gray,
+    },
+    price2: {
+        fontSize: 11,
         color: COLORS.gray,
     },
     buttonColumn: {

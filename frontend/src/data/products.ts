@@ -1,38 +1,42 @@
-export type Product = {
-    id: number,
-    title: string,
-    category: string,
-    price: number,
-    description: string,
-    image: any,
-    shippingCost: number
-};
+export interface Product {
+    id: string;
+    title: string;
+    category: string;
+    price: number;
+    description: string;
+    image: number;
+    shippingCost: number;
+}
 
-export type Order = {
-    id: number,
-    userId: number,
-    products: Product[],
-    amountPrice: number,
-    amountShipping: number,
-    shippingAdress: string,
-    isPaid: boolean,
+export interface Order {
+    id: string;
+    userId: number;
+    products: Product[];
+    amountPrice: number;
+    amountShipping: number;
+    shippingAddress: string;
+    isPaid: boolean;
     isDelivered: boolean
 }
 
-export type User = {
-    id: number,
-    email: string,
-    firstName: string,
-    lastName: string,
+export interface User {
+    id: string;
+    email: string;
+    firstName: string;
+    lastName: string;
 }
 
-export type CartProduct = {
-    id: number,
-    product: Product,
-    quantity: number
+export interface CartProduct {
+    id: string;
+    product: Product;
+    quantity: number;
 }
 
-const mockImages: any = [
+export interface MockImage {
+    image: number;
+}
+
+const mockImages: MockImage[] = [
     {image: require('../assets/images/sample_image_1.png')},
     {image: require('../assets/images/sample_image_2.png')},
     {image: require('../assets/images/sample_image_3.png')},
@@ -43,7 +47,7 @@ const mockImages: any = [
 ];
 export const mockProducts: Product[] = [
     {
-        id: 1,
+        id: '1',
         title: 'Macbook Pro',
         category: 'Notebook',
         price: 249995,
@@ -52,7 +56,7 @@ export const mockProducts: Product[] = [
         shippingCost: 0
     },
     {
-        id: 2,
+        id: '2',
         title: 'Samsung Galaxy S20',
         category: 'Smartphone',
         price: 39995,
@@ -61,7 +65,7 @@ export const mockProducts: Product[] = [
         shippingCost: 495
     },
     {
-        id: 3,
+        id: '3',
         title: 'iPad',
         category: 'Tablet',
         price: 49995,
@@ -70,7 +74,7 @@ export const mockProducts: Product[] = [
         shippingCost: 495
     },
     {
-        id: 4,
+        id: '4',
         title: 'Dell Monitor',
         category: 'Monitor',
         price: 29995,
@@ -79,7 +83,7 @@ export const mockProducts: Product[] = [
         shippingCost: 995
     },
     {
-        id: 5,
+        id: '5',
         title: 'Headset',
         category: 'Utility',
         price: 7995,
@@ -88,7 +92,7 @@ export const mockProducts: Product[] = [
         shippingCost: 0
     },
     {
-        id: 6,
+        id: '6',
         title: 'Keyboard',
         category: 'Utility',
         price: 12995,
@@ -97,7 +101,7 @@ export const mockProducts: Product[] = [
         shippingCost: 0
     },
     {
-        id: 7,
+        id: '7',
         title: 'Mouse',
         category: 'Utility',
         price: 3995,
@@ -109,12 +113,12 @@ export const mockProducts: Product[] = [
 
 export const mockOrders: Order[] = [
         {
-            id: 1,
+            id: '1',
             userId: 42,
             products: mockProducts.slice(3, 7),
             amountPrice: 3995,
             amountShipping: 495,
-            shippingAdress: 'Hauptstrasse 1, 8700 Leoben, AT',
+            shippingAddress: 'Hauptstrasse 1, 8700 Leoben, AT',
             isPaid: true,
             isDelivered: true
         }
@@ -122,11 +126,11 @@ export const mockOrders: Order[] = [
 ;
 
 export const mockUsers: User[] = [
-    {id: 42, email: 'marin@sekic.at', firstName: 'Marin', lastName: 'Sekic'}
+    {id: '42', email: 'marin@sekic.at', firstName: 'Marin', lastName: 'Sekic'}
 ]
 
 export const mockCartProducts: CartProduct[] = [
-    {id: 1, product: mockProducts[4], quantity: 2},
-    {id: 2, product: mockProducts[2], quantity: 1},
-    {id: 3, product: mockProducts[6], quantity: 2}
+    {id: '1', product: mockProducts[4], quantity: 2},
+    {id: '2', product: mockProducts[2], quantity: 1},
+    {id: '3', product: mockProducts[6], quantity: 2}
 ]
