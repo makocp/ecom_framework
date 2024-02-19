@@ -43,10 +43,8 @@ const ProductCard = ({product}: ProductDataProps) => {
                     <Text style={styles.category}>{product.category}</Text>
                     <Text style={styles.price}>€{product.price / 100}</Text>
                 </View>
-                <TouchableOpacity style={styles.addBtn}>
-                    <Ionicons name={'add-circle'} size={36} color={COLORS.primary} onPress={() => {
-                        addProductToCart(product, 1);
-                    }}/>
+                <TouchableOpacity style={styles.addBtn} onPress={() => addProductToCart(product, 1)}>
+                    <Ionicons name={'add-circle'} size={36} color={COLORS.primary}/>
                 </TouchableOpacity>
             </View>
         </TouchableOpacity>
@@ -99,7 +97,7 @@ const styles = StyleSheet.create({
     addBtn: {
         position: 'absolute',
         bottom: SIZES.xSmall,
-        right: SIZES.xSmall
+        right: SIZES.xSmall,
     }
 });
 
