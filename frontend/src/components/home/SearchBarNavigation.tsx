@@ -11,7 +11,7 @@ const SearchBarNavigation = () => {
     const navigation = useNavigation<SearchScreenNavigationProp>();
 
     const navigateToSearchScreen = () => {
-        navigation.navigate('AllProductsScreen', {isFromSearch: true, isAnimationEnabled: false});
+        navigation.navigate('AllProductsScreen', {isFromSearch: true});
     };
 
     return (

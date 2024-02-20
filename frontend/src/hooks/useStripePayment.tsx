@@ -1,12 +1,10 @@
 import {API_URL_PAYMENT_INTENT} from "../routes/Routes";
 import {Alert} from "react-native";
 import {initPaymentSheet, presentPaymentSheet} from "@stripe/stripe-react-native";
+import {useState} from "react";
 
-type useStripePaymentProps = {
-    isLoading: boolean,
-    setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
-}
-const useStripePayment = ({isLoading, setIsLoading} : useStripePaymentProps) => {
+const useStripePayment = () => {
+    const [isLoading, setIsLoading] = useState(false);
     const onCheckout = async (amount: number) => {
         if (amount === 0) {
             return Alert.alert("Please choose Products to Checkout!")
@@ -60,7 +58,7 @@ const useStripePayment = ({isLoading, setIsLoading} : useStripePaymentProps) => 
     }
 
 
-    return {onCheckout};
+    return {onCheckout, isLoading, setIsLoading};
 };
 
 export default useStripePayment;

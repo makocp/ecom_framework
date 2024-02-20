@@ -12,12 +12,10 @@ import useShowToast from "../../hooks/useShowToast";
 
 type CartProductDataProps = {
     cartProduct: CartProduct,
-    isLoading: boolean,
-    setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
 }
-const CartProductCard = ({cartProduct, isLoading, setIsLoading}: CartProductDataProps) => {
+const CartProductCard = ({cartProduct}: CartProductDataProps) => {
     const {transformCentsToEuroString} = useCurrencyCalculations();
-    const {onCheckout} = useStripePayment({isLoading, setIsLoading});
+    const {onCheckout} = useStripePayment();
     const {removeFromCart} = useCart();
     const {showRemoveProductToast} = useShowToast();
 
@@ -60,7 +58,8 @@ const CartProductCard = ({cartProduct, isLoading, setIsLoading}: CartProductData
                     <TouchableOpacity style={styles.buttonCheckout}
                                       onPress={() => {
                                           onCheckout((cartProduct.product.price * cartProduct.quantity) + cartProduct.product.shippingCost)
-                                      }}>
+                                      }}
+                    >
                         <Text style={styles.buttonText}>CHECKOUT</Text>
                     </TouchableOpacity>
                 </View>

@@ -13,17 +13,17 @@ import {useNavigation} from "@react-navigation/native";
 import {BottomTabNavigationProp} from "@react-navigation/bottom-tabs";
 import {TabsStackParamList} from "../navigators/TabsNavigator";
 import useCleanToastsOnUnfocus from "../hooks/useCleanToastsOnUnfocus";
+import CheckoutButton from "../components/buttons/CheckoutButton";
 
 type CartScreenNavigationProp = BottomTabNavigationProp<TabsStackParamList, 'AllProductsScreen'>;
 const CartScreen = () => {
-    const [isLoading, setIsLoading] = useState(false);
+    const {onCheckout, isLoading, setIsLoading} = useStripePayment();
     const insets = useSafeAreaInsets();
     // todo: dynamically, from backend.
     // const cartProductData = mockCartProducts;
     const {cartProducts} = useCart();
     const {subtotal, shipping, total} = useCartCalculations({cartProductData: cartProducts});
     const {transformCentsToEuroString} = useCurrencyCalculations();
-    const {onCheckout} = useStripePayment({isLoading, setIsLoading});
     const navigation = useNavigation<CartScreenNavigationProp>();
     useCleanToastsOnUnfocus();
 
@@ -39,8 +39,9 @@ const CartScreen = () => {
                 <View style={styles.scrollContainer}>
                     {cartProducts.length === 0 ? (
                         <View style={styles.infoContainer}>
-                            <Text style={styles.summaryText}>No products to your cart added.</Text>
-                            <TouchableOpacity hitSlop={12} style={{paddingTop: 4}} onPress={navigateToAllProductsScreen}>
+                            <Text style={styles.summaryText}>No products in your cart.</Text>
+                            <TouchableOpacity hitSlop={12} style={{paddingTop: 4}}
+                                              onPress={navigateToAllProductsScreen}>
                                 <Text style={styles.summaryTitle}>Add New Products</Text>
                             </TouchableOpacity>
                         </View>
@@ -48,8 +49,7 @@ const CartScreen = () => {
                         <>
                             <FlatList
                                 data={cartProducts}
-                                renderItem={({item}) => <CartProductCard cartProduct={item} isLoading={isLoading}
-                                                                         setIsLoading={setIsLoading}/>}
+                                renderItem={({item}) => <CartProductCard cartProduct={item}/>}
                                 alwaysBounceVertical={false}
                                 showsVerticalScrollIndicator={false}
                                 contentContainerStyle={styles.scrollContainerContent}
@@ -75,13 +75,8 @@ const CartScreen = () => {
                                     style={styles.summaryTextTotal}>€ {transformCentsToEuroString(total)}</Text>
                             </View>
                         </View>
-                        <View style={styles.buttonContainer}>
-                            <TouchableOpacity style={styles.buttonCheckout} disabled={isLoading}
-                                              onPress={() => onCheckout(total)}>
-                                <Text style={styles.buttonCheckoutText}>Checkout
-                                    € {transformCentsToEuroString(total)}</Text>
-                            </TouchableOpacity>
-                        </View>
+                        <CheckoutButton isLoading={isLoading} onPress={() => onCheckout(total)}
+                                        buttonText={`Checkout € ${transformCentsToEuroString(total)}`}/>
                     </View>
                 </View>
 
@@ -144,28 +139,6 @@ const styles = StyleSheet.create({
         fontSize: 16,
         fontWeight: 'bold',
         color: COLORS.gray
-    },
-    buttonContainer: {
-        width: '95%',
-        justifyContent: 'center',
-        alignItems: 'center',
-        borderRadius: SIZES.small,
-        height: 50,
-        alignSelf: 'center',
-        marginTop: SIZES.small,
-        backgroundColor: COLORS.primary
-    },
-    buttonCheckout: {
-        width: '100%',
-        height: '100%',
-        borderRadius: SIZES.small,
-        justifyContent: 'center',
-        alignItems: 'center'
-    },
-    buttonCheckoutText: {
-        color: COLORS.lightWhite,
-        fontWeight: 'bold',
-        fontSize: 16
     },
     infoContainer: {
         flex: 1,
