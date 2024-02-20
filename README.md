@@ -104,6 +104,8 @@ Date.now().toString() generates an unique identification, also known as UNIX Tim
 ### Local images with require as number type
 When you require a local image using the require syntax, the result is a reference to that image that React Native understands how to load. This reference is actually a numeric ID (of type number) that points to the image asset bundled within the app. This is why the type of a locally required image is number.
 
+### Mismatch Reanimated version
+The App crashed after installing BottomSheet. The solution: execute `pod install` in the ios folder, so Reanimated gets updated.
 
 ## Setup CI/CD Workflow on GCloud for Backend
 - [Tutorial: CI/CD for Node.js Application using Google Cloud](https://psspavan96.medium.com/ci-cd-for-node-js-application-using-google-cloud-part-1-5f7466df913d)
