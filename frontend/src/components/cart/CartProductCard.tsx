@@ -7,8 +7,8 @@ import {useNavigation} from "@react-navigation/native";
 import {DetailScreenNavigationProp} from "../home/ProductCard";
 import useCurrencyCalculations from "../../hooks/useCurrencyCalculations";
 import useStripePayment from "../../hooks/useStripePayment";
-import {useCart} from "../../providers/CartProvider";
 import useShowToast from "../../hooks/useShowToast";
+import {useCartActions} from "../../providers/CartData/useCartActions";
 
 type CartProductDataProps = {
     cartProduct: CartProduct,
@@ -16,7 +16,7 @@ type CartProductDataProps = {
 const CartProductCard = ({cartProduct}: CartProductDataProps) => {
     const {transformCentsToEuroString} = useCurrencyCalculations();
     const {onCheckout} = useStripePayment();
-    const {removeFromCart} = useCart();
+    const {removeFromCart} = useCartActions();
     const {showRemoveProductToast} = useShowToast();
 
     const navigation = useNavigation<DetailScreenNavigationProp>();

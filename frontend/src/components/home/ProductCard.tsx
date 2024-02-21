@@ -6,15 +6,15 @@ import {useNavigation} from "@react-navigation/native";
 import {StackNavigationProp} from "@react-navigation/stack";
 import {RootStackParamList} from "../../navigators/RootNavigator";
 import {Product} from "../../data/products";
-import {useCart} from "../../providers/CartProvider";
 import useShowToast from "../../hooks/useShowToast";
+import {useCartActions} from "../../providers/CartData/useCartActions";
 
 type ProductDataProps = {
     product: Product,
 }
 export type DetailScreenNavigationProp = StackNavigationProp<RootStackParamList, 'DetailScreen'>
 const ProductCard = ({product}: ProductDataProps) => {
-    const {addToCart} = useCart();
+    const {addToCart} = useCartActions();
     const {showAddProductToast} = useShowToast();
 
     const navigation = useNavigation<DetailScreenNavigationProp>();

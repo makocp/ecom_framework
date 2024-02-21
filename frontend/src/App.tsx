@@ -4,7 +4,7 @@ import {API_URL_PUB_STRIPE_KEY} from './routes/Routes';
 import {useEffect, useState} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import RootNavigator from './navigators/RootNavigator';
-import {CartProvider} from "./providers/CartProvider";
+import {CartProvider} from "./providers/CartData/CartProvider";
 import Toast from "react-native-toast-message";
 import {toastConfig} from "./components/toasts/CustomToast";
 

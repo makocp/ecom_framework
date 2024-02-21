@@ -8,16 +8,17 @@ import {COLORS, SIZES} from "../themes/theme";
 import useCartCalculations from "../hooks/useCartCalculations";
 import useStripePayment from "../hooks/useStripePayment";
 import useCurrencyCalculations from "../hooks/useCurrencyCalculations";
-import {useCart} from "../providers/CartProvider";
+import {useCart} from "../providers/CartData/CartProvider";
 import {useNavigation} from "@react-navigation/native";
 import {BottomTabNavigationProp} from "@react-navigation/bottom-tabs";
 import {TabsStackParamList} from "../navigators/TabsNavigator";
 import useCleanToastsOnUnfocus from "../hooks/useCleanToastsOnUnfocus";
 import CheckoutButton from "../components/buttons/CheckoutButton";
+import useCheckout from "../hooks/useCheckout";
 
 type CartScreenNavigationProp = BottomTabNavigationProp<TabsStackParamList, 'AllProductsScreen'>;
 const CartScreen = () => {
-    const {onCheckout, isLoading, setIsLoading} = useStripePayment();
+    const {isLoading} = useStripePayment();
     const insets = useSafeAreaInsets();
     // todo: dynamically, from backend.
     // const cartProductData = mockCartProducts;
@@ -26,6 +27,7 @@ const CartScreen = () => {
     const {transformCentsToEuroString} = useCurrencyCalculations();
     const navigation = useNavigation<CartScreenNavigationProp>();
     useCleanToastsOnUnfocus();
+    const {onCheckoutCartAll} = useCheckout();
 
 
     const navigateToAllProductsScreen = () => {
@@ -75,7 +77,7 @@ const CartScreen = () => {
                                     style={styles.summaryTextTotal}>€ {transformCentsToEuroString(total)}</Text>
                             </View>
                         </View>
-                        <CheckoutButton isLoading={isLoading} onPress={() => onCheckout(total)}
+                        <CheckoutButton isLoading={isLoading} onPress={() => onCheckoutCartAll(cartProducts)}
                                         buttonText={`Checkout € ${transformCentsToEuroString(total)}`}/>
                     </View>
                 </View>

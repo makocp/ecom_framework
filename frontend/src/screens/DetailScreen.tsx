@@ -9,15 +9,15 @@ import {mockProducts, Product} from "../data/products";
 import useCleanToastsOnUnfocus from "../hooks/useCleanToastsOnUnfocus";
 import BottomSheet from '@gorhom/bottom-sheet';
 import CheckoutButton from "../components/buttons/CheckoutButton";
-import {useCart} from "../providers/CartProvider";
 import useShowToast from "../hooks/useShowToast";
 import useStripePayment from "../hooks/useStripePayment";
+import {useCartActions} from "../providers/CartData/useCartActions";
 
 type DetailScreenRouteParams = {
     product: Product;
 }
 const DetailScreen = () => {
-    const {addToCart} = useCart();
+    const {addToCart} = useCartActions();
     const {showAddProductToast} = useShowToast();
     useCleanToastsOnUnfocus();
     const {onCheckout} = useStripePayment();
@@ -70,7 +70,7 @@ const DetailScreen = () => {
                 enablePanDownToClose={false}
                 backgroundStyle={styles.bottomSheetBackground}
                 handleStyle={{
-                    backgroundColor: COLORS.offwhite,
+                    backgroundColor: COLORS.secondaryOpacity,
                     borderTopLeftRadius: 12,
                     borderTopRightRadius: 12,
                 }}
@@ -156,14 +156,14 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     interactionContainer: {
-        backgroundColor: COLORS.offwhite,
+        backgroundColor: COLORS.secondaryOpacity,
         paddingHorizontal: SIZES.small
     },
     headerContainer: {
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        backgroundColor: COLORS.offwhite,
+        backgroundColor: COLORS.secondaryOpacity,
         paddingBottom: 6,
         borderRadius: 12,
         paddingLeft: 12,
@@ -186,6 +186,7 @@ const styles = StyleSheet.create({
     scrollViewContainer: {
         flex: 1,
         paddingHorizontal: SIZES.medium,
+        backgroundColor: COLORS.secondaryOpacity,
     },
     textTitle: {
         fontWeight: 'bold',
