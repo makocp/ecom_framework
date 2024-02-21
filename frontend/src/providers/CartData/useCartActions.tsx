@@ -1,6 +1,5 @@
-import { useContext } from 'react';
 import {useCart} from "./CartProvider";
-import {CartProduct, Product} from "../../data/products";
+import {CartProduct, Product} from "../../types/types";
 
 export const useCartActions = () => {
     const { setCartProducts } = useCart();

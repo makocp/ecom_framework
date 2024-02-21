@@ -1,40 +1,5 @@
-export interface Product {
-    id: string;
-    title: string;
-    category: string;
-    price: number;
-    description: string;
-    image: number;
-    shippingCost: number;
-}
+import {CartProduct, MockImage, Order, Product, User} from "../types/types";
 
-export interface Order {
-    id: string;
-    userId: number;
-    products: Product[];
-    amountPrice: number;
-    amountShipping: number;
-    shippingAddress: string;
-    isPaid: boolean;
-    isDelivered: boolean
-}
-
-export interface User {
-    id: string;
-    email: string;
-    firstName: string;
-    lastName: string;
-}
-
-export interface CartProduct {
-    id: string;
-    product: Product;
-    quantity: number;
-}
-
-export interface MockImage {
-    image: number;
-}
 
 const mockImages: MockImage[] = [
     {image: require('../assets/images/sample_image_1.png')},
@@ -127,10 +92,4 @@ export const mockOrders: Order[] = [
 
 export const mockUsers: User[] = [
     {id: '42', email: 'marin@sekic.at', firstName: 'Marin', lastName: 'Sekic'}
-]
-
-export const mockCartProducts: CartProduct[] = [
-    {id: '1', product: mockProducts[4], quantity: 2},
-    {id: '2', product: mockProducts[2], quantity: 1},
-    {id: '3', product: mockProducts[6], quantity: 2}
 ]

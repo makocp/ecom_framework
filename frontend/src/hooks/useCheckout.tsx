@@ -1,7 +1,6 @@
-import {useCart} from "../providers/CartData/CartProvider";
 import useStripePayment from "./useStripePayment";
-import {CartProduct} from "../data/products";
 import {useCartActions} from "../providers/CartData/useCartActions";
+import {CartProduct} from "../types/types";
 
 const useCheckout = () => {
     const {removeFromCart, clearCart} = useCartActions();
