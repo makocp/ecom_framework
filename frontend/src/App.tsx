@@ -7,6 +7,8 @@ import RootNavigator from './navigators/RootNavigator';
 import {CartProvider} from "./providers/CartData/CartProvider";
 import Toast from "react-native-toast-message";
 import {toastConfig} from "./components/toasts/CustomToast";
+import {UserProvider, useUserData} from "./providers/UserData/UserProvider";
+import {mockUsers} from "./data/mockData";
 
 const App = () => {
     const [pubStripeKey, setPubStripeKey] = useState('');
@@ -29,18 +31,20 @@ const App = () => {
 
     // whole app is wrapped with StripeProvider, so it can be accessed from anywhere in the App.
     return (
-        <StripeProvider
-            publishableKey={pubStripeKey}
-            // TODO: make merchantIdentifier for Apple Pay
-            // merchantIdentifier=''
-        >
+        <UserProvider>
             <CartProvider>
-                <NavigationContainer>
-                    <RootNavigator/>
-                    <Toast config={toastConfig}/>
-                </NavigationContainer>
+                <StripeProvider
+                    publishableKey={pubStripeKey}
+                    // TODO: make merchantIdentifier for Apple Pay
+                    // merchantIdentifier=''
+                >
+                    <NavigationContainer>
+                        <RootNavigator/>
+                        <Toast config={toastConfig}/>
+                    </NavigationContainer>
+                </StripeProvider>
             </CartProvider>
-        </StripeProvider>
+        </UserProvider>
     );
 };
 
