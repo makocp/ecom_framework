@@ -8,7 +8,7 @@ import {COLORS, SIZES} from "../themes/theme";
 import useCartCalculations from "../hooks/useCartCalculations";
 import useStripePayment from "../hooks/useStripePayment";
 import useCurrencyCalculations from "../hooks/useCurrencyCalculations";
-import {useCart} from "../providers/CartData/CartProvider";
+import {useCartData} from "../providers/CartData/CartProvider";
 import {useNavigation} from "@react-navigation/native";
 import {BottomTabNavigationProp} from "@react-navigation/bottom-tabs";
 import {TabsStackParamList} from "../navigators/TabsNavigator";
@@ -22,7 +22,7 @@ const CartScreen = () => {
     const insets = useSafeAreaInsets();
     // todo: dynamically, from backend.
     // const cartProductData = mockCartProducts;
-    const {cartProducts} = useCart();
+    const {cartProducts} = useCartData();
     const {subtotal, shipping, total} = useCartCalculations({cartProductData: cartProducts});
     const {transformCentsToEuroString} = useCurrencyCalculations();
     const navigation = useNavigation<CartScreenNavigationProp>();

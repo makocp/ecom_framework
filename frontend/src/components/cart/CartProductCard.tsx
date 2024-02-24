@@ -8,10 +8,10 @@ import useCurrencyCalculations from "../../hooks/useCurrencyCalculations";
 import useStripePayment from "../../hooks/useStripePayment";
 import useShowToast from "../../hooks/useShowToast";
 import {useCartActions} from "../../providers/CartData/useCartActions";
-import {CartProduct} from "../../types/types";
+import {ICartProduct} from "../../types/types";
 
 type CartProductDataProps = {
-    cartProduct: CartProduct,
+    cartProduct: ICartProduct,
 }
 const CartProductCard = ({cartProduct}: CartProductDataProps) => {
     const {transformCentsToEuroString} = useCurrencyCalculations();
@@ -24,8 +24,8 @@ const CartProductCard = ({cartProduct}: CartProductDataProps) => {
         navigation.navigate('DetailScreen', {product: cartProduct.product})
     }
 
-    const removeCartProduct = (cartProduct: CartProduct) => {
-        removeFromCart(cartProduct.id);
+    const removeCartProduct = (cartProduct: ICartProduct) => {
+        removeFromCart(cartProduct.cartProductId);
         showRemoveProductToast(cartProduct);
     }
 

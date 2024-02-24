@@ -2,7 +2,7 @@ import {FlatList, StyleSheet, View} from 'react-native';
 import React from 'react';
 import {SIZES} from "../../themes/theme";
 import ProductCard from "./ProductCard";
-import {mockProducts} from "../../data/products";
+import {mockProducts} from "../../data/mockData";
 
 
 const ProductRow = () => {

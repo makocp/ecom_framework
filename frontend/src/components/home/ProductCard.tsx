@@ -7,10 +7,10 @@ import {StackNavigationProp} from "@react-navigation/stack";
 import {RootStackParamList} from "../../navigators/RootNavigator";
 import useShowToast from "../../hooks/useShowToast";
 import {useCartActions} from "../../providers/CartData/useCartActions";
-import {Product} from "../../types/types";
+import {IProduct} from "../../types/types";
 
 type ProductDataProps = {
-    product: Product,
+    product: IProduct,
 }
 export type DetailScreenNavigationProp = StackNavigationProp<RootStackParamList, 'DetailScreen'>
 const ProductCard = ({product}: ProductDataProps) => {
@@ -22,7 +22,7 @@ const ProductCard = ({product}: ProductDataProps) => {
         navigation.navigate('DetailScreen', {product: product});
     };
 
-    const addProductToCart = (product: Product, quantity: number) => {
+    const addProductToCart = (product: IProduct, quantity: number) => {
         const newCartProduct = addToCart(product, quantity);
         showAddProductToast(newCartProduct);
     };

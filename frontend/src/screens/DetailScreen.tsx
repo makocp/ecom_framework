@@ -5,17 +5,17 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 import {useNavigation, useRoute} from "@react-navigation/native";
 import {DetailScreenNavigationProp} from "../components/home/ProductCard";
 import {useSafeAreaInsets} from "react-native-safe-area-context";
-import {mockProducts} from "../data/products";
+import {mockProducts} from "../data/mockData";
 import useCleanToastsOnUnfocus from "../hooks/useCleanToastsOnUnfocus";
 import BottomSheet from '@gorhom/bottom-sheet';
 import CheckoutButton from "../components/buttons/CheckoutButton";
 import useShowToast from "../hooks/useShowToast";
 import useStripePayment from "../hooks/useStripePayment";
 import {useCartActions} from "../providers/CartData/useCartActions";
-import {Product} from "../types/types";
+import {IProduct} from "../types/types";
 
 type DetailScreenRouteParams = {
-    product: Product;
+    product: IProduct;
 }
 const DetailScreen = () => {
     const {addToCart} = useCartActions();
@@ -29,7 +29,7 @@ const DetailScreen = () => {
     const navigation = useNavigation<DetailScreenNavigationProp>();
     const route = useRoute();
     const props = route.params as DetailScreenRouteParams;
-    const product: Product = props.product;
+    const product: IProduct = props.product;
 
     const navigateBack = () => {
         navigation.goBack();
@@ -45,7 +45,7 @@ const DetailScreen = () => {
         }
     };
 
-    const addProductToCart = (product: Product, quantity: number) => {
+    const addProductToCart = (product: IProduct, quantity: number) => {
         const newCartProduct = addToCart(product, quantity);
         showAddProductToast(newCartProduct);
     };

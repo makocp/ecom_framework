@@ -1,13 +1,13 @@
-import {useCart} from "./CartProvider";
-import {CartProduct, Product} from "../../types/types";
+import {useCartData} from "./CartProvider";
+import {ICartProduct, IProduct} from "../../types/types";
 
 export const useCartActions = () => {
-    const { setCartProducts } = useCart();
+    const { setCartProducts } = useCartData();
 
-    const createCartProduct = (product: Product, quantity: number): CartProduct => {
-        return {id: Date.now().toString(), product: product, quantity: quantity};
+    const createCartProduct = (product: IProduct, quantity: number): ICartProduct => {
+        return {cartProductId: Date.now().toString(), product: product, quantity: quantity};
     }
-    const addToCart = (product: Product, quantity: number) => {
+    const addToCart = (product: IProduct, quantity: number) => {
         const newCartProduct = createCartProduct(product, quantity);
         setCartProducts((previousProducts) => {
             return [...previousProducts, newCartProduct];
@@ -16,7 +16,7 @@ export const useCartActions = () => {
     };
 
     const removeFromCart = (productIdToRemove: string) => {
-        setCartProducts((prevProducts) => prevProducts.filter(prevProduct => prevProduct.id !== productIdToRemove));
+        setCartProducts((prevProducts) => prevProducts.filter(prevProduct => prevProduct.cartProductId !== productIdToRemove));
     };
 
     const clearCart = () => {
@@ -25,3 +25,5 @@ export const useCartActions = () => {
 
     return { addToCart, removeFromCart, clearCart };
 };
+
+export default useCartActions;

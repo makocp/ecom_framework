@@ -2,7 +2,7 @@ import Toast from "react-native-toast-message";
 import {useNavigation} from "@react-navigation/native";
 import {BottomTabNavigationProp} from "@react-navigation/bottom-tabs";
 import {TabsStackParamList} from "../navigators/TabsNavigator";
-import {CartProduct} from "../types/types";
+import {ICartProduct} from "../types/types";
 
 const useShowToast = () => {
 
@@ -12,7 +12,7 @@ const useShowToast = () => {
         navigation.navigate('CartScreen');
     };
 
-    const showRemoveProductToast = (cartProduct: CartProduct) => {
+    const showRemoveProductToast = (cartProduct: ICartProduct) => {
         Toast.show({
             type: 'custom_success',
             text1: `Product Removed`,
@@ -21,7 +21,7 @@ const useShowToast = () => {
         });
     };
 
-    const showAddProductToast = (cartProduct: CartProduct) => {
+    const showAddProductToast = (cartProduct: ICartProduct) => {
         Toast.show({
             type: 'custom_success',
             text1: `Product Added`,

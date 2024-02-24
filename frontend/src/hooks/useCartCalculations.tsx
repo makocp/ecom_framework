@@ -1,8 +1,8 @@
 import {useEffect, useState} from 'react';
-import {CartProduct} from "../types/types";
+import {ICartProduct} from "../types/types";
 
 type useCartCalculationsProps = {
-    cartProductData: CartProduct[]
+    cartProductData: ICartProduct[]
 }
 const useCartCalculations = ({cartProductData}: useCartCalculationsProps) => {
     const [subtotal, setSubtotal] = useState(0);

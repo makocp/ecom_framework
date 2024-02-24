@@ -24,9 +24,10 @@ const styles = StyleSheet.create({
         fontSize: SIZES.large
     },
     appBarWrapper: {
-        marginHorizontal: SIZES.large,
-        marginTop: SIZES.small,
-        marginBottom: '5%',
+        paddingHorizontal: SIZES.large,
+        paddingTop: SIZES.small,
+        paddingBottom: '5%',
+        borderWidth: 2
     },
     appBar: {
         flexDirection: 'row',
