@@ -98,6 +98,25 @@ You need to disable the hardware keyboard in the simulator by pressing `CMD + K`
 ### Index.ts and Index.js -> fix XCode Release build
 The index.js file needs to stay .js, otherwise XCode can't build the production release!
 
+### Generating unique ids (UUID)
+Date.now().toString() generates an unique identification, also known as UNIX Timestamp.
+
+### Local images with require as number type
+When you require a local image using the require syntax, the result is a reference to that image that React Native understands how to load. This reference is actually a numeric ID (of type number) that points to the image asset bundled within the app. This is why the type of a locally required image is number.
+
+### Mismatch Reanimated version
+The App crashed after installing BottomSheet. The solution: execute `pod install` in the ios folder, so Reanimated gets updated.
+
+### State Management
+It is important to implement a state management solution, when the app grows.
+Because of the complexity of the app, I decided to use Provider Context API for this project.
+When the app starts, user data is fetched from the server and stored in the context. This data is then used in the app.
+
+### Setting Up Provider and Backend for Login
+In this case, I decided to make my custom Login with a backend server.
+In Production Environment it is necessary to use a secure and reliable authentication system, like Firebase or Auth0.
+But for educational purposes, it serves it's purpose for this project.
+
 ## Setup CI/CD Workflow on GCloud for Backend
 - [Tutorial: CI/CD for Node.js Application using Google Cloud](https://psspavan96.medium.com/ci-cd-for-node-js-application-using-google-cloud-part-1-5f7466df913d)
 

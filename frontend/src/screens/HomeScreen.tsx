@@ -1,5 +1,5 @@
-import {StyleSheet, View} from 'react-native';
-import React from 'react';
+import {ActivityIndicator, StyleSheet, View} from 'react-native';
+import React, {useEffect} from 'react';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {ScrollView} from 'react-native-gesture-handler';
 import Welcome from '../components/home/Welcome';
@@ -9,14 +9,36 @@ import SearchBarNavigation from "../components/home/SearchBarNavigation";
 import Headings from "../components/home/Headings";
 import ProductRow from "../components/home/ProductRow";
 import FadeInScreen from "./FadeInScreen";
+import useCleanToastsOnUnfocus from "../hooks/useCleanToastsOnUnfocus";
+import {useUserData} from "../providers/UserData/UserProvider";
+import {mockUsers} from "../data/mockData";
+import {ILoginProps, IMockImage} from "../types/types";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import LoadingScreen from "./LoadingScreen";
 
 const HomeScreen = () => {
-    const insets = useSafeAreaInsets();
-    const data = [
+    useCleanToastsOnUnfocus();
+    const {login, userData, logout, isLoadingUserData} = useUserData();
+
+    console.log('testrender')
+
+    const data: IMockImage[] = [
         {image: require('../assets/images/sample_image_1.png')},
         {image: require('../assets/images/sample_image_2.png')},
         {image: require('../assets/images/sample_image_3.png')},
-    ]
+    ];
+
+    // todo:
+    // implement here for inputfield state onpress, for now only demo login.
+    const loginProps: ILoginProps =
+        {
+            email: 'marin.sekic@ecom.com',
+            password: 'passwordEcom1'
+        };
+
+
+    const insets = useSafeAreaInsets();
+
 
     return (
         <FadeInScreen>

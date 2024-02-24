@@ -3,12 +3,11 @@ import {createStackNavigator} from '@react-navigation/stack'
 import DetailScreen from '../screens/DetailScreen';
 import {NavigatorScreenParams} from '@react-navigation/native';
 import TabsNavigator, {TabsStackParamList} from './TabsNavigator';
-import CartScreen from "../screens/CartScreen";
-import {Product} from "../data/products";
+import {IProduct} from "../types/types";
 
 export type RootStackParamList = {
     TabsStack: NavigatorScreenParams<TabsStackParamList>;
-    DetailScreen: { product: Product };
+    DetailScreen: { product: IProduct };
 }
 
 const navigationOptions = {

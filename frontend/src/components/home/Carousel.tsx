@@ -1,8 +1,11 @@
-import {StyleSheet, View, Image, useWindowDimensions, Animated, ScrollView} from 'react-native'
+import {StyleSheet, View, Image, useWindowDimensions, Animated, ScrollView, TouchableOpacity} from 'react-native'
 import React, {useEffect, useRef, useState} from 'react';
+import {useNavigation} from "@react-navigation/native";
+import {BottomTabNavigationProp} from "@react-navigation/bottom-tabs";
+import {TabsStackParamList} from "../../navigators/TabsNavigator";
 
 interface CarouselData {
-    image: string;
+    image: number;
 }
 
 // marginHorizontal gets passed from the Homescreen, for the right width for the carousel.
@@ -10,7 +13,13 @@ interface CarouselProps {
     data: CarouselData[]
 }
 
+type CarouselScreenNavigationProp = BottomTabNavigationProp<TabsStackParamList, 'AllProductsScreen'>;
 const Carousel = ({data}: CarouselProps) => {
+    const navigation = useNavigation<CarouselScreenNavigationProp>();
+    const navigateToAllProductsScreen = () => {
+        navigation.navigate('AllProductsScreen', {isFromSearch: false});
+    };
+
     // Reference for the ScrollView
     const scrollViewRef = useRef<ScrollView>(null);
 
@@ -76,10 +85,12 @@ const Carousel = ({data}: CarouselProps) => {
                 return (
                     <View key={index} style={{width: SIZE}}>
                         <Animated.View style={[styles.imageContainer, {transform: [{scale}]}]}>
-                            <Image
-                                source={item.image as any}
-                                style={styles.image}
-                            />
+                            <TouchableOpacity onPress={navigateToAllProductsScreen} activeOpacity={0.9}>
+                                <Image
+                                    source={item.image}
+                                    style={styles.image}
+                                />
+                            </TouchableOpacity>
                         </Animated.View>
                     </View>
                 );
@@ -98,12 +109,12 @@ const styles = StyleSheet.create({
     imageContainer: {
         borderRadius: 20,
         // for container, to "overwrite"
-        overflow: 'hidden'
+        overflow: 'hidden',
     },
     image: {
         width: '100%',
         height: undefined,
-        aspectRatio: 16 / 9
+        aspectRatio: 16 / 9,
     }
 })
 

@@ -1,40 +1,63 @@
-import {Alert, Button, FlatList, ScrollView, StyleSheet, Text, TouchableOpacity, View} from 'react-native'
-import React, {useState} from 'react'
-import {useStripe} from '@stripe/stripe-react-native';
-import {API_URL_PAYMENT_INTENT} from '../routes/Routes';
+import {FlatList, StyleSheet, Text, TouchableOpacity, View} from 'react-native'
+import React from 'react'
 import FadeInScreen from "./FadeInScreen";
 import AppBar from "../components/home/AppBar";
 import {useSafeAreaInsets} from "react-native-safe-area-context";
 import CartProductCard from "../components/cart/CartProductCard";
 import {COLORS, SIZES} from "../themes/theme";
-import {mockCartProducts} from "../data/products";
 import useCartCalculations from "../hooks/useCartCalculations";
 import useStripePayment from "../hooks/useStripePayment";
 import useCurrencyCalculations from "../hooks/useCurrencyCalculations";
-import {useCart} from "../providers/CartProvider";
+import {useCartData} from "../providers/CartData/CartProvider";
+import {useNavigation} from "@react-navigation/native";
+import {BottomTabNavigationProp} from "@react-navigation/bottom-tabs";
+import {TabsStackParamList} from "../navigators/TabsNavigator";
+import useCleanToastsOnUnfocus from "../hooks/useCleanToastsOnUnfocus";
+import CheckoutButton from "../components/buttons/CheckoutButton";
+import useCheckout from "../hooks/useCheckout";
 
+type CartScreenNavigationProp = BottomTabNavigationProp<TabsStackParamList, 'AllProductsScreen'>;
 const CartScreen = () => {
-    const [isLoading, setIsLoading] = useState(false);
+    const {isLoading} = useStripePayment();
     const insets = useSafeAreaInsets();
     // todo: dynamically, from backend.
-    const cartProductData = mockCartProducts;
-    const {cartProducts} = useCart();
+    // const cartProductData = mockCartProducts;
+    const {cartProducts} = useCartData();
     const {subtotal, shipping, total} = useCartCalculations({cartProductData: cartProducts});
     const {transformCentsToEuroString} = useCurrencyCalculations();
-    const {onCheckout} = useStripePayment({isLoading, setIsLoading});
+    const navigation = useNavigation<CartScreenNavigationProp>();
+    useCleanToastsOnUnfocus();
+    const {onCheckoutCartAll} = useCheckout();
+
+
+    const navigateToAllProductsScreen = () => {
+        navigation.navigate('AllProductsScreen', {isFromSearch: false});
+    };
 
     return (
         <FadeInScreen>
             <View style={[styles.container, {paddingTop: insets.top}]}>
                 <AppBar screenName={'Cart'}/>
                 <View style={styles.scrollContainer}>
-                    <FlatList
-                        data={cartProducts}
-                        renderItem={({item}) => <CartProductCard cartProduct={item} isLoading={isLoading} setIsLoading={setIsLoading}/>}
-                        alwaysBounceVertical={false}
-                        showsVerticalScrollIndicator={false}
-                        contentContainerStyle={styles.scrollContainerContent}
-                    />
+                    {cartProducts.length === 0 ? (
+                        <View style={styles.infoContainer}>
+                            <Text style={styles.summaryText}>No products in your cart.</Text>
+                            <TouchableOpacity hitSlop={12} style={{paddingTop: 4}}
+                                              onPress={navigateToAllProductsScreen}>
+                                <Text style={styles.summaryTitle}>Add New Products</Text>
+                            </TouchableOpacity>
+                        </View>
+                    ) : (
+                        <>
+                            <FlatList
+                                data={cartProducts}
+                                renderItem={({item}) => <CartProductCard cartProduct={item}/>}
+                                alwaysBounceVertical={false}
+                                showsVerticalScrollIndicator={false}
+                                contentContainerStyle={styles.scrollContainerContent}
+                            />
+                        </>
+                    )}
                     <View style={styles.summaryContainer}>
                         <Text style={styles.summaryTitle}>Order Info</Text>
                         <View style={styles.summaryAmountContainer}>
@@ -54,13 +77,8 @@ const CartScreen = () => {
                                     style={styles.summaryTextTotal}>€ {transformCentsToEuroString(total)}</Text>
                             </View>
                         </View>
-                        <View style={styles.buttonContainer}>
-                            <TouchableOpacity style={styles.buttonCheckout} disabled={isLoading}
-                                              onPress={() => onCheckout(total)}>
-                                <Text style={styles.buttonCheckoutText}>Checkout
-                                    € {transformCentsToEuroString(total)}</Text>
-                            </TouchableOpacity>
-                        </View>
+                        <CheckoutButton isLoading={isLoading} onPress={() => onCheckoutCartAll(cartProducts)}
+                                        buttonText={`Checkout € ${transformCentsToEuroString(total)}`}/>
                     </View>
                 </View>
 
@@ -124,27 +142,10 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         color: COLORS.gray
     },
-    buttonContainer: {
-        width: '95%',
-        justifyContent: 'center',
-        alignItems: 'center',
-        borderRadius: SIZES.small,
-        height: 50,
-        alignSelf: 'center',
-        marginTop: SIZES.small,
-        backgroundColor: COLORS.primary
-    },
-    buttonCheckout: {
-        width: '100%',
-        height: '100%',
-        borderRadius: SIZES.small,
+    infoContainer: {
+        flex: 1,
         justifyContent: 'center',
         alignItems: 'center'
-    },
-    buttonCheckoutText: {
-        color: COLORS.lightWhite,
-        fontWeight: 'bold',
-        fontSize: 16
     }
 });
 

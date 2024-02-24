@@ -5,19 +5,26 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 import {useNavigation} from "@react-navigation/native";
 import {StackNavigationProp} from "@react-navigation/stack";
 import {RootStackParamList} from "../../navigators/RootNavigator";
-import {Product} from "../../data/products";
-import {useCart} from "../../providers/CartProvider";
+import useShowToast from "../../hooks/useShowToast";
+import {useCartActions} from "../../providers/CartData/useCartActions";
+import {IProduct} from "../../types/types";
 
 type ProductDataProps = {
-    product: Product,
+    product: IProduct,
 }
 export type DetailScreenNavigationProp = StackNavigationProp<RootStackParamList, 'DetailScreen'>
 const ProductCard = ({product}: ProductDataProps) => {
-    const {addToCart} = useCart();
+    const {addToCart} = useCartActions();
+    const {showAddProductToast} = useShowToast();
 
     const navigation = useNavigation<DetailScreenNavigationProp>();
     const navigateToDetailScreen = () => {
         navigation.navigate('DetailScreen', {product: product});
+    };
+
+    const addProductToCart = (product: IProduct, quantity: number) => {
+        const newCartProduct = addToCart(product, quantity);
+        showAddProductToast(newCartProduct);
     };
 
     return (
@@ -36,10 +43,8 @@ const ProductCard = ({product}: ProductDataProps) => {
                     <Text style={styles.category}>{product.category}</Text>
                     <Text style={styles.price}>€{product.price / 100}</Text>
                 </View>
-                <TouchableOpacity style={styles.addBtn}>
-                    <Ionicons name={'add-circle'} size={36} color={COLORS.primary} onPress={() => {
-                        addToCart({product: product, quantity: 1})
-                    }}/>
+                <TouchableOpacity style={styles.addBtn} onPress={() => addProductToCart(product, 1)}>
+                    <Ionicons name={'add-circle'} size={36} color={COLORS.primary}/>
                 </TouchableOpacity>
             </View>
         </TouchableOpacity>
@@ -92,7 +97,7 @@ const styles = StyleSheet.create({
     addBtn: {
         position: 'absolute',
         bottom: SIZES.xSmall,
-        right: SIZES.xSmall
+        right: SIZES.xSmall,
     }
 });
 
