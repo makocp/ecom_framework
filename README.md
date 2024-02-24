@@ -107,6 +107,16 @@ When you require a local image using the require syntax, the result is a referen
 ### Mismatch Reanimated version
 The App crashed after installing BottomSheet. The solution: execute `pod install` in the ios folder, so Reanimated gets updated.
 
+### State Management
+It is important to implement a state management solution, when the app grows.
+Because of the complexity of the app, I decided to use Provider Context API for this project.
+When the app starts, user data is fetched from the server and stored in the context. This data is then used in the app.
+
+### Setting Up Provider and Backend for Login
+In this case, I decided to make my custom Login with a backend server.
+In Production Environment it is necessary to use a secure and reliable authentication system, like Firebase or Auth0.
+But for educational purposes, it serves it's purpose for this project.
+
 ## Setup CI/CD Workflow on GCloud for Backend
 - [Tutorial: CI/CD for Node.js Application using Google Cloud](https://psspavan96.medium.com/ci-cd-for-node-js-application-using-google-cloud-part-1-5f7466df913d)
 
