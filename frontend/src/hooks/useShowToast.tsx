@@ -1,8 +1,8 @@
 import Toast from "react-native-toast-message";
-import {CartProduct, Product} from "../data/products";
 import {useNavigation} from "@react-navigation/native";
 import {BottomTabNavigationProp} from "@react-navigation/bottom-tabs";
 import {TabsStackParamList} from "../navigators/TabsNavigator";
+import {CartProduct} from "../types/types";
 
 const useShowToast = () => {
 

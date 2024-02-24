@@ -5,9 +5,9 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 import {useNavigation} from "@react-navigation/native";
 import {StackNavigationProp} from "@react-navigation/stack";
 import {RootStackParamList} from "../../navigators/RootNavigator";
-import {Product} from "../../data/products";
 import useShowToast from "../../hooks/useShowToast";
 import {useCartActions} from "../../providers/CartData/useCartActions";
+import {Product} from "../../types/types";
 
 type ProductDataProps = {
     product: Product,

@@ -5,13 +5,14 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 import {useNavigation, useRoute} from "@react-navigation/native";
 import {DetailScreenNavigationProp} from "../components/home/ProductCard";
 import {useSafeAreaInsets} from "react-native-safe-area-context";
-import {mockProducts, Product} from "../data/products";
+import {mockProducts} from "../data/products";
 import useCleanToastsOnUnfocus from "../hooks/useCleanToastsOnUnfocus";
 import BottomSheet from '@gorhom/bottom-sheet';
 import CheckoutButton from "../components/buttons/CheckoutButton";
 import useShowToast from "../hooks/useShowToast";
 import useStripePayment from "../hooks/useStripePayment";
 import {useCartActions} from "../providers/CartData/useCartActions";
+import {Product} from "../types/types";
 
 type DetailScreenRouteParams = {
     product: Product;

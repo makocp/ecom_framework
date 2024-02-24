@@ -1,5 +1,5 @@
 import {FlatList, StyleSheet, Text, TouchableOpacity, View} from 'react-native'
-import React, {useState} from 'react'
+import React from 'react'
 import FadeInScreen from "./FadeInScreen";
 import AppBar from "../components/home/AppBar";
 import {useSafeAreaInsets} from "react-native-safe-area-context";

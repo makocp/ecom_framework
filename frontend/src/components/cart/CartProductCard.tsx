@@ -1,7 +1,6 @@
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React from 'react';
 import {COLORS, SHADOWS, SIZES} from "../../themes/theme";
-import {CartProduct, mockProducts} from "../../data/products";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import {useNavigation} from "@react-navigation/native";
 import {DetailScreenNavigationProp} from "../home/ProductCard";
@@ -9,6 +8,7 @@ import useCurrencyCalculations from "../../hooks/useCurrencyCalculations";
 import useStripePayment from "../../hooks/useStripePayment";
 import useShowToast from "../../hooks/useShowToast";
 import {useCartActions} from "../../providers/CartData/useCartActions";
+import {CartProduct} from "../../types/types";
 
 type CartProductDataProps = {
     cartProduct: CartProduct,

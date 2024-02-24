@@ -1,5 +1,5 @@
 import {useEffect, useState} from 'react';
-import {CartProduct} from "../data/products";
+import {CartProduct} from "../types/types";
 
 type useCartCalculationsProps = {
     cartProductData: CartProduct[]

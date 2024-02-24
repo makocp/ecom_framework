@@ -4,12 +4,12 @@ import {useSafeAreaInsets} from "react-native-safe-area-context";
 import SearchBar from "../components/search/SearchBar";
 import {RouteProp, useRoute} from "@react-navigation/native";
 import {TabsStackParamList} from "../navigators/TabsNavigator";
-import {mockProducts, Product} from "../data/products";
+import {mockProducts} from "../data/products";
 import ProductCard from "../components/home/ProductCard";
 import AppBar from "../components/home/AppBar";
 import FadeInScreen from "./FadeInScreen";
 import useCleanToastsOnUnfocus from "../hooks/useCleanToastsOnUnfocus";
-import useShowToast from "../hooks/useShowToast";
+import {Product} from "../types/types";
 
 const AllProductsScreen = () => {
     const [searchQuery, setSearchQuery] = useState<string>('');
