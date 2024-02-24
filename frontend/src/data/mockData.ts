@@ -1,7 +1,7 @@
-import {CartProduct, MockImage, Order, Product, User} from "../types/types";
+import {ICartProduct, IMockImage, IOrder, IPaymentData, IProduct, IShippingData, IUser} from "../types/types";
 
 
-const mockImages: MockImage[] = [
+const mockImages: IMockImage[] = [
     {image: require('../assets/images/sample_image_1.png')},
     {image: require('../assets/images/sample_image_2.png')},
     {image: require('../assets/images/sample_image_3.png')},
@@ -10,9 +10,9 @@ const mockImages: MockImage[] = [
     {image: require('../assets/images/sample_image_6.png')},
     {image: require('../assets/images/sample_image_7.png')}
 ];
-export const mockProducts: Product[] = [
+export const mockProducts: IProduct[] = [
     {
-        id: '1',
+        productId: '1',
         title: 'Macbook Pro',
         category: 'Notebook',
         price: 249995,
@@ -21,7 +21,7 @@ export const mockProducts: Product[] = [
         shippingCost: 0
     },
     {
-        id: '2',
+        productId: '2',
         title: 'Samsung Galaxy S20',
         category: 'Smartphone',
         price: 39995,
@@ -30,7 +30,7 @@ export const mockProducts: Product[] = [
         shippingCost: 495
     },
     {
-        id: '3',
+        productId: '3',
         title: 'iPad',
         category: 'Tablet',
         price: 49995,
@@ -39,7 +39,7 @@ export const mockProducts: Product[] = [
         shippingCost: 495
     },
     {
-        id: '4',
+        productId: '4',
         title: 'Dell Monitor',
         category: 'Monitor',
         price: 29995,
@@ -48,7 +48,7 @@ export const mockProducts: Product[] = [
         shippingCost: 995
     },
     {
-        id: '5',
+        productId: '5',
         title: 'Headset',
         category: 'Utility',
         price: 7995,
@@ -57,7 +57,7 @@ export const mockProducts: Product[] = [
         shippingCost: 0
     },
     {
-        id: '6',
+        productId: '6',
         title: 'Keyboard',
         category: 'Utility',
         price: 12995,
@@ -66,7 +66,7 @@ export const mockProducts: Product[] = [
         shippingCost: 0
     },
     {
-        id: '7',
+        productId: '7',
         title: 'Mouse',
         category: 'Utility',
         price: 3995,
@@ -76,20 +76,49 @@ export const mockProducts: Product[] = [
     },
 ]
 
-export const mockOrders: Order[] = [
+export const mockUsers: IUser[] = [
+    {
+        userId: '12',
+        email: 'marin@sekic.at',
+        firstName: 'Marin',
+        lastName: 'Sekic',
+        telNr: '+4367812345678'
+    }
+]
+
+export const mockPayment: IPaymentData = {
+    paymentId: '1',
+    amountTotal: 249995,
+    isPaid: true
+};
+
+export const mockShipping: IShippingData = {
+    shippingId: '1',
+    address: 'Hauptstraße 1',
+    address2: 'Top 1',
+    city: 'Graz',
+    state: 'Styria',
+    zipCode: 8010,
+    country: 'Austria',
+    comment: 'Please deliver to the front door',
+    isDelivered: false,
+    isPaid: true
+};
+
+export const mockOrders: IOrder[] = [
         {
-            id: '1',
-            userId: 42,
-            products: mockProducts.slice(3, 7),
-            amountPrice: 3995,
-            amountShipping: 495,
-            shippingAddress: 'Hauptstrasse 1, 8700 Leoben, AT',
-            isPaid: true,
-            isDelivered: true
+            orderId: '1',
+            user: mockUsers[0],
+            products: mockProducts.slice(3, 7).map((product) => (
+                {
+                    cartProductId: Date.now().toString(),
+                    product: product,
+                    quantity: 1
+                }
+            )),
+            shipping: mockShipping,
+            payment: mockPayment,
         }
     ]
 ;
 
-export const mockUsers: User[] = [
-    {id: '42', email: 'marin@sekic.at', firstName: 'Marin', lastName: 'Sekic'}
-]
