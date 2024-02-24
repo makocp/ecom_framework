@@ -1,5 +1,39 @@
-export interface Product {
-    id: string;
+
+export interface IOrder {
+    orderId: string;
+    user: IUser;
+    products: ICartProduct[];
+    shipping: IShippingData;
+    payment: IPaymentData;
+}
+
+export interface IUser {
+    userId: string;
+    email: string;
+    firstName: string;
+    lastName: string;
+    telNr?: string;
+}
+
+export interface ILoginProps {
+    email: string;
+    password: string;
+}
+
+export interface IUserData {
+    currentUser: IUser;
+    token: string;
+}
+
+
+export interface ICartProduct {
+    cartProductId: string;
+    product: IProduct;
+    quantity: number;
+}
+
+export interface IProduct {
+    productId: string;
     title: string;
     category: string;
     price: number;
@@ -8,30 +42,25 @@ export interface Product {
     shippingCost: number;
 }
 
-export interface Order {
-    id: string;
-    userId: number;
-    products: Product[];
-    amountPrice: number;
-    amountShipping: number;
-    shippingAddress: string;
+export interface IShippingData {
+    shippingId: string;
+    address: string;
+    address2: string;
+    city: string;
+    state: string;
+    zipCode: number;
+    country: string;
+    comment: string;
+    isDelivered: boolean;
     isPaid: boolean;
-    isDelivered: boolean
 }
 
-export interface User {
-    id: string;
-    email: string;
-    firstName: string;
-    lastName: string;
+export interface IPaymentData {
+    paymentId: string;
+    amountTotal: number;
+    isPaid: boolean;
 }
 
-export interface CartProduct {
-    id: string;
-    product: Product;
-    quantity: number;
-}
-
-export interface MockImage {
+export interface IMockImage {
     image: number;
 }
