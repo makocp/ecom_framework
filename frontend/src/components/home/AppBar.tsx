@@ -1,22 +1,29 @@
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import React from 'react';
+import React, {useRef} from 'react';
 import {COLORS, SIZES} from "../../themes/theme";
 import Ionicons from "react-native-vector-icons/Ionicons";
+import BottomSheet from "@gorhom/bottom-sheet";
+import LoginBottomSheet from "../bottomsheets/LoginBottomSheet";
+import ShippingInfoBottomSheet from "../bottomsheets/ShippingInfoBottomSheet";
 
 // type CartScreenNavigationProp = StackNavigationProp<RootStackParamList, 'CartScreen'>;
 type AppBarProps = {
-    screenName: string
+    screenName: string,
+    openShippingBottomSheet?: () => void,
+    openLoginBottomSheet?: () => void
 }
 const AppBar = (props: AppBarProps) => {
+
+
     return (
         <View style={styles.appBarWrapper}>
             {props.screenName === 'Home' ?
                 <View style={styles.appBarHome}>
-                    <TouchableOpacity hitSlop={12}>
+                    <TouchableOpacity hitSlop={12} onPress={props.openShippingBottomSheet}>
                         <Ionicons name={'location'} size={28} color={COLORS.primary}/>
                     </TouchableOpacity>
                     <Text style={styles.screenName}>{props.screenName}</Text>
-                    <TouchableOpacity hitSlop={12}>
+                    <TouchableOpacity hitSlop={12} onPress={props.openLoginBottomSheet}>
                         <Ionicons name={'person-circle'} size={32} color={COLORS.primary}/>
                     </TouchableOpacity>
                 </View> :

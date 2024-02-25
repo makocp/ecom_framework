@@ -1,5 +1,5 @@
 import {ActivityIndicator, StyleSheet, View} from 'react-native';
-import React, {useEffect} from 'react';
+import React, {useEffect, useRef} from 'react';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {ScrollView} from 'react-native-gesture-handler';
 import Welcome from '../components/home/Welcome';
@@ -15,6 +15,9 @@ import {mockUsers} from "../data/mockData";
 import {ILoginProps, IMockImage} from "../types/types";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import LoadingScreen from "./LoadingScreen";
+import BottomSheet from "@gorhom/bottom-sheet";
+import ShippingInfoBottomSheet from "../components/bottomsheets/ShippingInfoBottomSheet";
+import LoginBottomSheet from "../components/bottomsheets/LoginBottomSheet";
 
 const HomeScreen = () => {
     useCleanToastsOnUnfocus();
@@ -40,10 +43,23 @@ const HomeScreen = () => {
     const insets = useSafeAreaInsets();
 
 
+    const shippingBottomSheetRef = useRef<BottomSheet>(null);
+    const loginBottomSheetRef = useRef<BottomSheet>(null);
+
+    const snapPoints = ['1%', '100%']
+
+    const openShippingBottomSheet = () => {
+        shippingBottomSheetRef.current?.expand();
+    };
+
+    const openLoginBottomSheet = () => {
+        loginBottomSheetRef.current?.expand();
+    };
+
     return (
         <FadeInScreen>
             <View style={{marginBottom: insets.bottom, paddingTop: insets.top}}>
-                <AppBar screenName={'Home'}></AppBar>
+                <AppBar screenName={'Home'} openShippingBottomSheet={openShippingBottomSheet} openLoginBottomSheet={openLoginBottomSheet}></AppBar>
                 <ScrollView
                     style={styles.scrollContainer}
                     contentContainerStyle={styles.scrollContainerContent}
@@ -55,6 +71,21 @@ const HomeScreen = () => {
                     <SearchBarNavigation/>
                     <ProductRow/>
                 </ScrollView>
+                <BottomSheet
+                    ref={shippingBottomSheetRef}
+                    snapPoints={snapPoints}
+                    index={-1}
+                >
+                    <ShippingInfoBottomSheet/>
+                </BottomSheet>
+
+                <BottomSheet
+                    ref={loginBottomSheetRef}
+                    snapPoints={snapPoints}
+                    index={-1}
+                >
+                    <LoginBottomSheet/>
+                </BottomSheet>
             </View>
         </FadeInScreen>
     );

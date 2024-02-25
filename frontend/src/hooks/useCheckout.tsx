@@ -19,6 +19,7 @@ const useCheckout = () => {
         }
     };
 
+    // todo: methoden implementieren und einbauen.
     const onCheckoutBuyNow = (cartProduct: ICartProduct) => {
         // payment
         // create order product + quantity
@@ -32,7 +33,7 @@ const useCheckout = () => {
 
     const calcTotalPrice = (cartProducts: ICartProduct[]) => {
         const shipping = cartProducts.reduce((accumulated, current) => accumulated + current.product.shippingCost, 0);
-        const subTotal = cartProducts.reduce((accumulated, current) => accumulated + current.product.price, 0);
+        const subTotal = cartProducts.reduce((accumulated, current) => accumulated + current.product.price * current.quantity, 0);
         return shipping + subTotal;
     }
 
