@@ -114,8 +114,11 @@ When the app starts, user data is fetched from the server and stored in the cont
 
 ### Setting Up Provider and Backend for Login
 In this case, I decided to make my custom Login with a backend server.
-In Production Environment it is necessary to use a secure and reliable authentication system, like Firebase or Auth0.
+In Production Environment it is necessary to use a secure and reliable authentication system, like [Firebase](https://rnfirebase.io/auth/usage) or Auth0.
 But for educational purposes, it serves it's purpose for this project.
+
+### Github Copilot
+During the project I used Github Copilot, which is a plugin for Webstorm. It's a great tool for writing code faster and reduce the time to write boilerplate code.
 
 ## Setup CI/CD Workflow on GCloud for Backend
 - [Tutorial: CI/CD for Node.js Application using Google Cloud](https://psspavan96.medium.com/ci-cd-for-node-js-application-using-google-cloud-part-1-5f7466df913d)

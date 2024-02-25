@@ -42,7 +42,7 @@ const HomeScreen = () => {
 
     return (
         <FadeInScreen>
-            <View style={{paddingBottom: insets.bottom, paddingTop: insets.top}}>
+            <View style={{marginBottom: insets.bottom, paddingTop: insets.top}}>
                 <AppBar screenName={'Home'}></AppBar>
                 <ScrollView
                     style={styles.scrollContainer}

@@ -50,4 +50,11 @@ export const SHADOWS = {
         shadowRadius: 3,
         elevation: 5,
     },
+    summaryContainer: {
+        shadowColor: COLORS.primary,
+        shadowOffset: { width: 0, height: -1 },
+        shadowOpacity: 0.1,
+        shadowRadius: 3,
+        elevation: 1,
+    }
 };
