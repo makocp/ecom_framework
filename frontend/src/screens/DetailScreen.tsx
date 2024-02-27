@@ -13,6 +13,7 @@ import useShowToast from "../hooks/useShowToast";
 import useStripePayment from "../hooks/useStripePayment";
 import {useCartActions} from "../providers/CartData/useCartActions";
 import {IProduct} from "../types/types";
+import useCheckout from "../hooks/useCheckout";
 
 type DetailScreenRouteParams = {
     product: IProduct;
@@ -21,7 +22,9 @@ const DetailScreen = () => {
     const {addToCart} = useCartActions();
     const {showAddProductToast} = useShowToast();
     useCleanToastsOnUnfocus();
-    const {onCheckout} = useStripePayment();
+    const {onCheckoutBuyNow} = useCheckout();
+    const {createCartProduct} = useCartActions();
+
 
     const [quantity, setQuantity] = useState(1);
 
@@ -104,7 +107,7 @@ const DetailScreen = () => {
                                 isLoading={false}
                                 buttonText={'Add to Cart'}/>
                             <CheckoutButton onPress={() => {
-                                onCheckout((product.price * quantity) + product.shippingCost)
+                                onCheckoutBuyNow(createCartProduct(product, quantity))
                             }} isLoading={false} buttonText={'Buy Now'} color={'black'}/>
                         </View>
                     </View>

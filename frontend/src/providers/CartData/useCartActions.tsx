@@ -23,7 +23,7 @@ export const useCartActions = () => {
         setCartProducts([]);
     };
 
-    return { addToCart, removeFromCart, clearCart };
+    return { addToCart, removeFromCart, clearCart, createCartProduct };
 };
 
 export default useCartActions;
