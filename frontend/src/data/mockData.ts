@@ -79,9 +79,9 @@ export const mockProducts: IProduct[] = [
 export const mockUsers: IUser[] = [
     {
         userId: '12',
-        email: 'marin@sekic.at',
-        firstName: 'Marin',
-        lastName: 'Sekic',
+        email: 'mako.cp@com.at',
+        firstName: 'Mako',
+        lastName: 'CP',
         telNr: '+4367812345678'
     }
 ]

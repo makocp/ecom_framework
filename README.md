@@ -1,22 +1,59 @@
 ## Description
-The aim of this project, is to build an e-commerce application with a functional payment system. The focus is on the core functionalities (order process incl. payment). After this is done, additional functionalities like cart, better UI design, detailed product view, etc. can be implemented.
-
-My personal motivation here is to learn about React Native, TypeScript and also dive deeper into e-commerce.
-
-Also, this app can be used as "framework" for an e-commerce app. The base is already here, just a few configurations like product import, adaption of design, etc. have to be done.
+E-commerce application with payment system.
 
 ## Developers
 mako.codeproducer@gmail.com
 
 Please contact me, if you have any requests or questions.
 
+## Functionalities
+
+<p float="left" align="middle">
+  <img src="media/app_screenshots/ios-recording.gif" width="300" />
+</p>
+
+### Three Main Screens
+- Home Screen with Slideshow and Top Seller.
+- Products Screen with Categories and All Products.
+- Cart Screen with Payment Process.
+
+<p float="left" align="middle">
+  <img src="media/app_screenshots/home.png" width="300" />
+  <img src="media/app_screenshots/products.png" width="300" /> 
+  <img src="media/app_screenshots/cart.png" width="300" /> 
+</p>
+
+### Detail Screen
+- Shows the details of the product.
+- With a expandable modal for more information.
+- Toast message for adding to cart.
+- Buy Now to start directly the payment process.
+<p float="left" align="middle">
+  <img src="media/app_screenshots/details.png" width="300" />
+  <img src="media/app_screenshots/details_expanded.png" width="300" /> 
+  <img src="media/app_screenshots/details_toast.png" width="300" /> 
+</p>
+
+### Payment Process and other Features
+- Search Function, which searches for products depending on name, category and description.
+- Payment Process with Stripe API, which creates a payment intent and confirms the payment.
+<p float="left" align="middle">
+  <img src="media/app_screenshots/products_search.png" width="300" />
+  <img src="media/app_screenshots/cart_payment.png" width="300" /> 
+  <img src="media/app_screenshots/cart_payment_confirmed.png" width="300" /> 
+</p>
+
+### Core Order Process and further Extensions
+- Currently, the App has as the core a simple order process implemented. The user can add products to the cart and then proceed to the payment process.
+- The Payment gets created in the backend with the Stripe API.
+- Also, the order gets created as a JSON File in the backend.
+- The Products are currently static and fetched from the backend.
+- Potential Extensions: User Authentication, Order History, Dynamic Data, Connection to a CMS, etc.
+
 ## Setup
 [Setting up the Environment Setup](https://reactnative.dev/docs/environment-setup)
 
 After the setup is done, you can start the app via executing the command in the project folder "npm run ios" for iOS or "npm run android" for Android.
-
-## Functionalities
-// TODO: Add Screenshots of finished App.
 
 ## Learnings
 ### Expo vs. RN CLI
@@ -237,5 +274,3 @@ Replace chars: `CMD + R`
 
 - IDE: VS Code / Webstorm
 - iPhone 15 Pro Simulator
-
-## Projektdokumentation (Manual, Zusammenfassung, Repo, usw.)

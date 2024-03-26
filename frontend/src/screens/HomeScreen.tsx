@@ -35,7 +35,7 @@ const HomeScreen = () => {
     // implement here for inputfield state onpress, for now only demo login.
     const loginProps: ILoginProps =
         {
-            email: 'marin.sekic@ecom.com',
+            email: 'mako.cp@ecom.com',
             password: 'passwordEcom1'
         };
 
