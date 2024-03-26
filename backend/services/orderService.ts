@@ -1,6 +1,6 @@
-import {CartProduct, Order} from "../types/types";
+import {ICartProduct, IOrder} from "../types/types";
 
-export const createOrder = (cartProducts: CartProduct[]): Order => {
+export const createOrder = (cartProducts: ICartProduct[]): IOrder => {
     return
 };
 
@@ -17,7 +17,7 @@ const calculateTotal = () => {
 
 };
 
-function mapCartProductsToOrderStructure(cartProducts: CartProduct[], orderId: string) {
+function mapCartProductsToOrderStructure(cartProducts: ICartProduct[], orderId: string) {
     return {
         id: orderId,
         userId: 12, // Example, you need to get this from somewhere

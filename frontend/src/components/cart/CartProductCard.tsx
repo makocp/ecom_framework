@@ -9,6 +9,7 @@ import useStripePayment from "../../hooks/useStripePayment";
 import useShowToast from "../../hooks/useShowToast";
 import {useCartActions} from "../../providers/CartData/useCartActions";
 import {ICartProduct} from "../../types/types";
+import useCheckout from "../../hooks/useCheckout";
 
 type CartProductDataProps = {
     cartProduct: ICartProduct,
@@ -18,6 +19,8 @@ const CartProductCard = ({cartProduct}: CartProductDataProps) => {
     const {onCheckout} = useStripePayment();
     const {removeFromCart} = useCartActions();
     const {showRemoveProductToast} = useShowToast();
+    const {onCheckoutCartSingle} = useCheckout();
+    const {createCartProduct} = useCartActions();
 
     const navigation = useNavigation<DetailScreenNavigationProp>();
     const navigateToDetailScreen = () => {
@@ -57,7 +60,7 @@ const CartProductCard = ({cartProduct}: CartProductDataProps) => {
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.buttonCheckout}
                                       onPress={() => {
-                                          onCheckout((cartProduct.product.price * cartProduct.quantity) + cartProduct.product.shippingCost)
+                                          onCheckoutCartSingle(cartProduct);
                                       }}
                     >
                         <Text style={styles.buttonText}>CHECKOUT</Text>

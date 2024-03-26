@@ -19,20 +19,28 @@ const useCheckout = () => {
         }
     };
 
-    const onCheckoutBuyNow = (cartProduct: ICartProduct) => {
-        // payment
-        // create order product + quantity
+    const onCheckoutBuyNow = async (cartProduct: ICartProduct) => {
+        const amount = calcTotalPrice([cartProduct]);
+        const isSuccessPayment = await onCheckout(amount);
+        if (isSuccessPayment) {
+            // todo: implement dynamically
+            createOrder({cartProducts: [cartProduct], user: mockUsers[0], shipping: mockShipping, payment: mockPayment});
+        }
     };
 
-    const onCheckoutCartSingle = (cartProduct: ICartProduct) => {
-        // payment
-        // remove from cart
-        // create order
+    const onCheckoutCartSingle = async (cartProduct: ICartProduct) => {
+        const amount = calcTotalPrice([cartProduct]);
+        const isSuccessPayment = await onCheckout(amount);
+        if (isSuccessPayment) {
+            removeFromCart(cartProduct.cartProductId);
+            // todo: implement dynamically
+            createOrder({cartProducts: [cartProduct], user: mockUsers[0], shipping: mockShipping, payment: mockPayment});
+        }
     };
 
     const calcTotalPrice = (cartProducts: ICartProduct[]) => {
         const shipping = cartProducts.reduce((accumulated, current) => accumulated + current.product.shippingCost, 0);
-        const subTotal = cartProducts.reduce((accumulated, current) => accumulated + current.product.price, 0);
+        const subTotal = cartProducts.reduce((accumulated, current) => accumulated + current.product.price * current.quantity, 0);
         return shipping + subTotal;
     }
 

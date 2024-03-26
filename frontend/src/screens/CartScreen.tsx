@@ -4,7 +4,7 @@ import FadeInScreen from "./FadeInScreen";
 import AppBar from "../components/home/AppBar";
 import {useSafeAreaInsets} from "react-native-safe-area-context";
 import CartProductCard from "../components/cart/CartProductCard";
-import {COLORS, SIZES} from "../themes/theme";
+import {COLORS, SHADOWS, SIZES} from "../themes/theme";
 import useCartCalculations from "../hooks/useCartCalculations";
 import useStripePayment from "../hooks/useStripePayment";
 import useCurrencyCalculations from "../hooks/useCurrencyCalculations";
@@ -58,7 +58,7 @@ const CartScreen = () => {
                             />
                         </>
                     )}
-                    <View style={styles.summaryContainer}>
+                    <View style={[styles.summaryContainer, SHADOWS.summaryContainer]}>
                         <Text style={styles.summaryTitle}>Order Info</Text>
                         <View style={styles.summaryAmountContainer}>
                             <View style={styles.summarySubtotal}>
@@ -91,21 +91,24 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: 'center',
-        marginHorizontal: SIZES.small,
     },
     scrollContainer: {
         width: '100%',
-        flex: 1
+        flex: 1,
     },
     scrollContainerContent: {
-        gap: 12,
+        gap: SIZES.small,
         marginVertical: 6,
-        marginHorizontal: 6,
-        paddingBottom: 12
+        marginHorizontal: SIZES.small,
+        paddingBottom: SIZES.small
     },
     summaryContainer: {
         width: '100%',
         paddingVertical: SIZES.medium,
+        paddingHorizontal: SIZES.xSmall,
+        borderTopLeftRadius: SIZES.xSmall,
+        borderTopRightRadius: SIZES.xSmall,
+        backgroundColor: COLORS.white,
     },
     summaryTitle: {
         fontWeight: 'bold',

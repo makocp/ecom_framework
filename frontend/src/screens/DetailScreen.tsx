@@ -1,4 +1,4 @@
-import {Image, ScrollView, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {FlatList, Image, ScrollView, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React, {useMemo, useRef, useState} from 'react';
 import {COLORS, SIZES} from "../themes/theme";
 import Ionicons from "react-native-vector-icons/Ionicons";
@@ -13,6 +13,7 @@ import useShowToast from "../hooks/useShowToast";
 import useStripePayment from "../hooks/useStripePayment";
 import {useCartActions} from "../providers/CartData/useCartActions";
 import {IProduct} from "../types/types";
+import useCheckout from "../hooks/useCheckout";
 
 type DetailScreenRouteParams = {
     product: IProduct;
@@ -21,7 +22,9 @@ const DetailScreen = () => {
     const {addToCart} = useCartActions();
     const {showAddProductToast} = useShowToast();
     useCleanToastsOnUnfocus();
-    const {onCheckout} = useStripePayment();
+    const {onCheckoutBuyNow} = useCheckout();
+    const {createCartProduct} = useCartActions();
+
 
     const [quantity, setQuantity] = useState(1);
 
@@ -51,8 +54,9 @@ const DetailScreen = () => {
     };
 
 
-    const bottomSheetRef = useRef(null);
+    const bottomSheetRef = useRef<BottomSheet>(null);
     const snapPoints = useMemo(() => ['55%', '88%'], []);
+
 
     return (
         <View style={[styles.container, {paddingBottom: insets.bottom}]}>
@@ -71,7 +75,7 @@ const DetailScreen = () => {
                 enablePanDownToClose={false}
                 backgroundStyle={styles.bottomSheetBackground}
                 handleStyle={{
-                    backgroundColor: COLORS.secondaryOpacity,
+                    backgroundColor: COLORS.white,
                     borderTopLeftRadius: 12,
                     borderTopRightRadius: 12,
                 }}
@@ -103,14 +107,24 @@ const DetailScreen = () => {
                                 isLoading={false}
                                 buttonText={'Add to Cart'}/>
                             <CheckoutButton onPress={() => {
-                                onCheckout((product.price * quantity) + product.shippingCost)
+                                onCheckoutBuyNow(createCartProduct(product, quantity))
                             }} isLoading={false} buttonText={'Buy Now'} color={'black'}/>
                         </View>
                     </View>
-                    <ScrollView style={[styles.scrollViewContainer, {marginBottom: insets.bottom}]}
-                                alwaysBounceVertical={false} showsVerticalScrollIndicator={false}>
-                        <Text style={styles.textDescription}>{mockProducts[0].description}</Text>
-                    </ScrollView>
+                    <FlatList
+                        data={[mockProducts[0].description]} // Wrapping the description in an array
+                        renderItem={({ item }) => <Text style={styles.textDescription}>{item}</Text>}
+                        keyExtractor={(_, index) => index.toString()}
+                        contentContainerStyle={[styles.scrollViewContainer, { paddingBottom: insets.bottom }]}
+                        alwaysBounceVertical={false}
+                        showsVerticalScrollIndicator={false}
+                        onEndReached={() => bottomSheetRef.current?.expand()}
+                        onScroll={({ nativeEvent }) => {
+                            if (nativeEvent.contentOffset.y <= 0) {
+                                bottomSheetRef.current?.collapse();
+                            }
+                        }}
+                    />
                 </View>
             </BottomSheet>
 
@@ -148,7 +162,7 @@ const styles = StyleSheet.create({
         resizeMode: 'cover'
     },
     bottomSheetBackground: {
-        backgroundColor: COLORS.offwhite,
+        backgroundColor: COLORS.white,
     },
     bottomSheetHandle: {
         color: COLORS.primary
@@ -157,14 +171,14 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     interactionContainer: {
-        backgroundColor: COLORS.secondaryOpacity,
+        backgroundColor: COLORS.white,
         paddingHorizontal: SIZES.small
     },
     headerContainer: {
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        backgroundColor: COLORS.secondaryOpacity,
+        backgroundColor: COLORS.white,
         paddingBottom: 6,
         borderRadius: 12,
         paddingLeft: 12,
@@ -185,9 +199,8 @@ const styles = StyleSheet.create({
         gap: 2,
     },
     scrollViewContainer: {
-        flex: 1,
         paddingHorizontal: SIZES.medium,
-        backgroundColor: COLORS.secondaryOpacity,
+        backgroundColor: COLORS.white,
     },
     textTitle: {
         fontWeight: 'bold',

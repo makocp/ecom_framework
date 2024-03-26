@@ -16,7 +16,7 @@ const useShowToast = () => {
         Toast.show({
             type: 'custom_success',
             text1: `Product Removed`,
-            text2: `${cartProduct.product.title} has been successfully removed from your cart.`,
+            text2: `${cartProduct.product.title} has been removed from your cart.`,
             props: {image: cartProduct.product.image},
         });
     };
