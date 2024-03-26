@@ -55,6 +55,10 @@ Please contact me, if you have any requests or questions.
 
 After the setup is done, you can start the app via executing the command in the project folder "npm run ios" for iOS or "npm run android" for Android.
 
+### SETUP API KEY
+Before starting the app, you need to setup the API Key for the Stripe API.
+For this, go to the .env File in the backend folder and add your Stripe API Keys.
+
 ## Learnings
 ### Expo vs. RN CLI
 I decided to use React Native CLI for this project, because it has a bit more of a steeper learning curve.
