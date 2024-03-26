@@ -43,12 +43,19 @@ Please contact me, if you have any requests or questions.
   <img src="media/app_screenshots/cart_payment_confirmed.png" width="300" /> 
 </p>
 
-### Core Order Process and further Extensions
-- Currently, the App has as the core a simple order process implemented. The user can add products to the cart and then proceed to the payment process.
+### Order and Payment Creation in Backend
+- The Products are currently static and fetched from the backend.
 - The Payment gets created in the backend with the Stripe API.
 - Also, the order gets created as a JSON File in the backend.
-- The Products are currently static and fetched from the backend.
-- Potential Extensions: User Authentication, Order History, Dynamic Data, Connection to a CMS, etc.
+
+<p float="left" align="middle">
+  <img src="media/app_screenshots/payment_stripe.png" width="300" />
+  <img src="media/app_screenshots/order_backend.png" width="300" />
+</p>
+
+
+### Potential Extensions:
+- User Authentication, Order History, Dynamic Data, Connection to a CMS, etc.
 
 ## Setup
 [Setting up the Environment Setup](https://reactnative.dev/docs/environment-setup)
