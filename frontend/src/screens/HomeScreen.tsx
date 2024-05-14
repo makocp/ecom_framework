@@ -23,8 +23,6 @@ const HomeScreen = () => {
     useCleanToastsOnUnfocus();
     const {login, userData, logout, isLoadingUserData} = useUserData();
 
-    console.log('testrender')
-
     const data: IMockImage[] = [
         {image: require('../assets/images/sample_image_1.png')},
         {image: require('../assets/images/sample_image_2.png')},

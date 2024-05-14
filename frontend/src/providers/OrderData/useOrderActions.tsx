@@ -25,7 +25,6 @@ const useOrderActions = () => {
                 body: JSON.stringify(order)
             });
             const data = await response.json();
-            console.log('Order ID:', data.orderId);
         } catch (error) {
             console.error('Error creating order:', error);
         }
