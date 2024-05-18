@@ -1,13 +1,14 @@
 import {useCartData} from "./CartProvider";
 import {ICartProduct, IProduct} from "../../types/types";
+import {IShopifyProduct} from "../ProductData/ShopifyProvider";
 
 export const useCartActions = () => {
     const { setCartProducts } = useCartData();
 
-    const createCartProduct = (product: IProduct, quantity: number): ICartProduct => {
+    const createCartProduct = (product: IShopifyProduct, quantity: number): ICartProduct => {
         return {cartProductId: Date.now().toString(), product: product, quantity: quantity};
     }
-    const addToCart = (product: IProduct, quantity: number) => {
+    const addToCart = (product: IShopifyProduct, quantity: number) => {
         const newCartProduct = createCartProduct(product, quantity);
         setCartProducts((previousProducts) => {
             return [...previousProducts, newCartProduct];

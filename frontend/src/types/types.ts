@@ -1,3 +1,4 @@
+import {IShopifyProduct} from "../providers/ProductData/ShopifyProvider";
 
 export interface IOrder {
     orderId: string;
@@ -28,7 +29,7 @@ export interface IUserData {
 
 export interface ICartProduct {
     cartProductId: string;
-    product: IProduct;
+    product: IShopifyProduct;
     quantity: number;
 }
 

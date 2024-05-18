@@ -8,9 +8,10 @@ import {RootStackParamList} from "../../navigators/RootNavigator";
 import useShowToast from "../../hooks/useShowToast";
 import {useCartActions} from "../../providers/CartData/useCartActions";
 import {IProduct} from "../../types/types";
+import {IShopifyProduct} from "../../providers/ProductData/ShopifyProvider";
 
 type ProductDataProps = {
-    product: IProduct,
+    product: IShopifyProduct,
 }
 export type DetailScreenNavigationProp = StackNavigationProp<RootStackParamList, 'DetailScreen'>
 const ProductCard = ({product}: ProductDataProps) => {
@@ -22,7 +23,7 @@ const ProductCard = ({product}: ProductDataProps) => {
         navigation.navigate('DetailScreen', {product: product});
     };
 
-    const addProductToCart = (product: IProduct, quantity: number) => {
+    const addProductToCart = (product: IShopifyProduct, quantity: number) => {
         const newCartProduct = addToCart(product, quantity);
         showAddProductToast(newCartProduct);
     };
@@ -33,7 +34,7 @@ const ProductCard = ({product}: ProductDataProps) => {
                 <View style={styles.imageWrapper}>
                     <View style={styles.imageContainer}>
                         <Image
-                            source={product.image}
+                            source={{uri: product.image}}
                             style={styles.image}
                         />
                     </View>

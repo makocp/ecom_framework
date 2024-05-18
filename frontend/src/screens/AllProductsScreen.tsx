@@ -10,46 +10,49 @@ import AppBar from "../components/home/AppBar";
 import FadeInScreen from "./FadeInScreen";
 import useCleanToastsOnUnfocus from "../hooks/useCleanToastsOnUnfocus";
 import {IProduct} from "../types/types";
+import {useShopifyData} from "../providers/ProductData/ShopifyProvider";
 
 const AllProductsScreen = () => {
     const [searchQuery, setSearchQuery] = useState<string>('');
-    const [filteredProducts, setFilteredProducts] = useState<IProduct[]>(mockProducts);
+    // const [filteredProducts, setFilteredProducts] = useState<IProduct[]>(mockProducts);
     const insets = useSafeAreaInsets();
     const route = useRoute<RouteProp<TabsStackParamList, 'AllProductsScreen'>>();
     const searchBarRef = useRef<TextInput>(null);
     useCleanToastsOnUnfocus();
 
-    function debounce(func: any, wait: number) {
-        let timeout: any;
+    const {products} = useShopifyData();
 
-        return function (...args: any[]) {
-            const later = () => {
-                clearTimeout(timeout);
-                func(...args);
-            };
+    // function debounce(func: any, wait: number) {
+    //     let timeout: any;
+    //
+    //     return function (...args: any[]) {
+    //         const later = () => {
+    //             clearTimeout(timeout);
+    //             func(...args);
+    //         };
+    //
+    //         clearTimeout(timeout);
+    //         timeout = setTimeout(later, wait);
+    //     };
+    // }
 
-            clearTimeout(timeout);
-            timeout = setTimeout(later, wait);
-        };
-    }
+    // const debouncedSetSearchQuery = useRef(debounce(setSearchQuery, 200)).current;
 
-    const debouncedSetSearchQuery = useRef(debounce(setSearchQuery, 200)).current;
+    // useEffect(() => {
+    //     if (route.params?.isFromSearch) {
+    //         searchBarRef.current?.focus();
+    //     }
+    // }, [route.params?.isFromSearch]);
 
-    useEffect(() => {
-        if (route.params?.isFromSearch) {
-            searchBarRef.current?.focus();
-        }
-    }, [route.params?.isFromSearch]);
-
-    useEffect(() => {
-        const lowercaseQuery = searchQuery.toLowerCase();
-        const filteredProducts = mockProducts.filter(product =>
-            product.title.toLowerCase().includes(lowercaseQuery) ||
-            product.category.toLowerCase().includes(lowercaseQuery) ||
-            product.description.toLowerCase().includes(lowercaseQuery)
-        );
-        setFilteredProducts(filteredProducts);
-    }, [searchQuery]);
+    // useEffect(() => {
+    //     const lowercaseQuery = searchQuery.toLowerCase();
+    //     const filteredProducts = mockProducts.filter(product =>
+    //         product.title.toLowerCase().includes(lowercaseQuery) ||
+    //         product.category.toLowerCase().includes(lowercaseQuery) ||
+    //         product.description.toLowerCase().includes(lowercaseQuery)
+    //     );
+    //     setFilteredProducts(filteredProducts);
+    // }, [searchQuery]);
 
 
     return (
@@ -58,11 +61,13 @@ const AllProductsScreen = () => {
                 <AppBar screenName={'All Products'}></AppBar>
                 <SearchBar
                     ref={searchBarRef}
-                    onChangeText={(text: string) => debouncedSetSearchQuery(text)}
+                    // onChangeText={(text: string) => debouncedSetSearchQuery(text)}
+                    onChangeText={() => {
+                        console.log('placeholder')}}
                 />
                 <View style={styles.scrollContainer}>
                     <FlatList
-                        data={filteredProducts}
+                        data={products}
                         renderItem={({item}) => <ProductCard product={item}/>}
                         numColumns={2}
                         showsVerticalScrollIndicator={false}

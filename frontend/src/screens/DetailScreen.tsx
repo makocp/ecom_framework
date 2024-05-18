@@ -12,11 +12,11 @@ import CheckoutButton from "../components/buttons/CheckoutButton";
 import useShowToast from "../hooks/useShowToast";
 import useStripePayment from "../hooks/useStripePayment";
 import {useCartActions} from "../providers/CartData/useCartActions";
-import {IProduct} from "../types/types";
 import useCheckout from "../hooks/useCheckout";
+import {IShopifyProduct} from "../providers/ProductData/ShopifyProvider";
 
 type DetailScreenRouteParams = {
-    product: IProduct;
+    product: IShopifyProduct;
 }
 const DetailScreen = () => {
     const {addToCart} = useCartActions();
@@ -32,7 +32,7 @@ const DetailScreen = () => {
     const navigation = useNavigation<DetailScreenNavigationProp>();
     const route = useRoute();
     const props = route.params as DetailScreenRouteParams;
-    const product: IProduct = props.product;
+    const product: IShopifyProduct = props.product;
 
     const navigateBack = () => {
         navigation.goBack();
@@ -48,7 +48,7 @@ const DetailScreen = () => {
         }
     };
 
-    const addProductToCart = (product: IProduct, quantity: number) => {
+    const addProductToCart = (product: IShopifyProduct, quantity: number) => {
         const newCartProduct = addToCart(product, quantity);
         showAddProductToast(newCartProduct);
     };
