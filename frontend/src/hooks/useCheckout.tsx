@@ -11,11 +11,10 @@ const useCheckout = () => {
     const {createOrder} = useOrderActions();
     const {placeOrder, processTransaction} = useShopifyData();
 
+    // todo: simplify methods to one
     const onCheckoutCartAll = async (cartProducts: ICartProduct[]) => {
         const amount = calcTotalPrice(cartProducts);
-        console.log(amount);
-        const orderData = await placeOrder(cartProducts, amount);
-        console.log(orderData);
+        await placeOrder(cartProducts, amount);
 
         const isSuccessPayment = await onCheckout(amount);
 
@@ -36,31 +35,39 @@ const useCheckout = () => {
 
     const onCheckoutBuyNow = async (cartProduct: ICartProduct) => {
         const amount = calcTotalPrice([cartProduct]);
+        await placeOrder([cartProduct], amount);
+
         const isSuccessPayment = await onCheckout(amount);
-        if (isSuccessPayment) {
-            // todo: implement dynamically
-            createOrder({
-                cartProducts: [cartProduct],
-                user: mockUsers[0],
-                shipping: mockShipping,
-                payment: mockPayment
-            });
-        }
+
+
+        // if (isSuccessPayment) {
+        //     // todo: implement dynamically
+        //     createOrder({
+        //         cartProducts: [cartProduct],
+        //         user: mockUsers[0],
+        //         shipping: mockShipping,
+        //         payment: mockPayment
+        //     });
+        // }
     };
 
     const onCheckoutCartSingle = async (cartProduct: ICartProduct) => {
         const amount = calcTotalPrice([cartProduct]);
-        const isSuccessPayment = await onCheckout(amount);
-        if (isSuccessPayment) {
-            removeFromCart(cartProduct.cartProductId);
-            // todo: implement dynamically
-            createOrder({
-                cartProducts: [cartProduct],
-                user: mockUsers[0],
-                shipping: mockShipping,
-                payment: mockPayment
-            });
-        }
+        await placeOrder([cartProduct], amount);
+
+
+
+        // const isSuccessPayment = await onCheckout(amount);
+        // if (isSuccessPayment) {
+        //     removeFromCart(cartProduct.cartProductId);
+        //     // todo: implement dynamically
+        //     createOrder({
+        //         cartProducts: [cartProduct],
+        //         user: mockUsers[0],
+        //         shipping: mockShipping,
+        //         payment: mockPayment
+        //     });
+        // }
     };
 
     const calcTotalPrice = (cartProducts: ICartProduct[]) => {

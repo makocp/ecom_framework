@@ -25,7 +25,7 @@ interface CustomToastProps {
     type: 'success' | 'error' | 'info';
     text1?: string;
     text2?: string;
-    image?: number;
+    image?: string;
     navigationText?: string;
     onNavigationPress?: () => void;
 }
@@ -36,7 +36,7 @@ const CustomToast = ({type, text1, text2, image, navigationText, onNavigationPre
         <View style={[styles.container, {borderColor: COLORS.primary}]}>
             <TouchableOpacity activeOpacity={1} style={styles.touchableContainer}
                               onPress={() => Toast.hide()}>
-                {image && <Image source={image} style={styles.image}/>}
+                {image && <Image source={{uri: image}} style={styles.image}/>}
                 <View style={styles.textContainer}>
                     <Text
                         style={[styles.text1, {color: type === 'success' ? COLORS.primary : 'red'}]}>{text1}</Text>
