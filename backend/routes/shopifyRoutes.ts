@@ -40,9 +40,6 @@ router.get('/products', async (req, res) => {
 router.post('/order', async (req, res) => {
     const order = req.body;
 
-    console.log('req.body', req.body);
-    console.log('order',order);
-
     if (!order) {
         return res.status(400).json({error: 'Order object is required'});
     }
