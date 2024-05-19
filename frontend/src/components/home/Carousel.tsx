@@ -3,9 +3,10 @@ import React, {useEffect, useRef, useState} from 'react';
 import {useNavigation} from "@react-navigation/native";
 import {BottomTabNavigationProp} from "@react-navigation/bottom-tabs";
 import {TabsStackParamList} from "../../navigators/TabsNavigator";
+import {useShopifyData} from "../../providers/ProductData/ShopifyProvider";
 
 interface CarouselData {
-    image: number;
+    image: string;
 }
 
 // marginHorizontal gets passed from the Homescreen, for the right width for the carousel.
@@ -14,8 +15,13 @@ interface CarouselProps {
 }
 
 type CarouselScreenNavigationProp = BottomTabNavigationProp<TabsStackParamList, 'AllProductsScreen'>;
-const Carousel = ({data}: CarouselProps) => {
+const Carousel = () => {
     const navigation = useNavigation<CarouselScreenNavigationProp>();
+    const {products} = useShopifyData();
+    // Getting the last three products
+    const data = products.slice(-3).map(product => ({ image: product.image }));
+
+
     const navigateToAllProductsScreen = () => {
         navigation.navigate('AllProductsScreen', {isFromSearch: false});
     };
@@ -44,7 +50,7 @@ const Carousel = ({data}: CarouselProps) => {
 
         // Clear the interval on unmount
         return () => clearInterval(interval);
-    }, [currentIndex]);
+    }, [currentIndex, data.length]);
 
     const {width} = useWindowDimensions();
     const screenWidth = width;
@@ -87,8 +93,9 @@ const Carousel = ({data}: CarouselProps) => {
                         <Animated.View style={[styles.imageContainer, {transform: [{scale}]}]}>
                             <TouchableOpacity onPress={navigateToAllProductsScreen} activeOpacity={0.9}>
                                 <Image
-                                    source={item.image}
-                                    style={styles.image}
+                                    source={{uri: item.image}}
+                                    style={[styles.image, { width: SIZE, height: '100%' }]} // Adjust to fit the image
+                                    resizeMode='contain'
                                 />
                             </TouchableOpacity>
                         </Animated.View>
@@ -112,8 +119,6 @@ const styles = StyleSheet.create({
         overflow: 'hidden',
     },
     image: {
-        width: '100%',
-        height: undefined,
         aspectRatio: 16 / 9,
     }
 })

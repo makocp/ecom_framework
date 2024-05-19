@@ -18,16 +18,19 @@ import LoadingScreen from "./LoadingScreen";
 import BottomSheet from "@gorhom/bottom-sheet";
 import ShippingInfoBottomSheet from "../components/bottomsheets/ShippingInfoBottomSheet";
 import LoginBottomSheet from "../components/bottomsheets/LoginBottomSheet";
+import {useShopifyData} from "../providers/ProductData/ShopifyProvider";
 
 const HomeScreen = () => {
     useCleanToastsOnUnfocus();
     const {login, userData, logout, isLoadingUserData} = useUserData();
 
-    const data: IMockImage[] = [
-        {image: require('../assets/images/sample_image_1.png')},
-        {image: require('../assets/images/sample_image_2.png')},
-        {image: require('../assets/images/sample_image_3.png')},
-    ];
+    // const data: IMockImage[] = [
+    //     {image: require('../assets/images/sample_image_1.png')},
+    //     {image: require('../assets/images/sample_image_2.png')},
+    //     {image: require('../assets/images/sample_image_3.png')},
+    // ];
+
+    const {products} = useShopifyData();
 
     // todo:
     // implement here for inputfield state onpress, for now only demo login.
@@ -64,7 +67,7 @@ const HomeScreen = () => {
                     showsVerticalScrollIndicator={false}
                 >
                     <Welcome/>
-                    <Carousel data={data}/>
+                    <Carousel />
                     <Headings/>
                     <SearchBarNavigation/>
                     <ProductRow/>
