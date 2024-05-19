@@ -33,6 +33,45 @@ export interface ICartProduct {
     quantity: number;
 }
 
+export interface IShopifyOrder {
+    line_items: IShopifyLineItem[];
+    email: string;
+    customer: IShopifyCustomer;
+    billing_address: IShopifyAddress;
+    shipping_address: IShopifyAddress;
+    financial_status: string;
+    transactions: IShopifyTransaction[];
+}
+
+export interface IShopifyLineItem {
+    variant_id: number;
+    quantity: number;
+}
+
+export interface IShopifyCustomer {
+    first_name: string;
+    last_name: string;
+    email: string;
+}
+
+export interface IShopifyAddress {
+    first_name: string;
+    last_name: string;
+    address1: string;
+    phone: string;
+    city: string;
+    province: string;
+    country: string;
+    zip: string;
+}
+
+export interface IShopifyTransaction {
+    test: boolean;
+    kind: string;
+    status: string;
+    amount: number;
+}
+
 export interface IProduct {
     productId: string;
     title: string;

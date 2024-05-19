@@ -3,13 +3,16 @@ import React from 'react';
 import {SIZES} from "../../themes/theme";
 import ProductCard from "./ProductCard";
 import {mockProducts} from "../../data/mockData";
+import {useShopifyData} from "../../providers/ProductData/ShopifyProvider";
 
 
 const ProductRow = () => {
+    const {products} = useShopifyData();
+
     return (
         <View style={styles.container}>
             <FlatList
-                data={mockProducts.slice(4,7)}
+                data={products.slice(4,7)}
                 renderItem={({item}) => <ProductCard product={item}/>}
                 horizontal
                 contentContainerStyle={styles.flatListContainer}

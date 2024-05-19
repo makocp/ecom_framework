@@ -23,7 +23,8 @@ const CartScreen = () => {
     // todo: dynamically, from backend.
     // const cartProductData = mockCartProducts;
     const {cartProducts} = useCartData();
-    const {subtotal, shipping, total} = useCartCalculations({cartProductData: cartProducts});
+    // const {subtotal, shipping, total} = useCartCalculations({cartProductData: cartProducts});
+    const {subtotal, total} = useCartCalculations({cartProductData: cartProducts});
     const {transformCentsToEuroString} = useCurrencyCalculations();
     const navigation = useNavigation<CartScreenNavigationProp>();
     useCleanToastsOnUnfocus();
@@ -61,16 +62,16 @@ const CartScreen = () => {
                     <View style={[styles.summaryContainer, SHADOWS.summaryContainer]}>
                         <Text style={styles.summaryTitle}>Order Info</Text>
                         <View style={styles.summaryAmountContainer}>
-                            <View style={styles.summarySubtotal}>
-                                <Text style={styles.summaryText}>Subtotal</Text>
-                                <Text
-                                    style={styles.summaryText}>€ {transformCentsToEuroString(subtotal)}</Text>
-                            </View>
-                            <View style={styles.summaryShipping}>
-                                <Text style={styles.summaryText}>Shipping</Text>
-                                <Text
-                                    style={styles.summaryText}>€ {transformCentsToEuroString(shipping)}</Text>
-                            </View>
+                            {/*<View style={styles.summarySubtotal}>*/}
+                            {/*    <Text style={styles.summaryText}>Subtotal</Text>*/}
+                            {/*    <Text*/}
+                            {/*        style={styles.summaryText}>€ {transformCentsToEuroString(subtotal)}</Text>*/}
+                            {/*</View>*/}
+                            {/*<View style={styles.summaryShipping}>*/}
+                            {/*    <Text style={styles.summaryText}>Shipping</Text>*/}
+                            {/*    <Text*/}
+                            {/*        style={styles.summaryText}>€ {transformCentsToEuroString(shipping)}</Text>*/}
+                            {/*</View>*/}
                             <View style={styles.summaryTotal}>
                                 <Text style={styles.summaryTextTotal}>TOTAL</Text>
                                 <Text

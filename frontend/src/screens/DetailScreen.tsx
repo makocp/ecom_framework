@@ -66,7 +66,7 @@ const DetailScreen = () => {
                 </TouchableOpacity>
             </View>
             <View style={styles.imageContainer}>
-                <Image source={product.image} style={styles.image}/>
+                <Image source={{uri: product.image}} style={styles.image}/>
             </View>
             <BottomSheet
                 ref={bottomSheetRef}
@@ -88,8 +88,8 @@ const DetailScreen = () => {
                             <View style={styles.detailsContainer}>
                                 <Text style={styles.textTitle}>{product.title}</Text>
                                 <Text style={styles.textPrice}>€ {product.price / 100}</Text>
-                                <Text
-                                    style={styles.textShipping}>+ {product.shippingCost === 0 ? 'Free' : product.shippingCost / 100} Shipping</Text>
+                                {/*<Text*/}
+                                {/*    style={styles.textShipping}>+ {product.shippingCost === 0 ? 'Free' : product.shippingCost / 100} Shipping</Text>*/}
                             </View>
                             <View style={styles.quantityContainer}>
                                 <TouchableOpacity hitSlop={12} onPress={decrementQuantity}>
@@ -112,13 +112,13 @@ const DetailScreen = () => {
                         </View>
                     </View>
                     <FlatList
-                        data={[mockProducts[0].description]} // Wrapping the description in an array
-                        renderItem={({ item }) => <Text style={styles.textDescription}>{item}</Text>}
+                        data={[product.description]} // Wrapping the description in an array
+                        renderItem={({ item }) => <Text style={styles.textDescription}>{item === '' ? 'No description for this product.' : item}</Text>}
                         keyExtractor={(_, index) => index.toString()}
                         contentContainerStyle={[styles.scrollViewContainer, { paddingBottom: insets.bottom }]}
                         alwaysBounceVertical={false}
                         showsVerticalScrollIndicator={false}
-                        onEndReached={() => bottomSheetRef.current?.expand()}
+                        // onEndReached={() => bottomSheetRef.current?.expand()}
                         onScroll={({ nativeEvent }) => {
                             if (nativeEvent.contentOffset.y <= 0) {
                                 bottomSheetRef.current?.collapse();

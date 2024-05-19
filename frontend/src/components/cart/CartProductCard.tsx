@@ -37,7 +37,7 @@ const CartProductCard = ({cartProduct}: CartProductDataProps) => {
             <View style={[styles.container, SHADOWS.small]}>
                 <View style={styles.imageContainer}>
                     <Image
-                        source={cartProduct.product.image}
+                        source={{uri: cartProduct.product.image}}
                         style={styles.image}
                     />
                 </View>
@@ -49,8 +49,8 @@ const CartProductCard = ({cartProduct}: CartProductDataProps) => {
                     <View>
                         <Text style={styles.price}
                               numberOfLines={1}>€ {transformCentsToEuroString(cartProduct.product.price)} x {cartProduct.quantity}</Text>
-                        <Text style={styles.price2}
-                              numberOfLines={1}>+ {cartProduct.product.shippingCost === 0 ? 'Free' : transformCentsToEuroString(cartProduct.product.shippingCost)} Shipping</Text>
+                        {/*<Text style={styles.price2}*/}
+                        {/*      numberOfLines={1}>+ {cartProduct.product.shippingCost === 0 ? 'Free' : transformCentsToEuroString(cartProduct.product.shippingCost)} Shipping</Text>*/}
                     </View>
                 </View>
                 <View style={styles.buttonColumn}>
