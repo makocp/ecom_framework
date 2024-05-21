@@ -9,20 +9,25 @@ const useCheckout = () => {
     const {removeFromCart, clearCart} = useCartActions();
     const {onCheckout, isLoading, setIsLoading} = useStripePayment();
     const {createOrder} = useOrderActions();
-    const {placeOrder, processTransaction} = useShopifyData();
+    const {placeOrder, getTransaction, processTransaction} = useShopifyData();
 
-    // todo: simplify methods to one
+    /**
+     * todo: simplify methods to one
+     * todo: add debounce (?) to not be able to click multiple times
+     * todo: oursource processing logic to backend
+     */
     const onCheckoutCartAll = async (cartProducts: ICartProduct[]) => {
         const amount = calcTotalPrice(cartProducts);
-        await placeOrder(cartProducts, amount);
+
+        const orderData = await placeOrder(cartProducts, amount);
+        const orderId = orderData.order.id;
 
         const isSuccessPayment = await onCheckout(amount);
-
         if (isSuccessPayment) {
+            const transactionData = await getTransaction(orderId);
+            const transactionId = transactionData.transactions[0].id;
+            await processTransaction(orderId, transactionId, amount);
             clearCart();
-            // todo: falls erfolgreiche zahlung -> zahlung bestätigen, sonst bestellung offen lassen.
-            // todo: transaction bestätigen.
-
         }
 
         //// for mockdata:

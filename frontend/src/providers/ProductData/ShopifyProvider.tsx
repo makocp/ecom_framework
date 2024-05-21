@@ -14,7 +14,8 @@ interface IShopifyContextType {
     products: IShopifyProduct[];
     setProducts: React.Dispatch<React.SetStateAction<IShopifyProduct[]>>;
     placeOrder: (cartProducts: ICartProduct[], amount: number) => Promise<any>;
-    processTransaction: () => Promise<any>;
+    getTransaction: (orderId: string) => Promise<any>;
+    processTransaction: (orderId: string, transactionId: string, amount: number) => Promise<any>;
 }
 
 const ShopifyContext: React.Context<IShopifyContextType | undefined> = createContext<IShopifyContextType | undefined>(undefined);
@@ -51,10 +52,8 @@ export const ShopifyProvider: React.FC<{ children: ReactNode }> = ({children}) =
                 },
                 body: JSON.stringify(orderObject)
             });
-            console.log('response', response)
             if (response.ok) {
                 const data = await response.json();
-                console.log(data);
                 return data;
             }
         } catch (error) {
@@ -107,9 +106,40 @@ export const ShopifyProvider: React.FC<{ children: ReactNode }> = ({children}) =
         };
     };
 
-    const processTransaction = async () => {
+    const getTransaction = async (orderId: string) => {
+        try {
+            const response = await fetch(`http://localhost:4242/shopify/transactionID/${orderId}`);
 
+            if (response.ok) {
+                return await response.json();
+            }
+        } catch (error) {
+            console.error('Error creating order:', error);
+        }
     };
+
+    const processTransaction = async (orderId: string, transactionId: string, amount: number) => {
+        const amountInString = (amount / 100).toFixed(2)
+        try {
+            const response = await fetch(`http://localhost:4242/shopify/processTransaction`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    orderId,
+                    transactionId,
+                    amountInString
+                })
+            });
+
+            if (response.ok) {
+                return await response.json();
+            }
+        } catch (error) {
+            console.error('Error creating order:', error);
+        }
+    }
 
     const convertPriceToNumber = (price: string): number => {
         return Math.round(parseFloat(price) * 100);
@@ -120,7 +150,7 @@ export const ShopifyProvider: React.FC<{ children: ReactNode }> = ({children}) =
     }, []);
 
     return (
-        <ShopifyContext.Provider value={{products, setProducts, placeOrder, processTransaction}}>
+        <ShopifyContext.Provider value={{products, setProducts, placeOrder, getTransaction, processTransaction}}>
             {children}
         </ShopifyContext.Provider>
     );
